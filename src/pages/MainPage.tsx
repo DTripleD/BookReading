@@ -1,7 +1,12 @@
+import MainContainer from "../components/Container/Container";
 import Main from "../components/Main/Main";
 
 const MainPage = () => {
-  return <Main />;
+  return (
+    <MainContainer>
+      <Main />
+    </MainContainer>
+  );
 };
 
 export default MainPage;
