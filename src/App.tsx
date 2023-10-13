@@ -7,7 +7,18 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 import RestrictedRoute from "./components/RestrictedRoute";
 import PrivateRoute from "./components/PrivateRoute";
 
+import { useEffect } from "react";
+import { refreshUser } from "./redux/auth/operations";
+import { useAppDispatch } from "./redux/store";
+import ProgressPage from "./pages/ProgressPage";
+
 function App() {
+  const dispatch = useAppDispatch();
+  // const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
   return (
     <>
       <Routes>
@@ -30,6 +41,10 @@ function App() {
           <Route
             path="/main"
             element={<PrivateRoute component={<MainPage />} />}
+          />
+          <Route
+            path="/progress"
+            element={<PrivateRoute component={<ProgressPage />} />}
           />
         </Route>
       </Routes>

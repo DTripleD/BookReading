@@ -1,3 +1,5 @@
+import { useAppDispatch } from "../../redux/store";
+import { useState } from "react";
 import {
   Form,
   FormWrapper,
@@ -16,10 +18,32 @@ import {
   FirstPluses,
   SecondPluses,
 } from "./Register.styled";
+import { register } from "../../redux/auth/operations";
 
 const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
+
+  const dispatch = useAppDispatch();
+
   const handleRegisterSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (password === confPassword) {
+      alert("Password wrong");
+      return;
+    }
+
+    dispatch(
+      register({
+        name,
+        email,
+        password,
+      })
+    ).then(() => console.log("succes"));
+    // .catch(() => Notify.failure("Error! Try to enter another email"));
   };
   return (
     <RegisterPageWrapper>
@@ -27,19 +51,35 @@ const Register = () => {
         <Form>
           <Label>
             Name <LabelSpan>*</LabelSpan>
-            <Input type="text" placeholder="..." />
+            <Input
+              type="text"
+              placeholder="..."
+              onChange={(e) => setName(e.target.value)}
+            />
           </Label>
           <Label>
             Email <LabelSpan>*</LabelSpan>
-            <Input type="text" placeholder="your@email.com" />
+            <Input
+              type="text"
+              placeholder="your@email.com"
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </Label>
           <Label>
             Password <LabelSpan>*</LabelSpan>
-            <Input type="text" placeholder="..." />
+            <Input
+              type="text"
+              placeholder="..."
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </Label>
           <Label>
             Confirm password <LabelSpan>*</LabelSpan>
-            <Input type="text" placeholder="..." />
+            <Input
+              type="text"
+              placeholder="..."
+              onChange={(e) => setConfPassword(e.target.value)}
+            />
           </Label>
           <RegisterButton type="submit" onClick={handleRegisterSubmit}>
             Register
