@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import {
   Form,
   Input,
@@ -7,8 +8,12 @@ import {
   StepsNum,
   StepsResult,
 } from "./Main.styled.tsx";
+import { userBooks } from "../../redux/books/booksSelectors.ts";
 
 const Main = () => {
+  const allBooks = useSelector(userBooks);
+
+  console.log(allBooks);
   return (
     <>
       <Form>

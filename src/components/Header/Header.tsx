@@ -16,15 +16,16 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const user = useSelector(selectUser);
+
   const dispatch = useAppDispatch();
   return (
     <HeaderWrapper>
       <Logo>BR</Logo>
-      {user && (
+      {user.name && user.email && user.id && (
         <>
           <UserInfoWrapper>
             <UserLogoWrapper>
-              <UserLogo>{user.name[0]}</UserLogo>
+              <UserLogo>{user.name && user.name[0]}</UserLogo>
             </UserLogoWrapper>
             <UserName>{user.name}</UserName>
           </UserInfoWrapper>

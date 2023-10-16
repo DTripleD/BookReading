@@ -12,6 +12,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth/authSlice";
 import { useDispatch } from "react-redux";
+import { booksReducer } from "./books/booksSlice";
 
 const authPersistConfig = {
   key: "auth",
@@ -19,9 +20,16 @@ const authPersistConfig = {
   // whitelist: ["user"],
 };
 
+const booksPersistConfig = {
+  key: "books",
+  storage,
+  // whitelist: ["user"],
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    books: persistReducer(booksPersistConfig, booksReducer),
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
