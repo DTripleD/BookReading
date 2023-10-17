@@ -4,7 +4,14 @@ import { addBook, getBooks } from "./booksOperations";
 interface State {
   name: string;
   email: string;
-  goingToRead: [];
+  goingToRead: [
+    {
+      title: string;
+      author: string;
+      publishYear: number;
+      pagesTotal: number;
+    }
+  ];
   currentlyReading: [];
   finishedReading: [];
   isLoading: boolean;
@@ -14,7 +21,14 @@ interface State {
 const initialState: State = {
   name: "",
   email: "",
-  goingToRead: [],
+  goingToRead: [
+    {
+      title: "Example Title",
+      author: "Example Author",
+      publishYear: 2023,
+      pagesTotal: 300,
+    },
+  ],
   currentlyReading: [],
   finishedReading: [],
   isLoading: false,
@@ -31,7 +45,6 @@ const booksSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getBooks.fulfilled, (state, action) => {
-        console.log(action);
         state.name = action.payload.name;
         state.email = action.payload.email;
         state.name = action.payload.goingToRead;
@@ -46,7 +59,9 @@ const booksSlice = createSlice({
       .addCase(addBook.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(addBook.fulfilled, (state) => {
+      .addCase(addBook.fulfilled, (state, action) => {
+        console.log(action.payload.data);
+        state.goingToRead.push(action.payload.data);
         state.isLoading = false;
       })
       .addCase(addBook.rejected, (state, action) => {

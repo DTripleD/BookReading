@@ -10,6 +10,7 @@ import {
   LogoutBtn,
   NavWrapper,
   UserInfoWrapper,
+  HeaderContainer,
 } from "./Header.styled";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -20,23 +21,25 @@ const Header = () => {
   const dispatch = useAppDispatch();
   return (
     <HeaderWrapper>
-      <Logo>BR</Logo>
-      {user.name && user.email && user.id && (
-        <>
-          <UserInfoWrapper>
-            <UserLogoWrapper>
-              <UserLogo>{user.name && user.name[0]}</UserLogo>
-            </UserLogoWrapper>
-            <UserName>{user.name}</UserName>
-          </UserInfoWrapper>
+      <HeaderContainer>
+        <Logo>BR</Logo>
+        {user.name && user.email && user.id && (
+          <>
+            <UserInfoWrapper>
+              <UserLogoWrapper>
+                <UserLogo>{user.name && user.name[0]}</UserLogo>
+              </UserLogoWrapper>
+              <UserName>{user.name}</UserName>
+            </UserInfoWrapper>
 
-          <NavWrapper>
-            <NavLink to="/progress">Book</NavLink>
-            <NavLink to="/main">House</NavLink>
-            <LogoutBtn onClick={() => dispatch(logOut())}>Logout</LogoutBtn>
-          </NavWrapper>
-        </>
-      )}
+            <NavWrapper>
+              <NavLink to="/progress">Book</NavLink>
+              <NavLink to="/main">House</NavLink>
+              <LogoutBtn onClick={() => dispatch(logOut())}>Logout</LogoutBtn>
+            </NavWrapper>
+          </>
+        )}
+      </HeaderContainer>
     </HeaderWrapper>
   );
 };
