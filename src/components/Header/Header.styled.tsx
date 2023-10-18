@@ -84,7 +84,7 @@ export const HeaderContainer = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    width: 1248px;
+    width: 1280px;
     padding: 16px;
   }
 `;
