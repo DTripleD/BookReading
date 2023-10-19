@@ -5,21 +5,30 @@ import {
   CountBackground,
   CountNumber,
   CountWrapper,
-  DateInput,
   ListHeaderText,
   ListHeaderWrapper,
   ListItem,
-  ProgressWrapper,
   SelectedBookTitle,
   StartButton,
   MainTitle,
   TitleWrapper,
   LineWrapper,
   LineUpperText,
-  TrainingWrapper,
+  StyledDatePicker,
+  SelectedBooksList,
+  ResultsWrapper,
+  AddResultButton,
+  ResultTitle,
+  StatisticsTitle,
+  SectionWrapper,
+  BigElement,
+  TimerWrapper,
+  Timers,
+  Time,
+  TimerTitle,
 } from "./Progress.styled";
 import { userBooks } from "../../redux/books/booksSelectors";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -30,6 +39,14 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import dayjs from "dayjs";
+import { data, options } from "../../shared/optionsForChart";
+import { days, hours, minutes, seconds } from "../../shared/timeEndOfYear";
 
 ChartJS.register(
   CategoryScale,
@@ -39,40 +56,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-const options = {
-  cubicInterpolationMode: "monotone",
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-};
-
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-const startPages = [5, 10, 45, 1, 3, 5, 6];
-
-const progressExpectetion = [5, 10, 15, 20, 25, 30, 35];
-
-const data = {
-  labels,
-  datasets: [
-    {
-      label: "plan",
-      data: startPages,
-      borderColor: "#FF6B08",
-      backgroundColor: "#FF6B08",
-    },
-    {
-      label: "fact",
-      data: progressExpectetion,
-      borderColor: "#091E3F",
-      backgroundColor: "#091E3F",
-    },
-  ],
-};
 
 interface Book {
   author: string;
@@ -85,12 +68,38 @@ interface Book {
 
 const Progress = () => {
   const [selectedBooks, setSelectedBooks] = useState<Book[]>([]);
-  const [selectedBook, setSelectedBook] = useState({});
+  const [selectedBookTitle, setSelectedBookTitle] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [finishDate, setFinishDate] = useState("");
+  const [start, setStart] = useState(false);
+  const [, setDateTime] = useState(new Date());
+
+  const date1 = dayjs(startDate);
+  const date2 = dayjs(finishDate);
+
+  const diffInDays = isNaN(date2.diff(date1, "day"))
+    ? 0
+    : date2.diff(date1, "day");
+  // const diffInHours = date2.diff(date1, "hour");
+  // const diffInSeconds = date2.diff(date1, "seconds");
 
   const allBooks = useSelector(userBooks);
 
+  const handleStartDateChange = (date) => {
+    const formattedDate = dayjs(date.$d).format("YYYY-MM-DD HH:mm:ss");
+    setStartDate(formattedDate);
+  };
+
+  const handleFinishDateChange = (date) => {
+    const formattedDate = dayjs(date.$d).format("YYYY-MM-DD HH:mm:ss");
+    setFinishDate(formattedDate);
+  };
+
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    const selectedBook = allBooks.goingToRead.find(
+      (book: Book) => book.title === selectedBookTitle
+    );
     setSelectedBooks((prevSelectedBooks) => [
       ...prevSelectedBooks,
       selectedBook as Book,
@@ -98,70 +107,170 @@ const Progress = () => {
     return;
   };
 
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedBookTitle = event.target.value;
-    const selectedBook = allBooks.goingToRead.find(
-      (book: Book) => book.title === selectedBookTitle
-    );
-    setSelectedBook(selectedBook);
+  const handleSelectChange = (event: SelectChangeEvent) => {
+    setSelectedBookTitle(event.target.value as string);
+  };
+
+  const today = dayjs();
+  // const tomorrow = dayjs().add(1, "day");
+
+  useEffect(() => {
+    const id = setInterval(() => setDateTime(new Date()), 1000);
+    return () => {
+      clearInterval(id);
+    };
+  }, []);
+
+  const year = new Date(new Date().getFullYear() + 1, 0, 1).getTime();
+
+  const oneDay = 86400000;
+  const diff = year + oneDay - new Date().getTime();
+
+  const time = {
+    days: days(diff),
+    hours: hours(diff),
+    minutes: minutes(diff),
+    seconds: seconds(diff),
+  };
+
+  const f = Date.parse(finishDate);
+
+  const dateNow = Date.now();
+
+  const raznica = f - dateNow;
+
+  const timeOfRaznica = {
+    days: days(raznica),
+    hours: hours(raznica),
+    minutes: minutes(raznica),
+    seconds: seconds(raznica),
   };
 
   return (
     <>
-      <ProgressWrapper>
-        <TrainingWrapper>
-          <TitleWrapper>
-            <MainTitle>My training</MainTitle>
-          </TitleWrapper>
-          <form onSubmit={(event) => handleFormSubmit(event)}>
+      <SectionWrapper>
+        {start ? (
+          <BigElement>
+            <Timers>
+              <div>
+                <TimerTitle>Years countdown</TimerTitle>
+                <TimerWrapper>
+                  <Time>
+                    {time.days}:{time.hours}:{time.minutes}:{time.seconds}
+                  </Time>
+                  <p>DAYS HRS MINS SECS</p>
+                </TimerWrapper>
+              </div>
+              <div>
+                <TimerTitle>Goals countdown</TimerTitle>
+                <TimerWrapper>
+                  <Time>
+                    {timeOfRaznica.days}:{timeOfRaznica.hours}:
+                    {timeOfRaznica.minutes}:{timeOfRaznica.seconds}
+                  </Time>
+                  <p>DAYS HRS MINS SECS</p>
+                </TimerWrapper>
+              </div>
+            </Timers>
             <div>
-              <DateInput type="date" placeholder="start" />
-              <DateInput type="date" />
+              <ListHeaderWrapper key={123}>
+                <ListHeaderText>Book title</ListHeaderText>
+                <ListHeaderText>Author</ListHeaderText>
+                <ListHeaderText>Year</ListHeaderText>
+                <ListHeaderText>Pages</ListHeaderText>
+              </ListHeaderWrapper>
+              <SelectedBooksList>
+                {selectedBooks.map((book) => (
+                  <ListItem key={book._id}>
+                    <input
+                      type="checkbox"
+                      onClick={() => console.log(book._id)}
+                    />
+                    <SelectedBookTitle>{book.title}</SelectedBookTitle>
+                    <SelectedBookTitle>{book.author}</SelectedBookTitle>
+                    <SelectedBookTitle>{book.publishYear}</SelectedBookTitle>
+                    <SelectedBookTitle>{book.pagesTotal}</SelectedBookTitle>
+                  </ListItem>
+                ))}
+              </SelectedBooksList>
             </div>
-            <select
-              id="select"
-              placeholder="Choose books from the library "
-              onChange={(event) => handleSelectChange(event)}
-            >
-              {allBooks.goingToRead.map(
-                (book: {
-                  author: string;
-                  pagesFinished: number;
-                  pagesTotal: number;
-                  publishYear: number;
-                  title: string;
-                  _id: string;
-                }) => (
-                  <option key={book._id} value={book.title}>
-                    {book.title}
-                  </option>
-                )
-              )}
-            </select>
-            <AddButton type="submit">Add</AddButton>
-          </form>
-          <ul>
-            <ListHeaderWrapper>
+          </BigElement>
+        ) : (
+          <BigElement>
+            <TitleWrapper>
+              <MainTitle>My training</MainTitle>
+            </TitleWrapper>
+            <form onSubmit={(event) => handleFormSubmit(event)}>
+              <div>
+                <StyledDatePicker
+                  label="Start"
+                  onChange={(date) => handleStartDateChange(date)}
+                  minDate={today}
+                  slots={{
+                    openPickerIcon: ArrowDropDownIcon,
+                  }}
+                />
+                <StyledDatePicker
+                  label="Finish"
+                  onChange={(date) => handleFinishDateChange(date)}
+                  minDate={today}
+                  slots={{
+                    openPickerIcon: ArrowDropDownIcon,
+                  }}
+                />
+              </div>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Choose books from the library
+                </InputLabel>
+                <Select
+                  onChange={(event) => handleSelectChange(event)}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={selectedBookTitle}
+                  label="Age"
+                >
+                  {allBooks.goingToRead.map(
+                    (book: {
+                      author: string;
+                      pagesFinished: number;
+                      pagesTotal: number;
+                      publishYear: number;
+                      title: string;
+                      _id: string;
+                    }) => (
+                      <MenuItem key={book._id} value={book.title}>
+                        {book.title}
+                      </MenuItem>
+                    )
+                  )}
+                </Select>
+              </FormControl>
+              <AddButton type="submit" disabled={selectedBookTitle === ""}>
+                Add
+              </AddButton>
+            </form>
+            <ListHeaderWrapper key={123}>
               <ListHeaderText>Book title</ListHeaderText>
               <ListHeaderText>Author</ListHeaderText>
               <ListHeaderText>Year</ListHeaderText>
               <ListHeaderText>Pages</ListHeaderText>
             </ListHeaderWrapper>
-            {selectedBooks.map((book) => (
-              <ListItem key={book._id}>
-                <SelectedBookTitle>{book.title}</SelectedBookTitle>
-                <SelectedBookTitle>{book.author}</SelectedBookTitle>
-                <SelectedBookTitle>{book.publishYear}</SelectedBookTitle>
-                <SelectedBookTitle>{book.pagesTotal}</SelectedBookTitle>
-              </ListItem>
-            ))}
-          </ul>
-          <StartButton>Start traning</StartButton>
-          <LineWrapper>
-            <LineUpperText>Amont of pages / DAY</LineUpperText>
-            <Line options={options} data={data} />
-          </LineWrapper>
-        </TrainingWrapper>
+            <SelectedBooksList>
+              {selectedBooks.map((book) => (
+                <ListItem key={book._id}>
+                  <SelectedBookTitle>{book.title}</SelectedBookTitle>
+                  <SelectedBookTitle>{book.author}</SelectedBookTitle>
+                  <SelectedBookTitle>{book.publishYear}</SelectedBookTitle>
+                  <SelectedBookTitle>{book.pagesTotal}</SelectedBookTitle>
+                </ListItem>
+              ))}
+            </SelectedBooksList>
+            <StartButton onClick={() => setStart(true)}>
+              Start traning
+            </StartButton>
+          </BigElement>
+        )}
         <div>
           <TitleWrapper>
             <MainTitle>My goals</MainTitle>
@@ -175,14 +284,50 @@ const Progress = () => {
             </div>
             <div>
               <CountWrapper>
-                <CountNumber>0</CountNumber>
+                <CountNumber>{diffInDays}</CountNumber>
               </CountWrapper>
 
               <BoxName>Amount of days</BoxName>
             </div>
+            {start && (
+              <div>
+                <CountWrapper>
+                  <CountNumber>{diffInDays}</CountNumber>
+                </CountWrapper>
+
+                <BoxName>Books left</BoxName>
+              </div>
+            )}
           </CountBackground>
         </div>
-      </ProgressWrapper>
+      </SectionWrapper>
+      <SectionWrapper>
+        <LineWrapper>
+          <LineUpperText>Amont of pages / DAY</LineUpperText>
+          <Line options={options} data={data} />
+        </LineWrapper>
+        <div>
+          {start && (
+            <ResultsWrapper>
+              <ResultTitle>Results</ResultTitle>
+              <StyledDatePicker
+                label="Start"
+                // onChange={(date) => handleStartDateChange(date)}
+                minDate={today}
+                slots={{
+                  openPickerIcon: ArrowDropDownIcon,
+                }}
+              />
+              <input type="text" />
+              <AddResultButton>Add result</AddResultButton>
+              <StatisticsTitle>Statistics</StatisticsTitle>
+              <ul>
+                <li></li>
+              </ul>
+            </ResultsWrapper>
+          )}
+        </div>
+      </SectionWrapper>
     </>
   );
 };
