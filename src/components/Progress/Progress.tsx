@@ -47,6 +47,9 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import dayjs from "dayjs";
 import { data, options } from "../../shared/optionsForChart";
 import { days, hours, minutes, seconds } from "../../shared/timeEndOfYear";
+import { startPlanning } from "../../redux/books/booksOperations";
+import { useAppDispatch } from "../../redux/store";
+import { currentPlanning } from "../../redux/books/booksOperations";
 
 ChartJS.register(
   CategoryScale,
@@ -73,6 +76,22 @@ const Progress = () => {
   const [finishDate, setFinishDate] = useState("");
   const [start, setStart] = useState(false);
   const [, setDateTime] = useState(new Date());
+
+  const formattedStartDate = dayjs(startDate).format("YYYY-MM-DD");
+  const formatedEndDate = dayjs(finishDate).format("YYYY-MM-DD");
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(currentPlanning())
+      .then((res) => {
+        if (res.payload.status === 200) {
+          setStart(true);
+          console.log(res.payload.data.planning);
+        }
+      })
+      .catch((error) => console.log(error));
+  }, [dispatch]);
 
   const date1 = dayjs(startDate);
   const date2 = dayjs(finishDate);
@@ -111,9 +130,6 @@ const Progress = () => {
     setSelectedBookTitle(event.target.value as string);
   };
 
-  const today = dayjs();
-  // const tomorrow = dayjs().add(1, "day");
-
   useEffect(() => {
     const id = setInterval(() => setDateTime(new Date()), 1000);
     return () => {
@@ -121,8 +137,23 @@ const Progress = () => {
     };
   }, []);
 
-  const year = new Date(new Date().getFullYear() + 1, 0, 1).getTime();
+  const handleStartTraining = () => {
+    setStart(true);
 
+    const bookIds = selectedBooks.map((book) => book._id);
+
+    dispatch(
+      startPlanning({
+        startDate: formattedStartDate,
+        endDate: formatedEndDate,
+        books: bookIds,
+      })
+    );
+  };
+
+  const today = dayjs();
+  // const tomorrow = dayjs().add(1, "day");
+  const year = new Date(new Date().getFullYear() + 1, 0, 1).getTime();
   const oneDay = 86400000;
   const diff = year + oneDay - new Date().getTime();
 
@@ -266,7 +297,7 @@ const Progress = () => {
                 </ListItem>
               ))}
             </SelectedBooksList>
-            <StartButton onClick={() => setStart(true)}>
+            <StartButton onClick={() => handleStartTraining()}>
               Start traning
             </StartButton>
           </BigElement>

@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addBook, getBooks } from "./booksOperations";
+import {
+  addBook,
+  currentPlanning,
+  getBooks,
+  startPlanning,
+} from "./booksOperations";
 
 interface State {
   name: string;
@@ -65,6 +70,30 @@ const booksSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addBook.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(currentPlanning.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(currentPlanning.fulfilled, (state, action) => {
+        console.log(action);
+        // state.goingToRead.push(action.payload.data);
+        // state.isLoading = false;
+      })
+      .addCase(currentPlanning.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(startPlanning.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(startPlanning.fulfilled, (state, action) => {
+        console.log(action);
+        // state.goingToRead.push(action.payload.data);
+        // state.isLoading = false;
+      })
+      .addCase(startPlanning.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
