@@ -52,6 +52,7 @@ import {
   currentPlanning,
   startPlanning,
 } from "../../redux/planning/planningOperations";
+import { currentPlanningSelector } from "../../redux/planning/planningSelectors";
 
 ChartJS.register(
   CategoryScale,
@@ -82,6 +83,7 @@ const Progress = () => {
   const [endEndTime, setEndEndTime] = useState("");
   const [startStartTime, setStartStartTime] = useState("");
   const [pagesPerDay, setPagesPerDay] = useState(null);
+  const [stats, setStats] = useState([]);
 
   const [result, setResult] = useState(0);
 
@@ -90,8 +92,10 @@ const Progress = () => {
   useEffect(() => {
     dispatch(currentPlanning())
       .then((res) => {
+        console.log(res);
         if (res.payload.status === 200) {
           setStart(true);
+          setStats(res.payload.data.planning.stats);
           setStartStartTime(res.payload.data.planning.startDate);
           setPagesPerDay(res.payload.data.planning.pagesPerDay);
           setEndEndTime(res.payload.data.planning.endDate);
@@ -101,8 +105,34 @@ const Progress = () => {
       .catch((error) => console.log(error));
   }, [dispatch]);
 
+  const current = useSelector(currentPlanningSelector);
+
+  console.log(current);
+
   const ssss = dayjs(startStartTime);
   const eeeeeee = dayjs(endEndTime);
+
+  let currentDatee = null;
+  let sum = 0;
+  const resultArray = [];
+
+  for (const item of stats) {
+    const date = item.time.split(" ")[0];
+
+    if (date !== currentDatee) {
+      if (currentDatee !== null) {
+        resultArray.push(sum);
+      }
+      currentDatee = date;
+      sum = item.pagesCount;
+    } else {
+      sum += item.pagesCount;
+    }
+  }
+
+  if (currentDatee !== null) {
+    resultArray.push(sum);
+  }
 
   const daysArray = [];
   let cccccc = ssss;
@@ -125,7 +155,7 @@ const Progress = () => {
     return { labels, startPages, progressExpectetion };
   };
 
-  const ddd = dataGenerator(daysArray, [5, 10, 15, 1, 3, 5, 6], numbersArray);
+  const ddd = dataGenerator(daysArray, resultArray, numbersArray);
 
   const data = {
     labels: ddd.labels,
@@ -414,20 +444,26 @@ const Progress = () => {
                   );
                 }}
               >
-                <StyledDatePicker
-                  label="Start"
-                  // onChange={(date) => handleStartDateChange(date)}
-                  minDate={today}
-                  slots={{
-                    openPickerIcon: ArrowDropDownIcon,
-                  }}
-                />
-                <input
-                  type="text"
-                  onChange={(event) => {
-                    setResult(Number(event.target.value));
-                  }}
-                />
+                <label>
+                  Date
+                  <StyledDatePicker
+                    label="Start"
+                    // onChange={(date) => handleStartDateChange(date)}
+                    minDate={today}
+                    slots={{
+                      openPickerIcon: ArrowDropDownIcon,
+                    }}
+                  />
+                </label>
+                <label>
+                  Amount of pages
+                  <input
+                    type="text"
+                    onChange={(event) => {
+                      setResult(Number(event.target.value));
+                    }}
+                  />
+                </label>
                 <AddResultButton>Add result</AddResultButton>
               </form>
               <StatisticsTitle>Statistics</StatisticsTitle>

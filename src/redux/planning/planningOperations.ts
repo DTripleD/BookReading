@@ -48,6 +48,8 @@ export const addReadPages = createAsyncThunk(
     },
     thunkAPI
   ) => {
+    const state: RootState = thunkAPI.getState();
+    setAuthHeader(state.auth.token);
     try {
       const res = await axios.patch("/planning", credentials);
 

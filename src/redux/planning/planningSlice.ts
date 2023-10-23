@@ -6,15 +6,13 @@ import {
 } from "./planningOperations";
 
 interface State {
-  books: [
-    {
-      author: string;
-      pagesFinished: number;
-      pagesTotal: number;
-      publishYear: number;
-      title: string;
-    }
-  ];
+  books: Array<{
+    author: string;
+    pagesFinished: number;
+    pagesTotal: number;
+    publishYear: number;
+    title: string;
+  }>;
   duration: number;
   endDate: string;
   startDate: string;
@@ -25,20 +23,12 @@ interface State {
 }
 
 const initialState: State = {
-  books: [
-    {
-      author: "AAAA AAAA",
-      pagesFinished: 0,
-      pagesTotal: 123,
-      publishYear: 1234,
-      title: "AAAAAAA",
-    },
-  ],
+  books: [],
   duration: 0,
-  endDate: "2023-10-28",
-  pagesPerDay: 21,
-  startDate: "2023-10-22",
-  _id: "6532a1d120464d18284693d7",
+  endDate: "",
+  pagesPerDay: 0,
+  startDate: "",
+  _id: "",
   isLoading: false,
   error: null,
 };
@@ -53,7 +43,12 @@ const planningSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(currentPlanning.fulfilled, (state, action) => {
-        state = { ...action.payload.data, isLoading: false, error: null };
+        console.log(action.payload.data.planning);
+        state = {
+          ...action.payload.data.planning,
+          isLoading: false,
+          error: null,
+        };
       })
       .addCase(currentPlanning.rejected, (state, action) => {
         state.isLoading = false;
