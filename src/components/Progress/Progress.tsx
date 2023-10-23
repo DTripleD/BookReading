@@ -45,11 +45,13 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import dayjs from "dayjs";
-import { data, options } from "../../shared/optionsForChart";
 import { days, hours, minutes, seconds } from "../../shared/timeEndOfYear";
-import { startPlanning } from "../../redux/books/booksOperations";
 import { useAppDispatch } from "../../redux/store";
-import { currentPlanning } from "../../redux/books/booksOperations";
+import {
+  addReadPages,
+  currentPlanning,
+  startPlanning,
+} from "../../redux/planning/planningOperations";
 
 ChartJS.register(
   CategoryScale,
@@ -76,9 +78,12 @@ const Progress = () => {
   const [finishDate, setFinishDate] = useState("");
   const [start, setStart] = useState(false);
   const [, setDateTime] = useState(new Date());
+  const [plainnedBooks, setPlainnedBooks] = useState<Book[]>([]);
+  const [endEndTime, setEndEndTime] = useState("");
+  const [startStartTime, setStartStartTime] = useState("");
+  const [pagesPerDay, setPagesPerDay] = useState(null);
 
-  const formattedStartDate = dayjs(startDate).format("YYYY-MM-DD");
-  const formatedEndDate = dayjs(finishDate).format("YYYY-MM-DD");
+  const [result, setResult] = useState(0);
 
   const dispatch = useAppDispatch();
 
@@ -87,11 +92,68 @@ const Progress = () => {
       .then((res) => {
         if (res.payload.status === 200) {
           setStart(true);
-          console.log(res.payload.data.planning);
+          setStartStartTime(res.payload.data.planning.startDate);
+          setPagesPerDay(res.payload.data.planning.pagesPerDay);
+          setEndEndTime(res.payload.data.planning.endDate);
+          setPlainnedBooks(res.payload.data.planning.books);
         }
       })
       .catch((error) => console.log(error));
   }, [dispatch]);
+
+  const ssss = dayjs(startStartTime);
+  const eeeeeee = dayjs(endEndTime);
+
+  const daysArray = [];
+  let cccccc = ssss;
+
+  while (cccccc.isBefore(eeeeeee) || cccccc.isSame(eeeeeee, "day")) {
+    daysArray.push(cccccc.format("YYYY-MM-DD"));
+    cccccc = cccccc.add(1, "day");
+  }
+
+  const numbersArray = [];
+
+  for (let i = 0; i < daysArray.length; i++) {
+    numbersArray.push(pagesPerDay * (i + 1));
+  }
+
+  const formattedStartDate = dayjs(startDate).format("YYYY-MM-DD");
+  const formatedEndDate = dayjs(finishDate).format("YYYY-MM-DD");
+
+  const dataGenerator = (labels, startPages, progressExpectetion) => {
+    return { labels, startPages, progressExpectetion };
+  };
+
+  const ddd = dataGenerator(daysArray, [5, 10, 15, 1, 3, 5, 6], numbersArray);
+
+  const data = {
+    labels: ddd.labels,
+    datasets: [
+      {
+        label: "plan",
+        data: ddd.startPages,
+        borderColor: "#FF6B08",
+        backgroundColor: "#FF6B08",
+      },
+      {
+        label: "fact",
+        data: ddd.progressExpectetion,
+        borderColor: "#091E3F",
+        backgroundColor: "#091E3F",
+      },
+    ],
+  };
+
+  const options = {
+    cubicInterpolationMode: "monotone",
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
 
   const date1 = dayjs(startDate);
   const date2 = dayjs(finishDate);
@@ -164,11 +226,12 @@ const Progress = () => {
     seconds: seconds(diff),
   };
 
-  const f = Date.parse(finishDate);
+  const date = dayjs(endEndTime);
+  const millisecondsEnd = date.valueOf();
 
   const dateNow = Date.now();
 
-  const raznica = f - dateNow;
+  const raznica = millisecondsEnd - dateNow;
 
   const timeOfRaznica = {
     days: days(raznica),
@@ -211,7 +274,7 @@ const Progress = () => {
                 <ListHeaderText>Pages</ListHeaderText>
               </ListHeaderWrapper>
               <SelectedBooksList>
-                {selectedBooks.map((book) => (
+                {plainnedBooks.map((book) => (
                   <ListItem key={book._id}>
                     <input
                       type="checkbox"
@@ -309,7 +372,7 @@ const Progress = () => {
           <CountBackground>
             <div>
               <CountWrapper>
-                <CountNumber>{selectedBooks.length}</CountNumber>
+                <CountNumber>{plainnedBooks.length}</CountNumber>
               </CountWrapper>
               <BoxName>Amount of books</BoxName>
             </div>
@@ -341,16 +404,32 @@ const Progress = () => {
           {start && (
             <ResultsWrapper>
               <ResultTitle>Results</ResultTitle>
-              <StyledDatePicker
-                label="Start"
-                // onChange={(date) => handleStartDateChange(date)}
-                minDate={today}
-                slots={{
-                  openPickerIcon: ArrowDropDownIcon,
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  dispatch(
+                    addReadPages({
+                      pages: result,
+                    })
+                  );
                 }}
-              />
-              <input type="text" />
-              <AddResultButton>Add result</AddResultButton>
+              >
+                <StyledDatePicker
+                  label="Start"
+                  // onChange={(date) => handleStartDateChange(date)}
+                  minDate={today}
+                  slots={{
+                    openPickerIcon: ArrowDropDownIcon,
+                  }}
+                />
+                <input
+                  type="text"
+                  onChange={(event) => {
+                    setResult(Number(event.target.value));
+                  }}
+                />
+                <AddResultButton>Add result</AddResultButton>
+              </form>
               <StatisticsTitle>Statistics</StatisticsTitle>
               <ul>
                 <li></li>
