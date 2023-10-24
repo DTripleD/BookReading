@@ -1,16 +1,14 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setAuthHeader } from "../auth/operations";
-import { RootState } from "../store";
 
 export const currentPlanning = createAsyncThunk(
   "planning/currentPlanning",
   async (_, thunkAPI) => {
-    const state: RootState = thunkAPI.getState();
+    const state = thunkAPI.getState() as { auth: { token: string } };
     setAuthHeader(state.auth.token);
     try {
       const res = await axios.get("/planning");
-
       return res;
     } catch (error) {
       return thunkAPI.rejectWithValue((error as Error).message);
@@ -28,7 +26,7 @@ export const startPlanning = createAsyncThunk(
     },
     thunkAPI
   ) => {
-    const state: RootState = thunkAPI.getState();
+    const state = thunkAPI.getState() as { auth: { token: string } };
     setAuthHeader(state.auth.token);
     try {
       const res = await axios.post("/planning", credentials);
@@ -48,7 +46,7 @@ export const addReadPages = createAsyncThunk(
     },
     thunkAPI
   ) => {
-    const state: RootState = thunkAPI.getState();
+    const state = thunkAPI.getState() as { auth: { token: string } };
     setAuthHeader(state.auth.token);
     try {
       const res = await axios.patch("/planning", credentials);

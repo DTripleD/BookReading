@@ -31,7 +31,7 @@ const Register = () => {
   const handleRegisterSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (password === confPassword) {
+    if (password !== confPassword) {
       alert("Password wrong");
       return;
     }

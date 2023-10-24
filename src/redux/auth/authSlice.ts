@@ -7,7 +7,7 @@ interface User {
   id: string | null;
 }
 
-interface AuthState {
+export interface AuthState {
   user: User;
   token: string | null;
   refreshToken: string | null;

@@ -10,6 +10,7 @@ interface State {
       author: string;
       publishYear: number;
       pagesTotal: number;
+      _id: string;
     }
   ];
   currentlyReading: [];
@@ -23,10 +24,11 @@ const initialState: State = {
   email: "",
   goingToRead: [
     {
-      title: "Example Title",
-      author: "Example Author",
-      publishYear: 2023,
-      pagesTotal: 300,
+      title: "",
+      pagesTotal: 0,
+      publishYear: 0,
+      author: "",
+      _id: "",
     },
   ],
   currentlyReading: [],
@@ -47,12 +49,11 @@ const booksSlice = createSlice({
       .addCase(getBooks.fulfilled, (state, action) => {
         state.name = action.payload.name;
         state.email = action.payload.email;
-        state.name = action.payload.goingToRead;
-        state.name = action.payload.currentlyReading;
-        state.name = action.payload.finishedReading;
+        state.goingToRead = action.payload.goingToRead;
+        state.currentlyReading = action.payload.currentlyReading;
+        state.finishedReading = action.payload.finishedReading;
         state.isLoading = false;
       })
-
       .addCase(getBooks.rejected, (state) => {
         state.isLoading = false;
       })
@@ -60,7 +61,6 @@ const booksSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(addBook.fulfilled, (state, action) => {
-        console.log(action.payload.data);
         state.goingToRead.push(action.payload.data);
         state.isLoading = false;
       })

@@ -91,19 +91,7 @@ const Main = () => {
         </FormWrapper>
         <FormButton type="submit">Add</FormButton>
       </Form>
-
-      {allBooks.goingToRead.lenght === 0 ? (
-        <Instruction>
-          <StepsNum>Step 1.</StepsNum>
-          <StepsDo>Create your own library</StepsDo>
-          <StepsResult>
-            Add there books which you are going to read.
-          </StepsResult>
-          <StepsNum>Step 2.</StepsNum>
-          <StepsDo>Create your first training</StepsDo>
-          <StepsResult>Set a goal, choose period, start training.</StepsResult>
-        </Instruction>
-      ) : (
+      {allBooks.goingToRead.length > 0 ? (
         <div>
           <div>
             <Title>Going to read</Title>
@@ -138,6 +126,17 @@ const Main = () => {
           </div>
           <TrainingBtn>My training</TrainingBtn>
         </div>
+      ) : (
+        <Instruction>
+          <StepsNum>Step 1.</StepsNum>
+          <StepsDo>Create your own library</StepsDo>
+          <StepsResult>
+            Add there books which you are going to read.
+          </StepsResult>
+          <StepsNum>Step 2.</StepsNum>
+          <StepsDo>Create your first training</StepsDo>
+          <StepsResult>Set a goal, choose period, start training.</StepsResult>
+        </Instruction>
       )}
     </>
   );

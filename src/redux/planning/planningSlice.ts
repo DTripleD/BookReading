@@ -8,27 +8,32 @@ import {
 interface State {
   books: Array<{
     author: string;
-    pagesFinished: number;
-    pagesTotal: number;
-    publishYear: number;
+    pagesFinished: number | null;
+    pagesTotal: number | null;
+    publishYear: number | null;
     title: string;
   }>;
-  duration: number;
+  duration: number | null;
   endDate: string;
   startDate: string;
-  pagesPerDay: number;
+  pagesPerDay: number | null;
   _id: string;
+  stats: Array<{
+    pagesCount: number;
+    time: string;
+  }>;
   isLoading: boolean;
   error: unknown;
 }
 
 const initialState: State = {
   books: [],
-  duration: 0,
+  duration: null,
   endDate: "",
-  pagesPerDay: 0,
+  pagesPerDay: null,
   startDate: "",
   _id: "",
+  stats: [],
   isLoading: false,
   error: null,
 };
@@ -43,12 +48,16 @@ const planningSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(currentPlanning.fulfilled, (state, action) => {
-        console.log(action.payload.data.planning);
-        state = {
-          ...action.payload.data.planning,
-          isLoading: false,
-          error: null,
-        };
+        console.log(action.payload);
+        state.books = action.payload.data.planning.books;
+        state.duration = action.payload.data.planning.duration;
+        state.endDate = action.payload.data.planning.endDate;
+        state.startDate = action.payload.data.planning.startDate;
+        state.pagesPerDay = action.payload.data.planning.pagesPerDay;
+        state.stats = action.payload.data.planning.stats;
+        state._id = action.payload.data.planning._id;
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(currentPlanning.rejected, (state, action) => {
         state.isLoading = false;
@@ -57,7 +66,7 @@ const planningSlice = createSlice({
       .addCase(startPlanning.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(startPlanning.fulfilled, (state, action) => {
+      .addCase(startPlanning.fulfilled, (_, action) => {
         console.log(action);
         // state.goingToRead.push(action.payload.data);
         // state.isLoading = false;
@@ -70,9 +79,9 @@ const planningSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(addReadPages.fulfilled, (state, action) => {
-        console.log(action);
-        // state.goingToRead.push(action.payload.data);
-        // state.isLoading = false;
+        state.stats = action.payload.data.planning.stats;
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(addReadPages.rejected, (state, action) => {
         state.isLoading = false;

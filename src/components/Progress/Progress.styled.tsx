@@ -38,6 +38,7 @@ export const TitleWrapper = styled.div`
   padding: 18px 0;
   background-color: #b1b5c2;
   box-shadow: 0px 2px 3px 0px #091e3f1a;
+  margin-bottom: 40px;
 `;
 
 export const BoxName = styled.p`
@@ -62,35 +63,7 @@ export const CountBackground = styled.div`
   padding: 48px 34px;
   background-color: #ffffff;
   box-shadow: 0px 2px 3px 0px #091e3f1a;
-`;
-
-export const ListHeaderWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 0;
-  border-bottom: 1px solid #e0e5eb;
-  border-top: 1px solid #e0e5eb;
-`;
-
-export const ListItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const ListHeaderText = styled.p`
-  font-family: "Montserrat";
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17.07px;
-  color: #898f9f;
-`;
-
-export const SelectedBookTitle = styled.p`
-  font-family: "Montserrat";
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17.07px;
-  color: #242a37;
+  gap: 20px;
 `;
 
 export const StartButton = styled.button`
@@ -107,45 +80,8 @@ export const StartButton = styled.button`
   text-align: center;
 `;
 
-export const AddButton = styled.button`
-  border: 1px solid #242a37;
-  font-family: "Montserrat";
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 17.07px;
-  text-align: center;
-  color: #000000;
-  padding: 12px 76px;
-  background-color: transparent;
-`;
-
-export const LineWrapper = styled.div`
-  width: 100%;
-  max-height: 340px;
-  padding: 35px 77px 51px 40px;
-  background-color: #ffffff;
-  box-shadow: 0px 2px 3px 0px #091e3f40;
-`;
-
-export const LineUpperText = styled.p`
-  font-family: "Montserrat";
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14.63px;
-  text-transform: uppercase;
-`;
-
 export const TrainingWrapper = styled.div`
   width: 928px;
-`;
-
-export const SelectedBooksList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-height: 151px;
-  overflow-x: hidden;
-  margin: 20px 0;
 `;
 
 export const ResultsWrapper = styled.div`
@@ -192,30 +128,7 @@ export const BigElement = styled.div`
   width: 100%;
 `;
 
-export const TimerWrapper = styled.div`
-  background-color: #ffffff;
-  padding: 0 45px;
-`;
-
-export const Timers = styled.div`
+export const StatTimeListItem = styled.li`
   display: flex;
-  text-align: center;
-  justify-content: center;
-  gap: 74px;
-  margin-bottom: 44px;
-`;
-
-export const Time = styled.p`
-  font-family: "Open Sans";
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 38px;
-`;
-
-export const TimerTitle = styled.p`
-  font-family: "Montserrat";
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17.07px;
-  color: #898f9f;
+  justify-content: space-between;
 `;

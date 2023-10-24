@@ -1,14 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
+import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth/authSlice";
 import { useDispatch } from "react-redux";
@@ -21,28 +12,18 @@ const authPersistConfig = {
   // whitelist: ["user"],
 };
 
-const booksPersistConfig = {
-  key: "books",
-  storage,
-  // whitelist: ["user"],
-};
-
-const planningPersistConfig = {
-  key: "planning",
-  storage,
-};
-
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
-    books: persistReducer(booksPersistConfig, booksReducer),
-    planning: persistReducer(planningPersistConfig, planningReducer),
+    auth: persistReducer<ReturnType<typeof authReducer>>(
+      authPersistConfig,
+      authReducer
+    ),
+    books: booksReducer,
+    planning: planningReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
     });
   },
 });
