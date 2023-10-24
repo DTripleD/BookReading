@@ -161,3 +161,15 @@ export const TrainingBtn = styled.button`
   padding: 10px 0;
   margin-top: 40px;
 `;
+
+export const ResumeButton = styled.button`
+font-family: "Montserrat";
+font-weight: 500;
+font-size: 14px;
+line-height:17.07px;
+box-shadow: 0px 2px 4px 0px #00000040;
+background-color: #6D7A8D;
+color: #FFFFFF;
+border: none;
+padding: 12px 36px;
+`

@@ -178,7 +178,7 @@ const Progress = () => {
           <CountBackground>
             <div>
               <CountWrapper>
-                <CountNumber>{current.books.length}</CountNumber>
+                <CountNumber>{current.books.length ||selectedBooks.length}</CountNumber>
               </CountWrapper>
               <BoxName>Amount of books</BoxName>
             </div>

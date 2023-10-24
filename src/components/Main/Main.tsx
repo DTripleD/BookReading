@@ -16,9 +16,10 @@ import {
   FormButton,
   FormWrapper,
   TrainingBtn,
+  ResumeButton,
 } from "./Main.styled.tsx";
 import { useAppDispatch } from "../../redux/store.ts";
-
+import icons from "../../images/icons.svg"
 import { useEffect, useState } from "react";
 import { addBook, getBooks } from "../../redux/books/booksOperations.ts";
 import { userBooks } from "../../redux/books/booksSelectors.ts";
@@ -93,6 +94,74 @@ const Main = () => {
       </Form>
       {allBooks.goingToRead.length > 0 ? (
         <div>
+          <div><Title>Already read</Title>
+            <ListTitleWrapper>
+              <ListTitle>Book title</ListTitle>
+              <ListTitle>Author</ListTitle>
+              <ListTitle>Year</ListTitle>
+              <ListTitle>Pages</ListTitle>
+              <ListTitle>Rating</ListTitle>
+            </ListTitleWrapper>
+
+            <BooksList>
+              {allBooks.finishedReading.map(
+                (book: {
+                  _id: string;
+                  title: string;
+                  author: string;
+                  publishYear: number;
+                  pagesTotal: number;
+                }) => {
+                  return (
+                    <ListItem key={book._id}>
+                      <svg width="22" height="17">
+                        <use href={icons + "#icon-book"}></use>
+                      </svg>
+                      <ListText>{book.title}</ListText>
+                      <ListText>{book.author}</ListText>
+                      <ListText>{book.publishYear}</ListText>
+                      <ListText>{book.pagesTotal}</ListText>
+                      <p>***</p>
+                      <ResumeButton>Resume</ResumeButton>
+                    </ListItem>
+                  );
+                }
+              )}
+            </BooksList>
+          </div>
+          <div><Title>Reading now</Title>
+
+            <ListTitleWrapper>
+              <ListTitle>Book title</ListTitle>
+              <ListTitle>Author</ListTitle>
+              <ListTitle>Year</ListTitle>
+              <ListTitle>Pages</ListTitle>
+            </ListTitleWrapper>
+
+            <BooksList>
+              {allBooks.finishedReading.map(
+                (book: {
+                  _id: string;
+                  title: string;
+                  author: string;
+                  publishYear: number;
+                  pagesTotal: number;
+                }) => {
+                  return (
+                    <ListItem key={book._id}>
+                      <svg width="22" height="17">
+                        <use href={icons + "#icon-book"}></use>
+                      </svg>
+                      <ListText>{book.title}</ListText>
+                      <ListText>{book.author}</ListText>
+                      <ListText>{book.publishYear}</ListText>
+                      <ListText>{book.pagesTotal}</ListText>
+                    </ListItem>
+                  );
+                }
+              )}
+            </BooksList>
+          </div>
           <div>
             <Title>Going to read</Title>
 
@@ -114,6 +183,9 @@ const Main = () => {
                 }) => {
                   return (
                     <ListItem key={book._id}>
+                      <svg width="22" height="17">
+                        <use href={icons + "#icon-book"}></use>
+                      </svg>
                       <ListText>{book.title}</ListText>
                       <ListText>{book.author}</ListText>
                       <ListText>{book.publishYear}</ListText>
