@@ -16,7 +16,6 @@ import {
   BigElement,
   StatTimeListItem,
 } from "./Progress.styled";
-import { userBooks } from "../../redux/books/booksSelectors";
 import { useState, useEffect } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import dayjs from "dayjs";
@@ -42,13 +41,16 @@ interface Book {
   _id: string;
 }
 
-const Progress = () => {
+const Progress = ({ allBooks }) => {
   const [selectedBooks, setSelectedBooks] = useState<Book[]>([]);
-  const [selectedBookTitle, setSelectedBookTitle] = useState("");
+  const [selected, setSelected] = useState("");
   const [startDate, setStartDate] = useState("");
   const [finishDate, setFinishDate] = useState("");
-  const [, setDateTime] = useState(new Date());
   const [result, setResult] = useState(0);
+
+  const filteredBooks = allBooks.goingToRead.filter(
+    (book) => !selectedBooks.some((a) => a._id === book._id)
+  );
 
   const dispatch = useAppDispatch();
 
@@ -57,13 +59,6 @@ const Progress = () => {
   useEffect(() => {
     dispatch(currentPlanning());
   }, [dispatch]);
-
-  useEffect(() => {
-    const id = setInterval(() => setDateTime(new Date()), 1000);
-    return () => {
-      clearInterval(id);
-    };
-  }, []);
 
   const ssss = dayjs(current.startDate);
   const date = dayjs(current.endDate);
@@ -108,8 +103,6 @@ const Progress = () => {
     }
   }
 
-  const allBooks = useSelector(userBooks);
-
   const handleStartDateChange = (date) => {
     const formattedDate = dayjs(date.$d).format("YYYY-MM-DD HH:mm:ss");
     setStartDate(formattedDate);
@@ -123,7 +116,7 @@ const Progress = () => {
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const selectedBook = allBooks.goingToRead.find(
-      (book) => book.title === selectedBookTitle
+      (book) => book._id === selected
     );
     setSelectedBooks((prevSelectedBooks) => [
       ...prevSelectedBooks,
@@ -144,6 +137,10 @@ const Progress = () => {
     );
   };
 
+  const deleteFromSelected = (id) => {
+    setSelectedBooks((prev) => prev.filter((item) => item._id !== id));
+  };
+
   return (
     <>
       <SectionWrapper>
@@ -158,14 +155,17 @@ const Progress = () => {
               <MainTitle>My training</MainTitle>
             </TitleWrapper>
             <TrainingForm
+              filteredBooks={filteredBooks}
               handleFormSubmit={handleFormSubmit}
               handleStartDateChange={handleStartDateChange}
               handleFinishDateChange={handleFinishDateChange}
-              setSelectedBookTitle={setSelectedBookTitle}
-              selectedBookTitle={selectedBookTitle}
-              allBooks={allBooks}
+              setSelected={setSelected}
+              selected={selected}
             />
-            <TableWithoutCheckBox selectedBooks={selectedBooks} />
+            <TableWithoutCheckBox
+              selectedBooks={selectedBooks}
+              deleteFromSelected={deleteFromSelected}
+            />
             <StartButton onClick={() => handleStartTraining()}>
               Start traning
             </StartButton>
@@ -178,7 +178,9 @@ const Progress = () => {
           <CountBackground>
             <div>
               <CountWrapper>
-                <CountNumber>{current.books.length ||selectedBooks.length}</CountNumber>
+                <CountNumber>
+                  {current.books.length || selectedBooks.length}
+                </CountNumber>
               </CountWrapper>
               <BoxName>Amount of books</BoxName>
             </div>
@@ -200,7 +202,7 @@ const Progress = () => {
             {current.books.length > 0 && (
               <div>
                 <CountWrapper>
-                  <CountNumber>0</CountNumber>
+                  <CountNumber>{current.books.length}</CountNumber>
                 </CountWrapper>
 
                 <BoxName>Books left</BoxName>

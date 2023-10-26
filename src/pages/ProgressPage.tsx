@@ -1,10 +1,10 @@
 import MainContainer from "../components/Container/Container";
 import Progress from "../components/Progress/Progress";
 
-const ProgressPage = () => {
+const ProgressPage = ({ allBooks }) => {
   return (
     <MainContainer>
-      <Progress />
+      <Progress allBooks={allBooks} />
     </MainContainer>
   );
 };

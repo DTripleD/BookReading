@@ -1,7 +1,17 @@
+import { useEffect, useState } from "react";
 import { days, hours, minutes, seconds } from "../../shared/timeEndOfYear";
 import { Time, TimerTitle, TimerWrapper, TimersWrapper } from "./Timers.styled";
 
 const Timers = ({ date }) => {
+  const [, setDateTime] = useState(new Date());
+
+  useEffect(() => {
+    const id = setInterval(() => setDateTime(new Date()), 1000);
+    return () => {
+      clearInterval(id);
+    };
+  }, []);
+
   const oneDay = 86400000;
   const year = new Date(new Date().getFullYear() + 1, 0, 1).getTime();
   const diff = year + oneDay - new Date().getTime();

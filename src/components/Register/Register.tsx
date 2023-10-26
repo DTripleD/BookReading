@@ -17,8 +17,10 @@ import {
   RegisterList,
   FirstPluses,
   SecondPluses,
+  RegisterItem,
 } from "./Register.styled";
 import { register } from "../../redux/auth/operations";
+import icons from "../../images/icons.svg";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -85,8 +87,8 @@ const Register = () => {
             Register
           </RegisterButton>
           <RedirectText>
-            Already have an account?{" "}
-            <StyledNavLink to="/signin">Log in</StyledNavLink>
+            Already have an account?
+            <StyledNavLink to="/">Log in</StyledNavLink>
           </RedirectText>
         </Form>
       </FormWrapper>
@@ -96,40 +98,58 @@ const Register = () => {
           <FirstPluses>
             <ListTitle>Will help you to</ListTitle>
             <RegisterList>
-              <li>
+              <RegisterItem>
+                <svg width="4" height="8">
+                  <use href={icons + "#icon-arrow"}></use>
+                </svg>
                 <RegisterPluses>
                   Create your goal faster and proceed to read
                 </RegisterPluses>
-              </li>
-              <li>
+              </RegisterItem>
+              <RegisterItem>
+                <svg width="4" height="8">
+                  <use href={icons + "#icon-arrow"}></use>
+                </svg>
                 <RegisterPluses>
                   Divide process proportionally for each day
                 </RegisterPluses>
-              </li>
-              <li>
+              </RegisterItem>
+              <RegisterItem>
+                <svg width="4" height="8">
+                  <use href={icons + "#icon-arrow"}></use>
+                </svg>
                 <RegisterPluses>Track your success</RegisterPluses>
-              </li>
+              </RegisterItem>
             </RegisterList>
           </FirstPluses>
 
           <SecondPluses>
             <ListTitle>You may also</ListTitle>
             <RegisterList>
-              <li>
+              <RegisterItem>
+                <svg width="4" height="8">
+                  <use href={icons + "#icon-arrow"}></use>
+                </svg>
                 <RegisterPluses>
                   Pose your own independent point of view
                 </RegisterPluses>
-              </li>
-              <li>
+              </RegisterItem>
+              <RegisterItem>
+                <svg width="4" height="8">
+                  <use href={icons + "#icon-arrow"}></use>
+                </svg>
                 <RegisterPluses>
                   Improve your professional skills according to new knowledge
                 </RegisterPluses>
-              </li>
-              <li>
+              </RegisterItem>
+              <RegisterItem>
+                <svg width="4" height="8">
+                  <use href={icons + "#icon-arrow"}></use>
+                </svg>
                 <RegisterPluses>
                   Become an interesting interlocutor
                 </RegisterPluses>
-              </li>
+              </RegisterItem>
             </RegisterList>
           </SecondPluses>
         </div>

@@ -48,7 +48,6 @@ const planningSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(currentPlanning.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.books = action.payload.data.planning.books;
         state.duration = action.payload.data.planning.duration;
         state.endDate = action.payload.data.planning.endDate;
@@ -66,10 +65,15 @@ const planningSlice = createSlice({
       .addCase(startPlanning.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(startPlanning.fulfilled, (_, action) => {
-        console.log(action);
-        // state.goingToRead.push(action.payload.data);
-        // state.isLoading = false;
+      .addCase(startPlanning.fulfilled, (state, action) => {
+        state.books = action.payload.data.books;
+        state.duration = action.payload.data.duration;
+        state.endDate = action.payload.data.endDate;
+        state.startDate = action.payload.data.startDate;
+        state.pagesPerDay = action.payload.data.pagesPerDay;
+        state.stats = action.payload.data.stats;
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(startPlanning.rejected, (state, action) => {
         state.isLoading = false;

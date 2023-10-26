@@ -18,7 +18,12 @@ const TableWithCheckBox = ({ current }) => {
       <SelectedBooksList>
         {current.books.map((book) => (
           <ListItem key={book._id}>
-            <input type="checkbox" onClick={() => console.log(book._id)} />
+            <input
+              type="checkbox"
+              defaultChecked={
+                book.pagesTotal === book.pagesFinished ? true : false
+              }
+            />
             <SelectedBookTitle>{book.title}</SelectedBookTitle>
             <SelectedBookTitle>{book.author}</SelectedBookTitle>
             <SelectedBookTitle>{book.publishYear}</SelectedBookTitle>

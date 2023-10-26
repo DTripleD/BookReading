@@ -1,10 +1,10 @@
 import MainContainer from "../components/Container/Container";
 import Main from "../components/Main/Main";
 
-const MainPage = () => {
+const MainPage = ({ allBooks }) => {
   return (
     <MainContainer>
-      <Main />
+      <Main allBooks={allBooks} />
     </MainContainer>
   );
 };

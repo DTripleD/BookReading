@@ -31,7 +31,6 @@ export const addBook = createAsyncThunk(
   ) => {
     const state: RootState = thunkAPI.getState();
     setAuthHeader(state.auth.token);
-    console.log(credentials);
     try {
       const res = await axios.post("/book", credentials);
 

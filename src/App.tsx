@@ -6,19 +6,25 @@ import MainPage from "./pages/MainPage";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import RestrictedRoute from "./components/RestrictedRoute";
 import PrivateRoute from "./components/PrivateRoute";
-
 import { useEffect } from "react";
 import { refreshUser } from "./redux/auth/operations";
 import { useAppDispatch } from "./redux/store";
 import ProgressPage from "./pages/ProgressPage";
+import { useSelector } from "react-redux";
+import { userBooks } from "./redux/books/booksSelectors";
+import { getBooks } from "./redux/books/booksOperations";
 
 function App() {
   const dispatch = useAppDispatch();
   // const isRefreshing = useSelector(selectIsRefreshing);
 
+  const allBooks = useSelector(userBooks);
+
   useEffect(() => {
     dispatch(refreshUser());
+    dispatch(getBooks());
   }, [dispatch]);
+
   return (
     <>
       <Routes>
@@ -40,11 +46,15 @@ function App() {
           />
           <Route
             path="/main"
-            element={<PrivateRoute component={<MainPage />} />}
+            element={
+              <PrivateRoute component={<MainPage allBooks={allBooks} />} />
+            }
           />
           <Route
             path="/progress"
-            element={<PrivateRoute component={<ProgressPage />} />}
+            element={
+              <PrivateRoute component={<ProgressPage allBooks={allBooks} />} />
+            }
           />
         </Route>
       </Routes>

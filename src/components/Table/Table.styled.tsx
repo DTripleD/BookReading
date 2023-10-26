@@ -38,3 +38,9 @@ export const SelectedBookTitle = styled.p`
   line-height: 17.07px;
   color: #242a37;
 `;
+
+export const DeleteButton = styled.button`
+  display: flex;
+  background-color: transparent;
+  border: none;
+`;

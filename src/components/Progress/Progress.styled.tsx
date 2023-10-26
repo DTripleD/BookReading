@@ -38,7 +38,6 @@ export const TitleWrapper = styled.div`
   padding: 18px 0;
   background-color: #b1b5c2;
   box-shadow: 0px 2px 3px 0px #091e3f1a;
-  margin-bottom: 40px;
 `;
 
 export const BoxName = styled.p`

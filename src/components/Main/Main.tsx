@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import {
   Form,
   Input,
@@ -19,18 +18,17 @@ import {
   ResumeButton,
 } from "./Main.styled.tsx";
 import { useAppDispatch } from "../../redux/store.ts";
-import icons from "../../images/icons.svg"
-import { useEffect, useState } from "react";
-import { addBook, getBooks } from "../../redux/books/booksOperations.ts";
-import { userBooks } from "../../redux/books/booksSelectors.ts";
+import icons from "../../images/icons.svg";
+import { useState } from "react";
+import { addBook } from "../../redux/books/booksOperations.ts";
+import { useNavigate } from "react-router-dom";
 
-const Main = () => {
+const Main = ({ allBooks }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
   const [pagesTotal, setPagesTotal] = useState("");
 
-  const allBooks = useSelector(userBooks);
   const dispatch = useAppDispatch();
 
   const handleFormSubmit = (event: React.FormEvent) => {
@@ -42,12 +40,15 @@ const Main = () => {
         publishYear: Number(publishYear),
         pagesTotal: Number(pagesTotal),
       })
-    );
+    ).then(() => {
+      setTitle("");
+      setAuthor("");
+      setPublishYear("");
+      setPagesTotal("");
+    });
   };
 
-  useEffect(() => {
-    dispatch(getBooks());
-  }, [dispatch]);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -58,6 +59,7 @@ const Main = () => {
             <Input
               id="title"
               type="text"
+              value={title}
               placeholder="..."
               onChange={(event) => setTitle(event.target.value)}
             />
@@ -65,6 +67,7 @@ const Main = () => {
           <Label>
             Author
             <Input
+              value={author}
               id="author"
               type="text"
               placeholder="..."
@@ -74,6 +77,7 @@ const Main = () => {
           <Label>
             Publication date
             <Input
+              value={publishYear}
               id="date"
               type="text"
               placeholder="..."
@@ -83,6 +87,7 @@ const Main = () => {
           <Label>
             Amount of pages
             <Input
+              value={pagesTotal}
               id="pages"
               type="text"
               placeholder="..."
@@ -92,9 +97,11 @@ const Main = () => {
         </FormWrapper>
         <FormButton type="submit">Add</FormButton>
       </Form>
-      {allBooks.goingToRead.length > 0 ? (
-        <div>
-          <div><Title>Already read</Title>
+      {/* {allBooks.goingToRead.length > 0 ? ( */}
+      <div>
+        {allBooks.finishedReading.length > 0 && (
+          <div>
+            <Title>Already read</Title>
             <ListTitleWrapper>
               <ListTitle>Book title</ListTitle>
               <ListTitle>Author</ListTitle>
@@ -129,7 +136,10 @@ const Main = () => {
               )}
             </BooksList>
           </div>
-          <div><Title>Reading now</Title>
+        )}
+        {allBooks.finishedReading.length > 0 && (
+          <div>
+            <Title>Reading now</Title>
 
             <ListTitleWrapper>
               <ListTitle>Book title</ListTitle>
@@ -162,6 +172,8 @@ const Main = () => {
               )}
             </BooksList>
           </div>
+        )}
+        {allBooks.finishedReading.length > 0 && (
           <div>
             <Title>Going to read</Title>
 
@@ -196,20 +208,23 @@ const Main = () => {
               )}
             </BooksList>
           </div>
-          <TrainingBtn>My training</TrainingBtn>
-        </div>
-      ) : (
-        <Instruction>
-          <StepsNum>Step 1.</StepsNum>
-          <StepsDo>Create your own library</StepsDo>
-          <StepsResult>
-            Add there books which you are going to read.
-          </StepsResult>
-          <StepsNum>Step 2.</StepsNum>
-          <StepsDo>Create your first training</StepsDo>
-          <StepsResult>Set a goal, choose period, start training.</StepsResult>
-        </Instruction>
-      )}
+        )}
+        <TrainingBtn onClick={() => navigate("/progress")}>
+          My training
+        </TrainingBtn>
+      </div>
+      {/* // ) : (
+      //   <Instruction>
+      //     <StepsNum>Step 1.</StepsNum>
+      //     <StepsDo>Create your own library</StepsDo>
+      //     <StepsResult>
+      //       Add there books which you are going to read.
+      //     </StepsResult>
+      //     <StepsNum>Step 2.</StepsNum>
+      //     <StepsDo>Create your first training</StepsDo>
+      //     <StepsResult>Set a goal, choose period, start training.</StepsResult>
+      //   </Instruction>
+      // )} */}
     </>
   );
 };

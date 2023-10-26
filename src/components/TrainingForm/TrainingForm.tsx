@@ -15,14 +15,19 @@ const TrainingForm = ({
   handleFormSubmit,
   handleStartDateChange,
   handleFinishDateChange,
-  setSelectedBookTitle,
-  selectedBookTitle,
-  allBooks,
+  setSelected,
+  selected,
+  filteredBooks,
 }) => {
   const today = dayjs();
 
   return (
-    <form onSubmit={(event) => handleFormSubmit(event)}>
+    <form
+      onSubmit={(event) => {
+        handleFormSubmit(event);
+        setSelected("");
+      }}
+    >
       <DataPickerWrapper>
         <StyledDatePicker
           label="Start"
@@ -47,13 +52,13 @@ const TrainingForm = ({
             Choose books from the library
           </InputLabel>
           <Select
-            onChange={(event) => setSelectedBookTitle(event.target.value)}
+            onChange={(event) => setSelected(event.target.value)}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={selectedBookTitle}
+            value={selected}
             label="Age"
           >
-            {allBooks.goingToRead.map(
+            {filteredBooks.map(
               (book: {
                 author: string;
                 pagesFinished: number;
@@ -62,14 +67,14 @@ const TrainingForm = ({
                 title: string;
                 _id: string;
               }) => (
-                <MenuItem key={book._id} value={book.title}>
+                <MenuItem key={book._id} value={book._id}>
                   {book.title}
                 </MenuItem>
               )
             )}
           </Select>
         </FormControl>
-        <AddButton type="submit" disabled={selectedBookTitle === ""}>
+        <AddButton type="submit" disabled={selected === ""}>
           Add
         </AddButton>
       </FormWrapper>

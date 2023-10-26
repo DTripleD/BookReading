@@ -137,3 +137,9 @@ export const FirstPluses = styled.div`
 `;
 
 export const SecondPluses = styled.div``;
+
+export const RegisterItem = styled.li`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+`;
