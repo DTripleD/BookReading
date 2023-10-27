@@ -1,9 +1,4 @@
 import styled from "@emotion/styled";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
-export const StyledDatePicker = styled(DatePicker)`
-  width: 250px;
-`;
 
 export const CountWrapper = styled.div`
   display: flex;
@@ -83,51 +78,6 @@ export const TrainingWrapper = styled.div`
   width: 928px;
 `;
 
-export const ResultsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  box-shadow: 0px 2px 3px 0px #091e3f1a;
-  padding: 20px 24px 22px 24px;
-  height: 100%;
-`;
-
-export const AddResultButton = styled.button`
-  font-family: "Montserrat";
-  font-weight: 600px;
-  font-size: 16px;
-  line-height: 19.5px;
-  background-color: #ff6b08;
-  color: #ffffff;
-  border: none;
-`;
-
-export const ResultTitle = styled.h4`
-  font-family: "Montserrat";
-
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 14.63px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #242a37;
-`;
-
-export const StatisticsTitle = styled.h4`
-  font-family: "Montserrat";
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 14.63px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #242a37;
-`;
-
 export const BigElement = styled.div`
   width: 100%;
-`;
-
-export const StatTimeListItem = styled.li`
-  display: flex;
-  justify-content: space-between;
 `;

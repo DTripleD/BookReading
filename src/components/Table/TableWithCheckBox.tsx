@@ -5,6 +5,7 @@ import {
   SelectedBookTitle,
   SelectedBooksList,
 } from "./Table.styled";
+import icons from "../../images/icons.svg";
 
 const TableWithCheckBox = ({ current }) => {
   return (
@@ -18,12 +19,16 @@ const TableWithCheckBox = ({ current }) => {
       <SelectedBooksList>
         {current.books.map((book) => (
           <ListItem key={book._id}>
-            <input
-              type="checkbox"
-              defaultChecked={
-                book.pagesTotal === book.pagesFinished ? true : false
-              }
-            />
+            {book.pagesTotal === book.pagesFinished ? (
+              <svg width="15" height="15">
+                <use href={icons + "#icon-checkbox"}></use>
+              </svg>
+            ) : (
+              <svg width="15" height="17">
+                <use href={icons + "#icon-checkbox-checked"}></use>
+              </svg>
+            )}
+
             <SelectedBookTitle>{book.title}</SelectedBookTitle>
             <SelectedBookTitle>{book.author}</SelectedBookTitle>
             <SelectedBookTitle>{book.publishYear}</SelectedBookTitle>

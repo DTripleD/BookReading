@@ -1,54 +1,141 @@
 import styled from "@emotion/styled";
-import bg_image from "../../images/pic.png";
 import { NavLink } from "react-router-dom";
 
+import bg_image_s2 from "../../images/background/background_s@2x.jpg";
+import bg_image_s1 from "../../images/background/background_s@1x.jpg";
+import bg_image_m2 from "../../images/background/background_m@2x.jpg";
+import bg_image_m1 from "../../images/background/background_m@1x.jpg";
+import bg_image_l2 from "../../images/background/background_l@2x.jpg";
+import bg_image_l1 from "../../images/background/background_l@1x.jpg";
+
 export const RegisterPageWrapper = styled.div`
-  display: flex;
-  height: calc(100vh - 60px);
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    height: calc(100vh - 60px);
+  }
 `;
 
 export const RegisterButton = styled.button`
-  margin-top: 35px;
+  margin-top: 20px;
+  margin-bottom: 16px;
   background-color: #ff6b08;
   font-family: "Montserrat";
   color: #ffffff;
   padding: 20px;
   border: none;
-
   font-weight: 600;
   font-size: 16px;
-
   line-height: 19.5px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 32px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const FormWrapper = styled.div`
-  display: flex;
-
-  align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(${bg_image});
   background-color: #091e3fcc;
+  max-height: calc(100vh - 60px);
 
-  padding: 75px;
+  padding: 32px 20px;
+
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    padding: 64px 75px;
+  }
+
+  background-image: linear-gradient(
+      95deg,
+      rgba(9, 30, 63, 0.8),
+      rgba(9, 30, 63, 0.8)
+    ),
+    url(${bg_image_s1});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        95deg,
+        rgba(9, 30, 63, 0.8),
+        rgba(9, 30, 63, 0.8)
+      ),
+      url(${bg_image_s2});
+  }
+
+  @media screen and (min-width: 768px) {
+    background-image: linear-gradient(
+        95deg,
+        rgba(9, 30, 63, 0.8),
+        rgba(9, 30, 63, 0.8)
+      ),
+      url(${bg_image_m1});
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          95deg,
+          rgba(9, 30, 63, 0.8),
+          rgba(9, 30, 63, 0.8)
+        ),
+        url(${bg_image_m2});
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: linear-gradient(
+        95deg,
+        rgba(9, 30, 63, 0.8),
+        rgba(9, 30, 63, 0.8)
+      ),
+      url(${bg_image_l1});
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          95deg,
+          rgba(9, 30, 63, 0.8),
+          rgba(9, 30, 63, 0.8)
+        ),
+        url(${bg_image_l2});
+    }
+  }
 `;
 
 export const Form = styled.form`
-  gap: 20px;
-  width: 400px;
-  padding: 40px;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: transparent;
+  max-width: 400px;
+
+  @media screen and (min-width: 768px) {
+    background-color: #ffffff;
+    padding: 40px;
+    width: 400px;
+  }
 `;
 
 export const RegisterTitle = styled.h2`
-  margin-bottom: 48px;
+  margin-bottom: 32px;
   font-family: "Abril Fatface";
   font-weight: 400;
   font-size: 34px;
   line-height: 38px;
   color: #242a37;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 48px;
+  }
 `;
 
 export const RegisterPluses = styled.p`
@@ -74,29 +161,48 @@ export const PlusesWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 767px) {
+    padding: 32px 25px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    padding-top: 64px;
+  }
 `;
 
 export const Label = styled.label`
   font-family: "Montserrat";
-  font-weight: 500;
-
+  font-weight: 600;
   font-size: 14px;
   line-height: 17.07px;
-  color: #898f9f;
+  color: #ffffff;
+
+  @media screen and (min-width: 768px) {
+    font-weight: 500;
+    color: #898f9f;
+  }
+
+  &#email {
+    margin-bottom: 20px;
+  }
 `;
 
 export const Input = styled.input`
   margin-top: 8px;
   width: 100%;
-  padding: 12px;
+  padding: 12px 12px 12px 8px;
   background-color: #f5f7fa;
   box-shadow: 0px 1px 2px 0px #1d1d1b26 inset;
   border: none;
 
+  @media screen and (min-width: 768px) {
+    padding: 12px;
+  }
+
   &::placeholder {
     font-family: "Montserrat";
     font-weight: 400;
-
     font-size: 14px;
     line-height: 17.07px;
     color: #a6abb9;

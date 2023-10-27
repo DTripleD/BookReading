@@ -51,7 +51,7 @@ const Register = () => {
     <RegisterPageWrapper>
       <FormWrapper>
         <Form>
-          <Label>
+          <Label id="email">
             Name <LabelSpan>*</LabelSpan>
             <Input
               type="text"
@@ -59,7 +59,7 @@ const Register = () => {
               onChange={(e) => setName(e.target.value)}
             />
           </Label>
-          <Label>
+          <Label id="email">
             Email <LabelSpan>*</LabelSpan>
             <Input
               type="text"
@@ -67,7 +67,7 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </Label>
-          <Label>
+          <Label id="email">
             Password <LabelSpan>*</LabelSpan>
             <Input
               type="text"

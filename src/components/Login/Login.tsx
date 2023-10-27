@@ -13,6 +13,7 @@ import {
   Input,
   LabelSpan,
   StyledNavLink,
+  QuoteBefore,
 } from "./Login.styled";
 import { login } from "../../redux/auth/operations";
 
@@ -35,7 +36,7 @@ const Login = () => {
     <LoginPageWrapper>
       <FormWrapper>
         <Form>
-          <Label>
+          <Label id="email">
             Email <LabelSpan>*</LabelSpan>
             <Input
               type="text"
@@ -59,6 +60,7 @@ const Login = () => {
       </FormWrapper>
       <QuoteWrapper>
         <TextWrapper>
+          <QuoteBefore>“</QuoteBefore>
           <LoginQuote>
             Books are the ships of thoughts, wandering through the waves of
             time.

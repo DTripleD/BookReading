@@ -21,14 +21,17 @@ export const Main = styled.div`
 export const Section = styled.section`
   background-color: #f6f7fb;
   min-height: 100vh;
+  max-width: 320px;
   padding-top: 20px;
   padding-bottom: 20px;
   @media screen and (min-width: 768px) {
+    width: 768px;
     padding-top: 32px;
     padding-bottom: 32px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
     padding-top: 40px;
     padding-bottom: 40px;
   }

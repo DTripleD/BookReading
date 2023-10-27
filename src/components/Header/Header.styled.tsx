@@ -74,16 +74,16 @@ export const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   max-width: 320px;
-  padding: 16 20px;
+  padding: 16px 20px;
   margin: 0 auto;
 
   @media screen and (min-width: 768px) {
     max-width: none;
     width: 768px;
-    padding: 16 32px;
+    padding: 16px 32px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1280px) {
     width: 1280px;
     padding: 16px;
   }

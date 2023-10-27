@@ -7,21 +7,13 @@ import {
   StartButton,
   MainTitle,
   TitleWrapper,
-  StyledDatePicker,
-  ResultsWrapper,
-  AddResultButton,
-  ResultTitle,
-  StatisticsTitle,
   SectionWrapper,
   BigElement,
-  StatTimeListItem,
 } from "./Progress.styled";
 import { useState, useEffect } from "react";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import dayjs from "dayjs";
 import { useAppDispatch } from "../../redux/store";
 import {
-  addReadPages,
   currentPlanning,
   startPlanning,
 } from "../../redux/planning/planningOperations";
@@ -31,6 +23,8 @@ import Timers from "../Timers/Timers";
 import TableWithCheckBox from "../Table/TableWithCheckBox";
 import TableWithoutCheckBox from "../Table/TableWithoutCheckBox";
 import TrainingForm from "../TrainingForm/TrainingForm";
+
+import Result from "../Results/Result";
 
 interface Book {
   author: string;
@@ -46,7 +40,6 @@ const Progress = ({ allBooks }) => {
   const [selected, setSelected] = useState("");
   const [startDate, setStartDate] = useState("");
   const [finishDate, setFinishDate] = useState("");
-  const [result, setResult] = useState(0);
 
   const filteredBooks = allBooks.goingToRead.filter(
     (book) => !selectedBooks.some((a) => a._id === book._id)
@@ -56,14 +49,23 @@ const Progress = ({ allBooks }) => {
 
   const current = useSelector(planningBooks);
 
+  const booksLeft = () => {
+    let books = current.books.length;
+
+    current.books.map((book) => {
+      if (book.pagesTotal === book.pagesFinished) {
+        books -= 1;
+      }
+    });
+    return books;
+  };
+
   useEffect(() => {
     dispatch(currentPlanning());
   }, [dispatch]);
 
   const ssss = dayjs(current.startDate);
   const date = dayjs(current.endDate);
-
-  const today = dayjs();
 
   let currentDatee: string | null = null;
   let sum = 0;
@@ -202,7 +204,7 @@ const Progress = ({ allBooks }) => {
             {current.books.length > 0 && (
               <div>
                 <CountWrapper>
-                  <CountNumber>{current.books.length}</CountNumber>
+                  <CountNumber>{booksLeft()}</CountNumber>
                 </CountWrapper>
 
                 <BoxName>Books left</BoxName>
@@ -217,56 +219,7 @@ const Progress = ({ allBooks }) => {
           startPages={resultArray}
           progressExpectetion={numbersArray}
         />
-        <div>
-          {current.books.length > 0 && (
-            <ResultsWrapper>
-              <ResultTitle>Results</ResultTitle>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  dispatch(
-                    addReadPages({
-                      pages: result,
-                    })
-                  );
-                }}
-              >
-                <label>
-                  Date
-                  <StyledDatePicker
-                    disabled
-                    defaultValue={today}
-                    // onChange={(date) => handleStartDateChange(date)}
-                    minDate={today}
-                    slots={{
-                      openPickerIcon: ArrowDropDownIcon,
-                    }}
-                  />
-                </label>
-                <label>
-                  Amount of pages
-                  <input
-                    type="text"
-                    onChange={(event) => {
-                      setResult(Number(event.target.value));
-                    }}
-                  />
-                </label>
-                <AddResultButton>Add result</AddResultButton>
-              </form>
-              <StatisticsTitle>Statistics</StatisticsTitle>
-              <ul>
-                {current.stats.map((stat) => (
-                  <StatTimeListItem key={new Date().getTime()}>
-                    <p>{stat.time.split(" ")[0]}</p>
-                    <p>{stat.time.split(" ")[1]}</p>
-                    <p>{stat.pagesCount} pages</p>
-                  </StatTimeListItem>
-                ))}
-              </ul>
-            </ResultsWrapper>
-          )}
-        </div>
+        {current.books.length > 0 && <Result current={current} />}
       </SectionWrapper>
     </>
   );
