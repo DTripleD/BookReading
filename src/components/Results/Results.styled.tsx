@@ -28,6 +28,7 @@ export const StatisticsTitle = styled.h4`
   text-align: center;
   text-transform: uppercase;
   color: #242a37;
+  margin-top: 24px;
 `;
 
 export const StatTimeListItem = styled.li`

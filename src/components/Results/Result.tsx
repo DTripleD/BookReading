@@ -5,6 +5,7 @@ import {
   StatisticsTitle,
 } from "./Results.styled";
 import ProgressForm from "../ProgressForm/ProgressForm";
+import { nanoid } from "nanoid";
 
 const Result = ({ current }) => {
   return (
@@ -15,7 +16,7 @@ const Result = ({ current }) => {
         <StatisticsTitle>Statistics</StatisticsTitle>
         <ul>
           {current.stats.map((stat) => (
-            <StatTimeListItem key={new Date().getTime()}>
+            <StatTimeListItem key={nanoid()}>
               <p>{stat.time.split(" ")[0]}</p>
               <p>{stat.time.split(" ")[1]}</p>
               <p>{stat.pagesCount} pages</p>

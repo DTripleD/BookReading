@@ -9,6 +9,7 @@ import {
   TitleWrapper,
   SectionWrapper,
   BigElement,
+  ProgressWrapper,
 } from "./Progress.styled";
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
@@ -144,7 +145,7 @@ const Progress = ({ allBooks }) => {
   };
 
   return (
-    <>
+    <ProgressWrapper>
       <SectionWrapper>
         {current.books.length > 0 ? (
           <BigElement>
@@ -173,22 +174,42 @@ const Progress = ({ allBooks }) => {
             </StartButton>
           </BigElement>
         )}
+        <Chart
+          labels={daysArray}
+          startPages={resultArray}
+          progressExpectetion={numbersArray}
+          current={current}
+        />
+      </SectionWrapper>
+      <SectionWrapper>
         <div>
           <TitleWrapper>
             <MainTitle>My goals</MainTitle>
           </TitleWrapper>
-          <CountBackground>
+          <CountBackground
+            className={current.books.length > 0 ? "isTrain" : ""}
+          >
             <div>
-              <CountWrapper>
-                <CountNumber>
+              <CountWrapper
+                className={current.books.length > 0 ? "isTrain" : ""}
+              >
+                <CountNumber
+                  className={current.books.length > 0 ? "isTrain" : ""}
+                >
                   {current.books.length || selectedBooks.length}
                 </CountNumber>
               </CountWrapper>
-              <BoxName>Amount of books</BoxName>
+              <BoxName className={current.books.length > 0 ? "isTrain" : ""}>
+                Amount of books
+              </BoxName>
             </div>
             <div>
-              <CountWrapper>
-                <CountNumber>
+              <CountWrapper
+                className={current.books.length > 0 ? "isTrain" : ""}
+              >
+                <CountNumber
+                  className={current.books.length > 0 ? "isTrain" : ""}
+                >
                   {startDate || finishDate
                     ? isNaN(dayjs(finishDate).diff(dayjs(startDate), "day"))
                       ? 0
@@ -199,29 +220,34 @@ const Progress = ({ allBooks }) => {
                 </CountNumber>
               </CountWrapper>
 
-              <BoxName>Amount of days</BoxName>
+              <BoxName className={current.books.length > 0 ? "isTrain" : ""}>
+                Amount of days
+              </BoxName>
             </div>
             {current.books.length > 0 && (
               <div>
-                <CountWrapper>
-                  <CountNumber>{booksLeft()}</CountNumber>
+                <CountWrapper
+                  className={current.books.length > 0 ? "isTrain" : ""}
+                >
+                  <CountNumber
+                    id="left"
+                    className={current.books.length > 0 ? "isTrain" : ""}
+                  >
+                    {booksLeft()}
+                  </CountNumber>
                 </CountWrapper>
 
-                <BoxName>Books left</BoxName>
+                <BoxName className={current.books.length > 0 ? "isTrain" : ""}>
+                  Books left
+                </BoxName>
               </div>
             )}
           </CountBackground>
         </div>
-      </SectionWrapper>
-      <SectionWrapper>
-        <Chart
-          labels={daysArray}
-          startPages={resultArray}
-          progressExpectetion={numbersArray}
-        />
+
         {current.books.length > 0 && <Result current={current} />}
       </SectionWrapper>
-    </>
+    </ProgressWrapper>
   );
 };
 

@@ -1,4 +1,4 @@
-import { LineUpperText, LineWrapper } from "./Chart.styled";
+import { LineUpperText, LineWrapper, PagesPerDay } from "./Chart.styled";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -19,7 +19,7 @@ ChartJS.register(
   Legend
 );
 
-const Chart = ({ labels, startPages, progressExpectetion }) => {
+const Chart = ({ labels, startPages, progressExpectetion, current }) => {
   const options = {
     cubicInterpolationMode: "monotone",
     responsive: true,
@@ -47,9 +47,12 @@ const Chart = ({ labels, startPages, progressExpectetion }) => {
       },
     ],
   };
+
   return (
     <LineWrapper>
-      <LineUpperText>Amont of pages / DAY</LineUpperText>
+      <LineUpperText>
+        Amont of pages / DAY <PagesPerDay>{current.pagesPerDay}</PagesPerDay>
+      </LineUpperText>
       <Line options={options} data={data} />
     </LineWrapper>
   );

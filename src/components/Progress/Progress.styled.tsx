@@ -8,6 +8,10 @@ export const CountWrapper = styled.div`
   box-shadow: 4px 4px 8px 0px #242a3726;
   width: 100px;
   height: 100px;
+  &.isTrain {
+    width: 66px;
+    height: 66px;
+  }
 `;
 
 export const CountNumber = styled.p`
@@ -17,6 +21,14 @@ export const CountNumber = styled.p`
   font-size: 45px;
   line-height: 38px;
   color: #091e3f;
+
+  &.isTrain {
+    font-size: 36px;
+  }
+
+  &#left {
+    color: #ff6b08;
+  }
 `;
 
 export const MainTitle = styled.h3`
@@ -44,11 +56,20 @@ export const BoxName = styled.p`
 
   color: #898f9f;
   text-align: center;
+  width: 74px;
+  margin-top: 14px;
+
+  &.isTrain {
+    font-size: 12px;
+    line-height: 14.63px;
+    width: 57px;
+  }
 `;
 
 export const SectionWrapper = styled.div`
   display: flex;
-  gap: 32px;
+  flex-direction: column;
+  gap: 40px;
   justify-content: space-between;
 `;
 
@@ -58,6 +79,10 @@ export const CountBackground = styled.div`
   background-color: #ffffff;
   box-shadow: 0px 2px 3px 0px #091e3f1a;
   gap: 20px;
+
+  &.isTrain {
+    padding: 80px 25px 79px 18px;
+  }
 `;
 
 export const StartButton = styled.button`
@@ -80,4 +105,10 @@ export const TrainingWrapper = styled.div`
 
 export const BigElement = styled.div`
   width: 100%;
+`;
+
+export const ProgressWrapper = styled.div`
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
 `;

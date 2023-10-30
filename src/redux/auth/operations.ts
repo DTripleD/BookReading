@@ -65,26 +65,45 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   }
 });
 
+// export const refreshUser = createAsyncThunk(
+//   "auth/refresh",
+//   async (_, thunkAPI) => {
+//     const state: RootState = thunkAPI.getState();
+//     const persistedToken = state.auth.refreshToken;
+//     const sid = state.auth.sid;
+
+//     if (sid === null) {
+//       return thunkAPI.rejectWithValue("Unable to fetch user");
+//     }
+
+//     try {
+//       setAuthHeader(persistedToken);
+//       const res = await axios.post("/auth/refresh", { sid: sid });
+//       return res.data;
+//     } catch (error) {
+//       console.log(error);
+//       return thunkAPI.rejectWithValue((error as Error).message);
+//     }
+//   }
+// );
+
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
-  async (_, thunkAPI) => {
-    const state: RootState = thunkAPI.getState();
-
+  async (_, thunkApi) => {
+    const state: RootState = thunkApi.getState();
+    const refreshToken = state.auth.refreshToken;
     const sid = state.auth.sid;
 
-    if (sid === null) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
+    if (sid === null || !refreshToken) {
+      return thunkApi.rejectWithValue("Unable to fetch user");
     }
 
-    const persistedToken = state.auth.refreshToken;
-
     try {
-      setAuthHeader(persistedToken);
-      const res = await axios.post("/auth/refresh", { sid: sid });
-      return res.data;
+      setAuthHeader(refreshToken);
+      const { data } = await axios.post("/auth/refresh", { sid });
+      return data;
     } catch (error) {
-      console.log(error);
-      return thunkAPI.rejectWithValue((error as Error).message);
+      return thunkApi.rejectWithValue((error as Error).message);
     }
   }
 );

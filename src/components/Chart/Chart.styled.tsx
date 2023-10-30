@@ -15,3 +15,14 @@ export const LineUpperText = styled.p`
   line-height: 14.63px;
   text-transform: uppercase;
 `;
+
+export const PagesPerDay = styled.span`
+  font-family: "Montserrat";
+
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 38px;
+  background: #242a37;
+  background-color: #f5f7fa;
+  padding: 5px;
+`;

@@ -19,12 +19,14 @@ export const Main = styled.div`
 `;
 
 export const Section = styled.section`
+  margin: 0 auto;
   background-color: #f6f7fb;
   min-height: 100vh;
   max-width: 320px;
   padding-top: 20px;
   padding-bottom: 20px;
   @media screen and (min-width: 768px) {
+    max-width: none;
     width: 768px;
     padding-top: 32px;
     padding-bottom: 32px;
