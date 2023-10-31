@@ -12,6 +12,7 @@ interface State {
     pagesTotal: number | null;
     publishYear: number | null;
     title: string;
+    _id: string;
   }>;
   duration: number | null;
   endDate: string;
@@ -48,6 +49,7 @@ const planningSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(currentPlanning.fulfilled, (state, action) => {
+        // console.log(action.payload.data);
         state.books = action.payload.data.planning.books;
         state.duration = action.payload.data.planning.duration;
         state.endDate = action.payload.data.planning.endDate;
@@ -83,6 +85,11 @@ const planningSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(addReadPages.fulfilled, (state, action) => {
+        state.books = state.books.map((book) =>
+          book._id === action.payload.data.book._id
+            ? action.payload.data.book
+            : book
+        );
         state.stats = action.payload.data.planning.stats;
         state.isLoading = false;
         state.error = null;

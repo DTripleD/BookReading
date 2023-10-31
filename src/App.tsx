@@ -6,13 +6,14 @@ import MainPage from "./pages/MainPage";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import RestrictedRoute from "./components/RestrictedRoute";
 import PrivateRoute from "./components/PrivateRoute";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { refreshUser } from "./redux/auth/operations";
 import { useAppDispatch } from "./redux/store";
 import ProgressPage from "./pages/ProgressPage";
 import { useSelector } from "react-redux";
 import { userBooks } from "./redux/books/booksSelectors";
 import { getBooks } from "./redux/books/booksOperations";
+import Modal from "./components/Modal/Modal";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -24,6 +25,17 @@ function App() {
     dispatch(refreshUser());
     dispatch(getBooks());
   }, [dispatch]);
+
+  const [isModalActive, setModalActive] = useState(false);
+  const [modalId, setModalId] = useState("");
+
+  const handleModalOpen = (id) => {
+    setModalId(id);
+    setModalActive(true);
+  };
+  const handleModalClose = () => {
+    setModalActive(false);
+  };
 
   return (
     <>
@@ -53,11 +65,19 @@ function App() {
           <Route
             path="/progress"
             element={
-              <PrivateRoute component={<ProgressPage allBooks={allBooks} />} />
+              <PrivateRoute
+                component={
+                  <ProgressPage
+                    allBooks={allBooks}
+                    handleModalOpen={handleModalOpen}
+                  />
+                }
+              />
             }
           />
         </Route>
       </Routes>
+      {isModalActive && <Modal id={modalId} onClose={handleModalClose} />}
     </>
   );
 }

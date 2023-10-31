@@ -36,7 +36,7 @@ interface Book {
   _id: string;
 }
 
-const Progress = ({ allBooks }) => {
+const Progress = ({ allBooks, handleModalOpen }) => {
   const [selectedBooks, setSelectedBooks] = useState<Book[]>([]);
   const [selected, setSelected] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -49,6 +49,25 @@ const Progress = ({ allBooks }) => {
   const dispatch = useAppDispatch();
 
   const current = useSelector(planningBooks);
+
+  const isFinish = (trainingBooks) => {
+    if (!trainingBooks.length) {
+      false;
+    }
+
+    const { pagesFinished, pagesTotal } =
+      trainingBooks[trainingBooks.length - 1];
+
+    if (pagesFinished === pagesTotal) {
+      handleModalOpen("3");
+    }
+  };
+
+  useEffect(() => {
+    if (current.books.length) {
+      isFinish(current.books);
+    }
+  }, [current]);
 
   const booksLeft = () => {
     let books = current.books.length;
@@ -154,6 +173,8 @@ const Progress = ({ allBooks }) => {
           </BigElement>
         ) : (
           <BigElement>
+            <button onClick={() => handleModalOpen("1")}>Aaaa</button>
+            <button onClick={() => handleModalOpen("2")}>BBBB</button>
             <TitleWrapper>
               <MainTitle>My training</MainTitle>
             </TitleWrapper>

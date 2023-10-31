@@ -173,7 +173,7 @@ const Main = ({ allBooks }) => {
             </BooksList>
           </div>
         )}
-        {allBooks.finishedReading.length > 0 && (
+        {allBooks.goingToRead.length > 0 && (
           <div>
             <Title>Going to read</Title>
 
