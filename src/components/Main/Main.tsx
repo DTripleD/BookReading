@@ -22,8 +22,9 @@ import icons from "../../images/icons.svg";
 import { useState } from "react";
 import { addBook } from "../../redux/books/booksOperations.ts";
 import { useNavigate } from "react-router-dom";
+import { Rating } from "@mui/material";
 
-const Main = ({ allBooks }) => {
+const Main = ({ allBooks, handleModalOpen }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
@@ -97,134 +98,148 @@ const Main = ({ allBooks }) => {
         </FormWrapper>
         <FormButton type="submit">Add</FormButton>
       </Form>
-      {/* {allBooks.goingToRead.length > 0 ? ( */}
-      <div>
-        {allBooks.finishedReading.length > 0 && (
-          <div>
-            <Title>Already read</Title>
-            <ListTitleWrapper>
-              <ListTitle>Book title</ListTitle>
-              <ListTitle>Author</ListTitle>
-              <ListTitle>Year</ListTitle>
-              <ListTitle>Pages</ListTitle>
-              <ListTitle>Rating</ListTitle>
-            </ListTitleWrapper>
+      {allBooks.goingToRead.length > 0 ||
+      allBooks.finishedReading.length > 0 ||
+      allBooks.currentlyReading > 0 ? (
+        <div>
+          {allBooks.finishedReading.length > 0 && (
+            <div>
+              <Title>Already read</Title>
+              <ListTitleWrapper>
+                <ListTitle>Book title</ListTitle>
+                <ListTitle>Author</ListTitle>
+                <ListTitle>Year</ListTitle>
+                <ListTitle>Pages</ListTitle>
+                <ListTitle>Rating</ListTitle>
+              </ListTitleWrapper>
 
-            <BooksList>
-              {allBooks.finishedReading.map(
-                (book: {
-                  _id: string;
-                  title: string;
-                  author: string;
-                  publishYear: number;
-                  pagesTotal: number;
-                }) => {
-                  return (
-                    <ListItem key={book._id}>
-                      <svg width="22" height="17">
-                        <use href={icons + "#icon-book"}></use>
-                      </svg>
-                      <ListText>{book.title}</ListText>
-                      <ListText>{book.author}</ListText>
-                      <ListText>{book.publishYear}</ListText>
-                      <ListText>{book.pagesTotal}</ListText>
-                      <p>***</p>
-                      <ResumeButton>Resume</ResumeButton>
-                    </ListItem>
-                  );
-                }
-              )}
-            </BooksList>
-          </div>
-        )}
-        {allBooks.finishedReading.length > 0 && (
-          <div>
-            <Title>Reading now</Title>
+              <BooksList>
+                {allBooks.finishedReading.map(
+                  (book: {
+                    _id: string;
+                    title: string;
+                    author: string;
+                    publishYear: number;
+                    pagesTotal: number;
+                    rating: number;
+                  }) => {
+                    return (
+                      <ListItem key={book._id}>
+                        <svg width="22" height="17">
+                          <use href={icons + "#icon-book"}></use>
+                        </svg>
+                        <ListText>{book.title}</ListText>
+                        <ListText>{book.author}</ListText>
+                        <ListText>{book.publishYear}</ListText>
+                        <ListText>{book.pagesTotal}</ListText>
+                        <Rating
+                          name="simple-controlled"
+                          disabled
+                          value={book.rating ? book.rating : 0}
+                        />
+                        <ResumeButton
+                          type="button"
+                          onClick={() => {
+                            handleModalOpen(book._id);
+                          }}
+                        >
+                          Resume
+                        </ResumeButton>
+                      </ListItem>
+                    );
+                  }
+                )}
+              </BooksList>
+            </div>
+          )}
+          {allBooks.currentlyReading.length > 0 && (
+            <div>
+              <Title>Reading now</Title>
 
-            <ListTitleWrapper>
-              <ListTitle>Book title</ListTitle>
-              <ListTitle>Author</ListTitle>
-              <ListTitle>Year</ListTitle>
-              <ListTitle>Pages</ListTitle>
-            </ListTitleWrapper>
+              <ListTitleWrapper>
+                <ListTitle>Book title</ListTitle>
+                <ListTitle>Author</ListTitle>
+                <ListTitle>Year</ListTitle>
+                <ListTitle>Pages</ListTitle>
+              </ListTitleWrapper>
 
-            <BooksList>
-              {allBooks.finishedReading.map(
-                (book: {
-                  _id: string;
-                  title: string;
-                  author: string;
-                  publishYear: number;
-                  pagesTotal: number;
-                }) => {
-                  return (
-                    <ListItem key={book._id}>
-                      <svg width="22" height="17">
-                        <use href={icons + "#icon-book"}></use>
-                      </svg>
-                      <ListText>{book.title}</ListText>
-                      <ListText>{book.author}</ListText>
-                      <ListText>{book.publishYear}</ListText>
-                      <ListText>{book.pagesTotal}</ListText>
-                    </ListItem>
-                  );
-                }
-              )}
-            </BooksList>
-          </div>
-        )}
-        {allBooks.goingToRead.length > 0 && (
-          <div>
-            <Title>Going to read</Title>
+              <BooksList>
+                {allBooks.currentlyReading.map(
+                  (book: {
+                    _id: string;
+                    title: string;
+                    author: string;
+                    publishYear: number;
+                    pagesTotal: number;
+                  }) => {
+                    return (
+                      <ListItem key={book._id}>
+                        <svg width="22" height="17">
+                          <use href={icons + "#icon-book"}></use>
+                        </svg>
+                        <ListText>{book.title}</ListText>
+                        <ListText>{book.author}</ListText>
+                        <ListText>{book.publishYear}</ListText>
+                        <ListText>{book.pagesTotal}</ListText>
+                      </ListItem>
+                    );
+                  }
+                )}
+              </BooksList>
+            </div>
+          )}
+          {allBooks.goingToRead.length > 0 && (
+            <div>
+              <Title>Going to read</Title>
 
-            <ListTitleWrapper>
-              <ListTitle>Book title</ListTitle>
-              <ListTitle>Author</ListTitle>
-              <ListTitle>Year</ListTitle>
-              <ListTitle>Pages</ListTitle>
-            </ListTitleWrapper>
+              <ListTitleWrapper>
+                <ListTitle>Book title</ListTitle>
+                <ListTitle>Author</ListTitle>
+                <ListTitle>Year</ListTitle>
+                <ListTitle>Pages</ListTitle>
+              </ListTitleWrapper>
+              <BooksList>
+                {allBooks.goingToRead.map(
+                  (book: {
+                    _id: string;
+                    title: string;
+                    author: string;
+                    publishYear: number;
+                    pagesTotal: number;
+                  }) => {
+                    return (
+                      <ListItem key={book._id}>
+                        <svg width="22" height="17">
+                          <use href={icons + "#icon-book"}></use>
+                        </svg>
 
-            <BooksList>
-              {allBooks.goingToRead.map(
-                (book: {
-                  _id: string;
-                  title: string;
-                  author: string;
-                  publishYear: number;
-                  pagesTotal: number;
-                }) => {
-                  return (
-                    <ListItem key={book._id}>
-                      <svg width="22" height="17">
-                        <use href={icons + "#icon-book"}></use>
-                      </svg>
-                      <ListText>{book.title}</ListText>
-                      <ListText>{book.author}</ListText>
-                      <ListText>{book.publishYear}</ListText>
-                      <ListText>{book.pagesTotal}</ListText>
-                    </ListItem>
-                  );
-                }
-              )}
-            </BooksList>
-          </div>
-        )}
-        <TrainingBtn onClick={() => navigate("/progress")}>
-          My training
-        </TrainingBtn>
-      </div>
-      {/* // ) : (
-      //   <Instruction>
-      //     <StepsNum>Step 1.</StepsNum>
-      //     <StepsDo>Create your own library</StepsDo>
-      //     <StepsResult>
-      //       Add there books which you are going to read.
-      //     </StepsResult>
-      //     <StepsNum>Step 2.</StepsNum>
-      //     <StepsDo>Create your first training</StepsDo>
-      //     <StepsResult>Set a goal, choose period, start training.</StepsResult>
-      //   </Instruction>
-      // )} */}
+                        <ListText>{book.title}</ListText>
+                        <ListText>{book.author}</ListText>
+                        <ListText>{book.publishYear}</ListText>
+                        <ListText>{book.pagesTotal}</ListText>
+                      </ListItem>
+                    );
+                  }
+                )}
+              </BooksList>
+            </div>
+          )}
+          <TrainingBtn onClick={() => navigate("/progress")}>
+            My training
+          </TrainingBtn>
+        </div>
+      ) : (
+        <Instruction>
+          <StepsNum>Step 1.</StepsNum>
+          <StepsDo>Create your own library</StepsDo>
+          <StepsResult>
+            Add there books which you are going to read.
+          </StepsResult>
+          <StepsNum>Step 2.</StepsNum>
+          <StepsDo>Create your first training</StepsDo>
+          <StepsResult>Set a goal, choose period, start training.</StepsResult>
+        </Instruction>
+      )}
     </>
   );
 };

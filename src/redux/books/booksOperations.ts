@@ -40,3 +40,25 @@ export const addBook = createAsyncThunk(
     }
   }
 );
+
+export const addReview = createAsyncThunk(
+  "books/addReview",
+  async (
+    credentials: { rating: number | null; feedback: string; id: string },
+    thunkAPI
+  ) => {
+    const state: RootState = thunkAPI.getState();
+    setAuthHeader(state.auth.token);
+    const { rating, feedback, id } = credentials;
+    try {
+      const res = await axios.patch(`/book/review/${id}`, {
+        rating,
+        feedback,
+      });
+
+      return res;
+    } catch (error) {
+      return thunkAPI.rejectWithValue((error as Error).message);
+    }
+  }
+);

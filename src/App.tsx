@@ -59,7 +59,14 @@ function App() {
           <Route
             path="/main"
             element={
-              <PrivateRoute component={<MainPage allBooks={allBooks} />} />
+              <PrivateRoute
+                component={
+                  <MainPage
+                    allBooks={allBooks}
+                    handleModalOpen={handleModalOpen}
+                  />
+                }
+              />
             }
           />
           <Route

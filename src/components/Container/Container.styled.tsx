@@ -20,7 +20,7 @@ export const Main = styled.div`
 
 export const Section = styled.section`
   margin: 0 auto;
-  background-color: #f6f7fb;
+
   min-height: 100vh;
   max-width: 320px;
   padding-top: 20px;

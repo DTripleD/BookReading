@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addBook, getBooks } from "./booksOperations";
+import { addBook, addReview, getBooks } from "./booksOperations";
 
 interface State {
   name: string;
@@ -14,7 +14,16 @@ interface State {
     }
   ];
   currentlyReading: [];
-  finishedReading: [];
+  finishedReading: Array<{
+    author: string;
+    feedback: string;
+    pagesFinished: number;
+    pagesTotal: number;
+    publishYear: number;
+    rating: number;
+    title: string;
+    _id: string;
+  }>;
   isLoading: boolean;
   error: unknown;
 }
@@ -32,7 +41,18 @@ const initialState: State = {
     },
   ],
   currentlyReading: [],
-  finishedReading: [],
+  finishedReading: [
+    {
+      author: "ClearingForm",
+      feedback: "Da",
+      pagesFinished: 123,
+      pagesTotal: 123,
+      publishYear: 1234,
+      rating: 4,
+      title: "ClearingForm",
+      _id: "653a841820464d1828469659",
+    },
+  ],
   isLoading: false,
   error: null,
 };
@@ -65,6 +85,19 @@ const booksSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addBook.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(addReview.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addReview.fulfilled, (state, action) => {
+        state.finishedReading = state.finishedReading.map((book) =>
+          book._id === action.payload.data._id ? action.payload.data : book
+        );
+        state.isLoading = false;
+      })
+      .addCase(addReview.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

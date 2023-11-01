@@ -9,8 +9,17 @@ import {
   Title,
   WhiteButton,
   OrangeButton,
+  TextArea,
+  Label,
+  ResumeContent,
+  ResumeTitle,
+  StarsWrapper,
+  ButtonsWrapper,
 } from "./Modal.styled";
 import icons from "../../images/icons.svg";
+import { Rating } from "@mui/material";
+import { useAppDispatch } from "../../redux/store";
+import { addReview } from "../../redux/books/booksOperations";
 
 const MODAL_CONTAINER_ID = "modal-container-id";
 
@@ -24,6 +33,17 @@ const Modal = (props: Props) => {
 
   const rootRef = useRef<HTMLDivElement>(null);
   const [isMounted, setMounted] = useState(false);
+  const [rating, setRating] = useState<number | null>(0);
+  const [feedback, setFeedback] = useState("");
+
+  const dispatch = useAppDispatch();
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    dispatch(addReview({ rating, feedback, id })).finally(() =>
+      handleClose(event)
+    );
+  };
 
   useEffect(() => {
     createContainer({ id: MODAL_CONTAINER_ID });
@@ -85,9 +105,7 @@ const Modal = (props: Props) => {
         </Wrap>
       </Portal>
     ) : null;
-  }
-
-  if (id === "2") {
+  } else if (id === "2") {
     return isMounted ? (
       <Portal id={MODAL_CONTAINER_ID}>
         <Wrap ref={rootRef} data-testid="wrap">
@@ -116,9 +134,7 @@ const Modal = (props: Props) => {
         </Wrap>
       </Portal>
     ) : null;
-  }
-
-  if (id === "3") {
+  } else if (id === "3") {
     return isMounted ? (
       <Portal id={MODAL_CONTAINER_ID}>
         <Wrap ref={rootRef} data-testid="wrap">
@@ -135,6 +151,45 @@ const Modal = (props: Props) => {
               Done
             </OrangeButton>
           </Content>
+        </Wrap>
+      </Portal>
+    ) : null;
+  } else {
+    return isMounted ? (
+      <Portal id={MODAL_CONTAINER_ID}>
+        <Wrap ref={rootRef} data-testid="wrap">
+          <ResumeContent>
+            <form onSubmit={(e) => handleFormSubmit(e)}>
+              <StarsWrapper>
+                <ResumeTitle>Choose rating of the book</ResumeTitle>
+                <Rating
+                  name="simple-controlled"
+                  value={rating}
+                  onChange={(_, newValue) => {
+                    setRating(newValue);
+                  }}
+                />
+              </StarsWrapper>
+              <Label>
+                Resume
+                <TextArea
+                  name="feedback"
+                  placeholder="..."
+                  value={feedback}
+                  onChange={(event) => setFeedback(event.target.value)}
+                />
+              </Label>
+
+              <ButtonsWrapper>
+                <WhiteButton type="button" onClick={handleClose}>
+                  Back
+                </WhiteButton>
+                <OrangeButton type="submit" data-testid="modal-close-button">
+                  Save
+                </OrangeButton>
+              </ButtonsWrapper>
+            </form>
+          </ResumeContent>
         </Wrap>
       </Portal>
     ) : null;

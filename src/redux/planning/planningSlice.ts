@@ -49,7 +49,6 @@ const planningSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(currentPlanning.fulfilled, (state, action) => {
-        // console.log(action.payload.data);
         state.books = action.payload.data.planning.books;
         state.duration = action.payload.data.planning.duration;
         state.endDate = action.payload.data.planning.endDate;
