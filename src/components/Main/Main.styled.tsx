@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Rating } from "@mui/material";
 
 export const Label = styled.label`
   display: flex;
@@ -10,6 +11,47 @@ export const Label = styled.label`
   font-size: 14px;
   line-height: 17.07px;
   color: #898f9f;
+
+  &#title {
+    width: 100%;
+
+    @media screen and (min-width: 1280px) {
+      width: 346px;
+    }
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 1;
+  }
+
+  &#author {
+    width: 100%;
+    @media screen and (min-width: 768px) {
+      width: 336px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      width: 250px;
+    }
+  }
+  &#date {
+    @media screen and (min-width: 768px) {
+      width: 152px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      width: 134px;
+    }
+  }
+  &#pages {
+    @media screen and (min-width: 768px) {
+      width: 152px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      width: 134px;
+    }
+  }
 `;
 
 export const Input = styled.input`
@@ -21,15 +63,17 @@ export const Input = styled.input`
 
   &#title {
     width: 346px;
-  }
-  &#author {
-    width: 250px;
-  }
-  &#date {
-    width: 134px;
-  }
-  &#pages {
-    width: 134px;
+
+    /* @media screen and (min-width: 768px) {
+      max-width: none;
+      width: 768px;
+      padding: 14px 32px 13px 32px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      width: 1280px;
+      padding: 11px 16px;
+    } */
   }
 
   &:focus {
@@ -41,9 +85,17 @@ export const Input = styled.input`
 `;
 
 export const Form = styled.form`
-  display: flex;
-  align-items: flex-end;
   margin-bottom: 40px;
+  @media screen and (max-width: 1279px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    align-items: flex-end;
+  }
 `;
 
 export const FormButton = styled.button`
@@ -56,6 +108,7 @@ export const FormButton = styled.button`
   background-color: transparent;
   padding: 12px 75px;
   height: 42px;
+  width: 171px;
 `;
 
 export const Instruction = styled.div`
@@ -112,27 +165,164 @@ export const ListTitle = styled.p`
   font-size: 14px;
   line-height: 17.07px;
   color: #898f9f;
+
+  @media screen and (min-width: 768px) {
+    &#title-title {
+      margin-right: 299px;
+    }
+    &#author-title {
+      margin-right: 164px;
+    }
+    &#year-title {
+      margin-right: 32px;
+    }
+
+    &#title-title-rating {
+      margin-right: 147px;
+    }
+    &#author-title-rating {
+      margin-right: 79px;
+    }
+    &#year-title-rating {
+      margin-right: 28px;
+    }
+    &#pages-title-rating {
+      margin-right: 27px;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    &#title-title {
+      margin-right: 571px;
+    }
+    &#author-title {
+      margin-right: 339px;
+    }
+    &#year-title {
+      margin-right: 72px;
+    }
+
+    &#title-title-rating {
+      margin-right: 292px;
+    }
+    &#author-title-rating {
+      margin-right: 218px;
+    }
+    &#year-title-rating {
+      margin-right: 65px;
+    }
+    &#pages-title-rating {
+      margin-right: 102px;
+    }
+  }
 `;
 
 export const ListText = styled.p`
   font-family: "Montserrat";
   font-weight: 500;
-  font-size: 14px;
-  line-height: 17.07px;
+
   color: #242a37;
+
+  font-size: 12px;
+  line-height: 14.63px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 17.07px;
+
+    &#title-list {
+    }
+    &#author-list {
+      width: 109px;
+      margin-right: 96px;
+    }
+    &#year-list {
+      width: 32px;
+      margin-right: 62px;
+    }
+    &#pages-list {
+    }
+
+    &#title-resume {
+      width: 124px;
+    }
+
+    &#author-resume {
+      overflow: hidden;
+      width: 88px;
+      margin-right: 28px;
+    }
+
+    &#year-resume {
+      min-width: 36px;
+      margin-right: 52px;
+    }
+    &#pages-resume {
+      width: 23px;
+      margin-right: 32px;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    &#title-list {
+    }
+    &#author-list {
+      width: 221px;
+      margin-right: 160px;
+    }
+    &#year-list {
+      min-width: 36px;
+      margin-right: 102px;
+    }
+    &#pages-list {
+    }
+
+    &#title-resume {
+      /* width: 157px; */
+    }
+
+    &#author-resume {
+      overflow: hidden;
+      width: 88px;
+      margin-right: 178px;
+    }
+
+    &#year-resume {
+      width: 36px;
+      margin-right: 81px;
+    }
+    &#pages-resume {
+      width: 23px;
+      margin-right: 110px;
+    }
+  }
 `;
 
 export const ListItem = styled.li`
   display: flex;
-  justify-content: space-between;
+
   background-color: #ffffff;
   box-shadow: 0px 2px 3px 0px #091e3f1a;
-  padding: 22px 84px 22px 20px;
+  padding: 22px 20px;
+  align-items: center;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+
+  &#resume {
+    @media screen and (min-width: 768px) {
+      padding: 11px 20px;
+    }
+    @media screen and (min-width: 1280px) {
+      padding: 11px 80px 11px 20px;
+    }
+  }
 `;
 
 export const ListTitleWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+
   margin-bottom: 8px;
 `;
 
@@ -143,9 +333,26 @@ export const BooksList = styled.ul`
 `;
 
 export const FormWrapper = styled.div`
-  display: flex;
+  display: grid;
+
+  column-gap: 32px;
+
+  row-gap: 24px;
+
+  @media screen and (max-width: 1279px) {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    gap: 16px;
+    margin-right: 48px;
+  }
+
+  /* display: flex;
   gap: 12px;
-  margin-right: 48px;
+  margin-right: 48px; */
 `;
 
 export const TrainingBtn = styled.button`
@@ -163,13 +370,83 @@ export const TrainingBtn = styled.button`
 `;
 
 export const ResumeButton = styled.button`
-font-family: "Montserrat";
-font-weight: 500;
-font-size: 14px;
-line-height:17.07px;
-box-shadow: 0px 2px 4px 0px #00000040;
-background-color: #6D7A8D;
-color: #FFFFFF;
-border: none;
-padding: 12px 36px;
-`
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17.07px;
+  box-shadow: 0px 2px 4px 0px #00000040;
+  background-color: #6d7a8d;
+  color: #ffffff;
+  border: none;
+  padding: 11px 34px 12px 34px;
+  margin-left: auto;
+
+  @media screen and (max-width: 767px) {
+    margin-right: auto;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 11px 11px 12px 10px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 12px 36px;
+  }
+`;
+
+export const PlusButton = styled.button`
+  bottom: 12px;
+  position: fixed;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ff6b08;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  gap: 18px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 268px;
+    margin-right: 80px;
+
+    &#title-wrapper-resume {
+      min-width: 164px;
+      margin-right: 32px;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    min-width: 509px;
+    margin-right: 111px;
+
+    &#title-wrapper-resume {
+      min-width: 197px;
+      margin-right: 144px;
+    }
+  }
+`;
+
+export const StyledRating = styled(Rating)`
+  color: #ff6b08;
+  font-size: 17px;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1289px) {
+  }
+
+  &.Mui-disabled {
+    opacity: 1;
+  }
+
+  & .MuiRating-icon {
+    color: inherit;
+  }
+`;

@@ -16,13 +16,17 @@ import {
   FormWrapper,
   TrainingBtn,
   ResumeButton,
+  PlusButton,
+  TitleWrapper,
+  StyledRating,
 } from "./Main.styled.tsx";
 import { useAppDispatch } from "../../redux/store.ts";
 import icons from "../../images/icons.svg";
 import { useState } from "react";
 import { addBook } from "../../redux/books/booksOperations.ts";
 import { useNavigate } from "react-router-dom";
-import { Rating } from "@mui/material";
+
+import MediaQuery from "react-responsive";
 
 const Main = ({ allBooks, handleModalOpen }) => {
   const [title, setTitle] = useState("");
@@ -52,52 +56,51 @@ const Main = ({ allBooks, handleModalOpen }) => {
   const navigate = useNavigate();
 
   return (
-    <>
-      <Form onSubmit={(event) => handleFormSubmit(event)}>
-        <FormWrapper>
-          <Label>
-            Book title
-            <Input
-              id="title"
-              type="text"
-              value={title}
-              placeholder="..."
-              onChange={(event) => setTitle(event.target.value)}
-            />
-          </Label>
-          <Label>
-            Author
-            <Input
-              value={author}
-              id="author"
-              type="text"
-              placeholder="..."
-              onChange={(event) => setAuthor(event.target.value)}
-            />
-          </Label>
-          <Label>
-            Publication date
-            <Input
-              value={publishYear}
-              id="date"
-              type="text"
-              placeholder="..."
-              onChange={(event) => setPublishYear(event.target.value)}
-            />
-          </Label>
-          <Label>
-            Amount of pages
-            <Input
-              value={pagesTotal}
-              id="pages"
-              type="text"
-              placeholder="..."
-              onChange={(event) => setPagesTotal(event.target.value)}
-            />
-          </Label>
-        </FormWrapper>
-        <FormButton type="submit">Add</FormButton>
-      </Form>
+    <div>
+      <MediaQuery minWidth={768}>
+        <Form onSubmit={(event) => handleFormSubmit(event)}>
+          <FormWrapper>
+            <Label id="title">
+              Book title
+              <Input
+                type="text"
+                value={title}
+                placeholder="..."
+                onChange={(event) => setTitle(event.target.value)}
+              />
+            </Label>
+            <Label id="author">
+              Author
+              <Input
+                value={author}
+                type="text"
+                placeholder="..."
+                onChange={(event) => setAuthor(event.target.value)}
+              />
+            </Label>
+            <Label id="date">
+              Publication date
+              <Input
+                value={publishYear}
+                type="text"
+                placeholder="..."
+                onChange={(event) => setPublishYear(event.target.value)}
+              />
+            </Label>
+            <Label id="pages">
+              Amount of pages
+              <Input
+                value={pagesTotal}
+                type="text"
+                placeholder="..."
+                onChange={(event) => setPagesTotal(event.target.value)}
+              />
+            </Label>
+          </FormWrapper>
+          <FormButton type="submit">Add</FormButton>
+        </Form>
+      </MediaQuery>
+
       {allBooks.goingToRead.length > 0 ||
       allBooks.finishedReading.length > 0 ||
       allBooks.currentlyReading > 0 ? (
@@ -105,13 +108,15 @@ const Main = ({ allBooks, handleModalOpen }) => {
           {allBooks.finishedReading.length > 0 && (
             <div>
               <Title>Already read</Title>
-              <ListTitleWrapper>
-                <ListTitle>Book title</ListTitle>
-                <ListTitle>Author</ListTitle>
-                <ListTitle>Year</ListTitle>
-                <ListTitle>Pages</ListTitle>
-                <ListTitle>Rating</ListTitle>
-              </ListTitleWrapper>
+              <MediaQuery minWidth={768}>
+                <ListTitleWrapper>
+                  <ListTitle id="title-title-rating">Book title</ListTitle>
+                  <ListTitle id="author-title-rating">Author</ListTitle>
+                  <ListTitle id="year-title-rating">Year</ListTitle>
+                  <ListTitle id="pages-title-rating">Pages</ListTitle>
+                  <ListTitle id="rating-title-rating">Rating</ListTitle>
+                </ListTitleWrapper>
+              </MediaQuery>
 
               <BooksList>
                 {allBooks.finishedReading.map(
@@ -124,15 +129,35 @@ const Main = ({ allBooks, handleModalOpen }) => {
                     rating: number;
                   }) => {
                     return (
-                      <ListItem key={book._id}>
-                        <svg width="22" height="17">
-                          <use href={icons + "#icon-book"}></use>
-                        </svg>
-                        <ListText>{book.title}</ListText>
-                        <ListText>{book.author}</ListText>
-                        <ListText>{book.publishYear}</ListText>
-                        <ListText>{book.pagesTotal}</ListText>
-                        <Rating
+                      <ListItem key={book._id} id="resume">
+                        <TitleWrapper id="title-wrapper-resume">
+                          <svg width="22" height="17">
+                            <use href={icons + "#icon-book"}></use>
+                          </svg>
+                          <ListText id="title-resume">{book.title}</ListText>
+                        </TitleWrapper>
+                        <ListText id="author-resume">
+                          <MediaQuery maxWidth={767}>
+                            <span>Author:</span>
+                          </MediaQuery>
+                          {book.author}
+                        </ListText>
+                        <ListText id="year-resume">
+                          <MediaQuery maxWidth={767}>
+                            <span>Year:</span>
+                          </MediaQuery>
+                          {book.publishYear}
+                        </ListText>
+                        <ListText id="pages-resume">
+                          <MediaQuery maxWidth={767}>
+                            <span>Pages:</span>
+                          </MediaQuery>
+                          {book.pagesTotal}
+                        </ListText>
+                        <MediaQuery maxWidth={767}>
+                          <span>Rating:</span>
+                        </MediaQuery>
+                        <StyledRating
                           name="simple-controlled"
                           disabled
                           value={book.rating ? book.rating : 0}
@@ -157,10 +182,10 @@ const Main = ({ allBooks, handleModalOpen }) => {
               <Title>Reading now</Title>
 
               <ListTitleWrapper>
-                <ListTitle>Book title</ListTitle>
-                <ListTitle>Author</ListTitle>
-                <ListTitle>Year</ListTitle>
-                <ListTitle>Pages</ListTitle>
+                <ListTitle id="title-title">Book title</ListTitle>
+                <ListTitle id="author-title">Author</ListTitle>
+                <ListTitle id="year-title">Year</ListTitle>
+                <ListTitle id="pages-title">Pages</ListTitle>
               </ListTitleWrapper>
 
               <BooksList>
@@ -174,13 +199,15 @@ const Main = ({ allBooks, handleModalOpen }) => {
                   }) => {
                     return (
                       <ListItem key={book._id}>
-                        <svg width="22" height="17">
-                          <use href={icons + "#icon-book"}></use>
-                        </svg>
-                        <ListText>{book.title}</ListText>
-                        <ListText>{book.author}</ListText>
-                        <ListText>{book.publishYear}</ListText>
-                        <ListText>{book.pagesTotal}</ListText>
+                        <TitleWrapper>
+                          <svg width="22" height="17">
+                            <use href={icons + "#icon-book"}></use>
+                          </svg>
+                          <ListText id="title-list">{book.title}</ListText>
+                        </TitleWrapper>
+                        <ListText id="author-list">{book.author}</ListText>
+                        <ListText id="year-list">{book.publishYear}</ListText>
+                        <ListText id="pages-list">{book.pagesTotal}</ListText>
                       </ListItem>
                     );
                   }
@@ -193,10 +220,10 @@ const Main = ({ allBooks, handleModalOpen }) => {
               <Title>Going to read</Title>
 
               <ListTitleWrapper>
-                <ListTitle>Book title</ListTitle>
-                <ListTitle>Author</ListTitle>
-                <ListTitle>Year</ListTitle>
-                <ListTitle>Pages</ListTitle>
+                <ListTitle id="title-title">Book title</ListTitle>
+                <ListTitle id="author-title">Author</ListTitle>
+                <ListTitle id="year-title">Year</ListTitle>
+                <ListTitle id="pages-title">Pages</ListTitle>
               </ListTitleWrapper>
               <BooksList>
                 {allBooks.goingToRead.map(
@@ -209,14 +236,16 @@ const Main = ({ allBooks, handleModalOpen }) => {
                   }) => {
                     return (
                       <ListItem key={book._id}>
-                        <svg width="22" height="17">
-                          <use href={icons + "#icon-book"}></use>
-                        </svg>
+                        <TitleWrapper>
+                          <svg width="22" height="17">
+                            <use href={icons + "#icon-book"}></use>
+                          </svg>
+                          <ListText id="title-list">{book.title}</ListText>
+                        </TitleWrapper>
 
-                        <ListText>{book.title}</ListText>
-                        <ListText>{book.author}</ListText>
-                        <ListText>{book.publishYear}</ListText>
-                        <ListText>{book.pagesTotal}</ListText>
+                        <ListText id="author-list">{book.author}</ListText>
+                        <ListText id="year-list">{book.publishYear}</ListText>
+                        <ListText id="pages-list">{book.pagesTotal}</ListText>
                       </ListItem>
                     );
                   }
@@ -240,7 +269,14 @@ const Main = ({ allBooks, handleModalOpen }) => {
           <StepsResult>Set a goal, choose period, start training.</StepsResult>
         </Instruction>
       )}
-    </>
+      <MediaQuery maxWidth={767}>
+        <PlusButton>
+          <svg width="16" height="16">
+            <use href={icons + "#icon-plus"}></use>
+          </svg>
+        </PlusButton>
+      </MediaQuery>
+    </div>
   );
 };
 

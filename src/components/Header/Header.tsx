@@ -11,10 +11,12 @@ import {
   NavWrapper,
   UserInfoWrapper,
   HeaderContainer,
+  StyledNavLink,
+  LinksWrapper,
 } from "./Header.styled";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import icons from "../../images/icons.svg"
+import icons from "../../images/icons.svg";
+import MediaQuery from "react-responsive";
 
 const Header = () => {
   const user = useSelector(selectUser);
@@ -26,25 +28,35 @@ const Header = () => {
         <Logo>BR</Logo>
         {user.name && user.email && user.id && (
           <>
-            <UserInfoWrapper>
-              <UserLogoWrapper>
-                <UserLogo>{user.name && user.name[0]}</UserLogo>
-              </UserLogoWrapper>
-              <UserName>{user.name}</UserName>
-            </UserInfoWrapper>
+            <MediaQuery minWidth={768}>
+              <UserInfoWrapper>
+                <UserLogoWrapper>
+                  <UserLogo>{user.name && user.name[0]}</UserLogo>
+                </UserLogoWrapper>
+                <UserName>{user.name}</UserName>
+              </UserInfoWrapper>
+            </MediaQuery>
 
             <NavWrapper>
-              <NavLink to="/progress">
-                <svg width="22" height="17">
-                  <use href={icons + "#icon-book"}></use>
-                </svg>
-              </NavLink>
-
-              <NavLink to="/main">
-                <svg width="22" height="17">
-                  <use href={icons + "#icon_home"}></use>
-                </svg>
-              </NavLink>
+              <LinksWrapper>
+                <StyledNavLink to="/progress">
+                  <svg width="22" height="17">
+                    <use href={icons + "#icon-book"}></use>
+                  </svg>
+                </StyledNavLink>
+                <StyledNavLink to="/main">
+                  <svg width="22" height="17">
+                    <use href={icons + "#icon_home"}></use>
+                  </svg>
+                </StyledNavLink>
+              </LinksWrapper>
+              <MediaQuery maxWidth={767}>
+                <UserInfoWrapper>
+                  <UserLogoWrapper>
+                    <UserLogo>{user.name && user.name[0]}</UserLogo>
+                  </UserLogoWrapper>
+                </UserInfoWrapper>
+              </MediaQuery>
               <LogoutBtn onClick={() => dispatch(logOut())}>Logout</LogoutBtn>
             </NavWrapper>
           </>
