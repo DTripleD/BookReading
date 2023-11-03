@@ -24,6 +24,7 @@ import Timers from "../Timers/Timers";
 import TableWithCheckBox from "../Table/TableWithCheckBox";
 import TableWithoutCheckBox from "../Table/TableWithoutCheckBox";
 import TrainingForm from "../TrainingForm/TrainingForm";
+import MediaQuery from "react-responsive";
 
 import Result from "../Results/Result";
 
@@ -165,7 +166,7 @@ const Progress = ({ allBooks, handleModalOpen }) => {
 
   return (
     <ProgressWrapper>
-      <SectionWrapper>
+      <SectionWrapper id="chart">
         {current.books.length > 0 ? (
           <BigElement>
             <Timers date={date} />
@@ -173,9 +174,9 @@ const Progress = ({ allBooks, handleModalOpen }) => {
           </BigElement>
         ) : (
           <BigElement>
-            <button onClick={() => handleModalOpen("1")}>Aaaa</button>
-            <button onClick={() => handleModalOpen("2")}>BBBB</button>
-            <TitleWrapper>
+            {/* <button onClick={() => handleModalOpen("1")}>Aaaa</button>
+            <button onClick={() => handleModalOpen("2")}>BBBB</button> */}
+            <TitleWrapper id="training">
               <MainTitle>My training</MainTitle>
             </TitleWrapper>
             <TrainingForm
@@ -204,12 +205,25 @@ const Progress = ({ allBooks, handleModalOpen }) => {
       </SectionWrapper>
       <SectionWrapper>
         <div>
-          <TitleWrapper>
-            <MainTitle>My goals</MainTitle>
-          </TitleWrapper>
+          <MediaQuery maxWidth={767}>
+            <TitleWrapper id="goals">
+              <MainTitle>My goals</MainTitle>
+            </TitleWrapper>
+          </MediaQuery>
+          <MediaQuery minWidth={1280}>
+            <TitleWrapper id="goals">
+              <MainTitle>My goals</MainTitle>
+            </TitleWrapper>
+          </MediaQuery>
           <CountBackground
             className={current.books.length > 0 ? "isTrain" : ""}
           >
+            <MediaQuery minWidth={768} maxWidth={1280}>
+              <TitleWrapper id="tablet">
+                <MainTitle>My goals</MainTitle>
+              </TitleWrapper>
+            </MediaQuery>
+
             <div>
               <CountWrapper
                 className={current.books.length > 0 ? "isTrain" : ""}

@@ -19,7 +19,16 @@ export const AddButton = styled.button`
 
 export const DataPickerWrapper = styled.div`
   display: flex;
-  gap: 44px;
+  gap: 20px;
+
+  @media screen and (min-width: 768px) {
+    gap: 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    gap: 44px;
+    justify-content: center;
+  }
 `;
 
 export const FormWrapper = styled.div`

@@ -14,6 +14,8 @@ import { useSelector } from "react-redux";
 import { userBooks } from "./redux/books/booksSelectors";
 import { getBooks } from "./redux/books/booksOperations";
 import Modal from "./components/Modal/Modal";
+import { Toaster } from "react-hot-toast";
+import { toastOptions } from "./shared/toastOptions";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -85,6 +87,7 @@ function App() {
         </Route>
       </Routes>
       {isModalActive && <Modal id={modalId} onClose={handleModalClose} />}
+      <Toaster toastOptions={toastOptions} />
     </>
   );
 }

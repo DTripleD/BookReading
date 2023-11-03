@@ -7,16 +7,19 @@ import {
   SelectedBooksList,
 } from "./Table.styled";
 import icons from "../../images/icons.svg";
+import MediaQuery from "react-responsive";
 
 const TableWithCheckBox = ({ current }) => {
   return (
     <>
-      <ListHeaderWrapper>
-        <ListHeaderText id="title">Book title</ListHeaderText>
-        <ListHeaderText id="author">Author</ListHeaderText>
-        <ListHeaderText id="year">Year</ListHeaderText>
-        <ListHeaderText id="pages">Pages</ListHeaderText>
-      </ListHeaderWrapper>
+      <MediaQuery minWidth={768}>
+        <ListHeaderWrapper>
+          <ListHeaderText id="table-title">Book title</ListHeaderText>
+          <ListHeaderText id="table-author">Author</ListHeaderText>
+          <ListHeaderText id="table-year">Year</ListHeaderText>
+          <ListHeaderText id="table-pages">Pages</ListHeaderText>
+        </ListHeaderWrapper>
+      </MediaQuery>
       <SelectedBooksList>
         {current.books.map((book) => (
           <ListItem key={book._id}>
@@ -30,11 +33,19 @@ const TableWithCheckBox = ({ current }) => {
                   <use href={icons + "#icon-checkbox-checked"}></use>
                 </svg>
               )}
-              <SelectedBookTitle id="title">{book.title}</SelectedBookTitle>
+              <SelectedBookTitle id="table-title-element">
+                {book.title}
+              </SelectedBookTitle>
             </CheckBoxWrapper>
-            <SelectedBookTitle id="author">{book.author}</SelectedBookTitle>
-            <SelectedBookTitle id="year">{book.publishYear}</SelectedBookTitle>
-            <SelectedBookTitle id="total">{book.pagesTotal}</SelectedBookTitle>
+            <SelectedBookTitle id="table-author-element">
+              {book.author}
+            </SelectedBookTitle>
+            <SelectedBookTitle id="table-year-element">
+              {book.publishYear}
+            </SelectedBookTitle>
+            <SelectedBookTitle id="table-total-element">
+              {book.pagesTotal}
+            </SelectedBookTitle>
           </ListItem>
         ))}
       </SelectedBooksList>

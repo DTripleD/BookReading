@@ -21,6 +21,7 @@ import {
 } from "./Register.styled";
 import { register } from "../../redux/auth/operations";
 import icons from "../../images/icons.svg";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -34,7 +35,7 @@ const Register = () => {
     event.preventDefault();
 
     if (password !== confPassword) {
-      alert("Password wrong");
+      toast.error("Password wrong");
       return;
     }
 
@@ -44,8 +45,19 @@ const Register = () => {
         email,
         password,
       })
-    ).then(() => console.log("succes"));
-    // .catch(() => Notify.failure("Error! Try to enter another email"));
+    )
+      .then((res) => {
+        if (
+          res.payload.response.status === 400 ||
+          res.payload.response.status === 403 ||
+          res.payload.response.status === 409
+        ) {
+          toast.error(res.payload.response.data.message);
+          throw new Error();
+        }
+        toast.success("Success!");
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <RegisterPageWrapper>

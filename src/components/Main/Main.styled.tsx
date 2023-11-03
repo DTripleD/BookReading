@@ -111,52 +111,17 @@ export const FormButton = styled.button`
   width: 171px;
 `;
 
-export const Instruction = styled.div`
-  background-color: #ffffff;
-  padding: 40px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-
-  @media screen and (min-width: 768px) {
-    width: 608px;
-  }
-`;
-
-export const StepsNum = styled.h2`
-  font-family: "Montserrat";
-  font-weight: 600;
-
-  font-size: 19px;
-  line-height: 23.16px;
-  color: #242a37;
-`;
-
-export const StepsDo = styled.h3`
-  font-family: "Montserrat";
-
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 19.5px;
-
-  color: #242a37;
-`;
-
-export const StepsResult = styled.p`
-  font-family: "Montserrat";
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17.07px;
-  color: #898f9f;
-`;
-
 export const Title = styled.h3`
   font-family: "Montserrat";
   font-weight: 600;
   font-size: 19px;
   line-height: 23.16px;
   color: #242a37;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+  }
 `;
 
 export const ListTitle = styled.p`
@@ -329,7 +294,11 @@ export const ListTitleWrapper = styled.div`
 export const BooksList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
+
+  @media screen and (min-width: 767px) {
+    gap: 8px;
+  }
 `;
 
 export const FormWrapper = styled.div`
@@ -360,13 +329,23 @@ export const TrainingBtn = styled.button`
   font-family: "Montserrat";
   font-weight: 600;
 
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+
   font-size: 16px;
   line-height: 19.5px;
   background-color: #ff6b08;
   width: 200px;
   border: none;
   padding: 10px 0;
-  margin-top: 40px;
+  margin-top: 28px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+  }
 `;
 
 export const ResumeButton = styled.button`
@@ -410,6 +389,7 @@ export const PlusButton = styled.button`
 export const TitleWrapper = styled.div`
   display: flex;
   gap: 18px;
+  margin-right: auto;
 
   @media screen and (min-width: 768px) {
     min-width: 268px;
@@ -434,12 +414,13 @@ export const TitleWrapper = styled.div`
 
 export const StyledRating = styled(Rating)`
   color: #ff6b08;
-  font-size: 17px;
+  font-size: 19.5px;
 
   @media screen and (min-width: 768px) {
   }
 
-  @media screen and (min-width: 1289px) {
+  @media screen and (min-width: 1280px) {
+    font-size: 20.2px;
   }
 
   &.Mui-disabled {
@@ -448,5 +429,51 @@ export const StyledRating = styled(Rating)`
 
   & .MuiRating-icon {
     color: inherit;
+  }
+`;
+
+export const MobileDescr = styled.p`
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.63px;
+`;
+
+export const MobileDescrWrapper = styled.div`
+  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 35px;
+`;
+
+export const DescrWrapper = styled.div`
+  @media screen and (max-width: 767px) {
+    display: flex;
+    margin-top: 27px;
+
+    &#rating {
+      margin-bottom: 20px;
+    }
+  }
+`;
+
+export const TextWrapper = styled.div`
+  display: flex;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    gap: 14px;
+  }
+`;
+
+export const MarginBottomWrapper = styled.div`
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 32px;
   }
 `;

@@ -12,6 +12,10 @@ export const CountWrapper = styled.div`
     width: 66px;
     height: 66px;
   }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    height: 60px;
+  }
 `;
 
 export const CountNumber = styled.p`
@@ -45,6 +49,24 @@ export const TitleWrapper = styled.div`
   padding: 18px 0;
   background-color: #b1b5c2;
   box-shadow: 0px 2px 3px 0px #091e3f1a;
+
+  &#training {
+    margin-bottom: 20px;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 28px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  &#tablet {
+    padding: 18px 92px;
+    height: 60px;
+    margin-right: 68px;
+  }
 `;
 
 export const BoxName = styled.p`
@@ -56,13 +78,17 @@ export const BoxName = styled.p`
 
   color: #898f9f;
   text-align: center;
-  width: 74px;
   margin-top: 14px;
 
   &.isTrain {
     font-size: 12px;
     line-height: 14.63px;
     width: 57px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    font-size: 11px;
+    line-height: 13.41px;
   }
 `;
 
@@ -71,6 +97,10 @@ export const SectionWrapper = styled.div`
   flex-direction: column;
   gap: 40px;
   justify-content: space-between;
+
+  &#chart {
+    width: 100%;
+  }
 `;
 
 export const CountBackground = styled.div`
@@ -82,6 +112,11 @@ export const CountBackground = styled.div`
 
   &.isTrain {
     padding: 80px 25px 79px 18px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    padding: 22px 52px 22px 28px;
+    gap: 40px;
   }
 `;
 
@@ -97,18 +132,23 @@ export const StartButton = styled.button`
   line-height: 19.5px;
   letter-spacing: 0em;
   text-align: center;
+  margin-top: 40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const TrainingWrapper = styled.div`
   width: 928px;
 `;
 
-export const BigElement = styled.div`
-  width: 100%;
-`;
+export const BigElement = styled.div``;
 
 export const ProgressWrapper = styled.div`
   display: flex;
   gap: 32px;
   justify-content: space-between;
+  @media screen and (max-width: 1279px) {
+    flex-direction: column-reverse;
+  }
 `;

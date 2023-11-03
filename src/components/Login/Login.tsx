@@ -16,6 +16,7 @@ import {
   QuoteBefore,
 } from "./Login.styled";
 import { login } from "../../redux/auth/operations";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +31,18 @@ const Login = () => {
         email,
         password,
       })
-    ).then(() => console.log("succes"));
+    )
+      .then((res) => {
+        if (
+          res.payload.response.status === 400 ||
+          res.payload.response.status === 403
+        ) {
+          toast.error(res.payload.response.data.message);
+          throw new Error();
+        }
+        toast.success("Success!");
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <LoginPageWrapper>

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Rating } from "@mui/material";
 
 export const Wrap = styled.div`
   background-color: #2b2b2b1a;
@@ -56,10 +57,49 @@ export const WhiteButton = styled.button`
   padding: 11px 0;
 `;
 
+export const OrangeResumeButton = styled.button`
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17.07px;
+  color: #ffffff;
+  background-color: #ff6b08;
+  padding: 11px 0px;
+  border: none;
+  box-shadow: 10px 10px 20px 0px #091e3f33;
+  width: 98px;
+
+  @media screen and (min-width: 768px) {
+    width: 140px;
+  }
+`;
+
+export const WhiteResumeButton = styled.button`
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17.07px;
+  color: #242a37;
+  background-color: transparent;
+  border: 1px solid #242a37;
+
+  padding: 11px 0;
+
+  width: 98px;
+
+  @media screen and (min-width: 768px) {
+    width: 130px;
+  }
+`;
+
 export const TextArea = styled.textarea`
   resize: none;
-  width: 568px;
+  width: 240px;
   height: 170px;
+
+  @media screen and (min-width: 768px) {
+    width: 568px;
+  }
 `;
 
 export const Label = styled.label`
@@ -100,4 +140,9 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 28px;
+`;
+
+export const StyledRating = styled(Rating)`
+  color: #ff6b08;
+  font-size: 19.5px;
 `;

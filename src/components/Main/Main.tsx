@@ -1,11 +1,7 @@
 import {
   Form,
   Input,
-  Instruction,
   Label,
-  StepsDo,
-  StepsNum,
-  StepsResult,
   ListTitle,
   Title,
   ListTitleWrapper,
@@ -19,6 +15,11 @@ import {
   PlusButton,
   TitleWrapper,
   StyledRating,
+  MobileDescr,
+  MobileDescrWrapper,
+  DescrWrapper,
+  TextWrapper,
+  MarginBottomWrapper,
 } from "./Main.styled.tsx";
 import { useAppDispatch } from "../../redux/store.ts";
 import icons from "../../images/icons.svg";
@@ -27,6 +28,7 @@ import { addBook } from "../../redux/books/booksOperations.ts";
 import { useNavigate } from "react-router-dom";
 
 import MediaQuery from "react-responsive";
+import Instruction from "../Instruction/Instruction.tsx";
 
 const Main = ({ allBooks, handleModalOpen }) => {
   const [title, setTitle] = useState("");
@@ -106,7 +108,7 @@ const Main = ({ allBooks, handleModalOpen }) => {
       allBooks.currentlyReading > 0 ? (
         <div>
           {allBooks.finishedReading.length > 0 && (
-            <div>
+            <MarginBottomWrapper>
               <Title>Already read</Title>
               <MediaQuery minWidth={768}>
                 <ListTitleWrapper>
@@ -136,32 +138,33 @@ const Main = ({ allBooks, handleModalOpen }) => {
                           </svg>
                           <ListText id="title-resume">{book.title}</ListText>
                         </TitleWrapper>
-                        <ListText id="author-resume">
+                        <DescrWrapper id="rating">
                           <MediaQuery maxWidth={767}>
-                            <span>Author:</span>
+                            <MobileDescrWrapper>
+                              <MobileDescr>Author:</MobileDescr>
+                              <MobileDescr>Year:</MobileDescr>
+                              <MobileDescr>Pages:</MobileDescr>
+                              <MobileDescr>Rating:</MobileDescr>
+                            </MobileDescrWrapper>
                           </MediaQuery>
-                          {book.author}
-                        </ListText>
-                        <ListText id="year-resume">
-                          <MediaQuery maxWidth={767}>
-                            <span>Year:</span>
-                          </MediaQuery>
-                          {book.publishYear}
-                        </ListText>
-                        <ListText id="pages-resume">
-                          <MediaQuery maxWidth={767}>
-                            <span>Pages:</span>
-                          </MediaQuery>
-                          {book.pagesTotal}
-                        </ListText>
-                        <MediaQuery maxWidth={767}>
-                          <span>Rating:</span>
-                        </MediaQuery>
-                        <StyledRating
-                          name="simple-controlled"
-                          disabled
-                          value={book.rating ? book.rating : 0}
-                        />
+                          <TextWrapper>
+                            <ListText id="author-resume">
+                              {book.author}
+                            </ListText>
+                            <ListText id="year-resume">
+                              {book.publishYear}
+                            </ListText>
+                            <ListText id="pages-resume">
+                              {book.pagesTotal}
+                            </ListText>
+
+                            <StyledRating
+                              name="simple-controlled"
+                              disabled
+                              value={book.rating ? book.rating : 0}
+                            />
+                          </TextWrapper>
+                        </DescrWrapper>
                         <ResumeButton
                           type="button"
                           onClick={() => {
@@ -175,18 +178,19 @@ const Main = ({ allBooks, handleModalOpen }) => {
                   }
                 )}
               </BooksList>
-            </div>
+            </MarginBottomWrapper>
           )}
           {allBooks.currentlyReading.length > 0 && (
-            <div>
+            <MarginBottomWrapper>
               <Title>Reading now</Title>
-
-              <ListTitleWrapper>
-                <ListTitle id="title-title">Book title</ListTitle>
-                <ListTitle id="author-title">Author</ListTitle>
-                <ListTitle id="year-title">Year</ListTitle>
-                <ListTitle id="pages-title">Pages</ListTitle>
-              </ListTitleWrapper>
+              <MediaQuery minWidth={768}>
+                <ListTitleWrapper>
+                  <ListTitle id="title-title">Book title</ListTitle>
+                  <ListTitle id="author-title">Author</ListTitle>
+                  <ListTitle id="year-title">Year</ListTitle>
+                  <ListTitle id="pages-title">Pages</ListTitle>
+                </ListTitleWrapper>
+              </MediaQuery>
 
               <BooksList>
                 {allBooks.currentlyReading.map(
@@ -205,26 +209,42 @@ const Main = ({ allBooks, handleModalOpen }) => {
                           </svg>
                           <ListText id="title-list">{book.title}</ListText>
                         </TitleWrapper>
-                        <ListText id="author-list">{book.author}</ListText>
-                        <ListText id="year-list">{book.publishYear}</ListText>
-                        <ListText id="pages-list">{book.pagesTotal}</ListText>
+                        <DescrWrapper>
+                          <MediaQuery maxWidth={767}>
+                            <MobileDescrWrapper>
+                              <MobileDescr>Author:</MobileDescr>
+                              <MobileDescr>Year:</MobileDescr>
+                              <MobileDescr>Pages:</MobileDescr>
+                            </MobileDescrWrapper>
+                          </MediaQuery>
+                          <TextWrapper>
+                            <ListText id="author-list">{book.author}</ListText>
+                            <ListText id="year-list">
+                              {book.publishYear}
+                            </ListText>
+                            <ListText id="pages-list">
+                              {book.pagesTotal}
+                            </ListText>
+                          </TextWrapper>
+                        </DescrWrapper>
                       </ListItem>
                     );
                   }
                 )}
               </BooksList>
-            </div>
+            </MarginBottomWrapper>
           )}
           {allBooks.goingToRead.length > 0 && (
             <div>
               <Title>Going to read</Title>
-
-              <ListTitleWrapper>
-                <ListTitle id="title-title">Book title</ListTitle>
-                <ListTitle id="author-title">Author</ListTitle>
-                <ListTitle id="year-title">Year</ListTitle>
-                <ListTitle id="pages-title">Pages</ListTitle>
-              </ListTitleWrapper>
+              <MediaQuery minWidth={768}>
+                <ListTitleWrapper>
+                  <ListTitle id="title-title">Book title</ListTitle>
+                  <ListTitle id="author-title">Author</ListTitle>
+                  <ListTitle id="year-title">Year</ListTitle>
+                  <ListTitle id="pages-title">Pages</ListTitle>
+                </ListTitleWrapper>
+              </MediaQuery>
               <BooksList>
                 {allBooks.goingToRead.map(
                   (book: {
@@ -242,10 +262,24 @@ const Main = ({ allBooks, handleModalOpen }) => {
                           </svg>
                           <ListText id="title-list">{book.title}</ListText>
                         </TitleWrapper>
-
-                        <ListText id="author-list">{book.author}</ListText>
-                        <ListText id="year-list">{book.publishYear}</ListText>
-                        <ListText id="pages-list">{book.pagesTotal}</ListText>
+                        <DescrWrapper>
+                          <MediaQuery maxWidth={767}>
+                            <MobileDescrWrapper>
+                              <MobileDescr>Author:</MobileDescr>
+                              <MobileDescr>Year:</MobileDescr>
+                              <MobileDescr>Pages:</MobileDescr>
+                            </MobileDescrWrapper>
+                          </MediaQuery>
+                          <TextWrapper>
+                            <ListText id="author-list">{book.author}</ListText>
+                            <ListText id="year-list">
+                              {book.publishYear}
+                            </ListText>
+                            <ListText id="pages-list">
+                              {book.pagesTotal}
+                            </ListText>
+                          </TextWrapper>
+                        </DescrWrapper>
                       </ListItem>
                     );
                   }
@@ -253,21 +287,14 @@ const Main = ({ allBooks, handleModalOpen }) => {
               </BooksList>
             </div>
           )}
-          <TrainingBtn onClick={() => navigate("/progress")}>
-            My training
-          </TrainingBtn>
+          {!allBooks.currentlyReading.length && (
+            <TrainingBtn onClick={() => navigate("/progress")}>
+              My training
+            </TrainingBtn>
+          )}
         </div>
       ) : (
-        <Instruction>
-          <StepsNum>Step 1.</StepsNum>
-          <StepsDo>Create your own library</StepsDo>
-          <StepsResult>
-            Add there books which you are going to read.
-          </StepsResult>
-          <StepsNum>Step 2.</StepsNum>
-          <StepsDo>Create your first training</StepsDo>
-          <StepsResult>Set a goal, choose period, start training.</StepsResult>
-        </Instruction>
+        <Instruction />
       )}
       <MediaQuery maxWidth={767}>
         <PlusButton>

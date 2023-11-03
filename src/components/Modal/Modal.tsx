@@ -15,9 +15,11 @@ import {
   ResumeTitle,
   StarsWrapper,
   ButtonsWrapper,
+  OrangeResumeButton,
+  WhiteResumeButton,
+  StyledRating,
 } from "./Modal.styled";
 import icons from "../../images/icons.svg";
-import { Rating } from "@mui/material";
 import { useAppDispatch } from "../../redux/store";
 import { addReview } from "../../redux/books/booksOperations";
 
@@ -162,7 +164,7 @@ const Modal = (props: Props) => {
             <form onSubmit={(e) => handleFormSubmit(e)}>
               <StarsWrapper>
                 <ResumeTitle>Choose rating of the book</ResumeTitle>
-                <Rating
+                <StyledRating
                   name="simple-controlled"
                   value={rating}
                   onChange={(_, newValue) => {
@@ -181,12 +183,15 @@ const Modal = (props: Props) => {
               </Label>
 
               <ButtonsWrapper>
-                <WhiteButton type="button" onClick={handleClose}>
+                <WhiteResumeButton type="button" onClick={handleClose}>
                   Back
-                </WhiteButton>
-                <OrangeButton type="submit" data-testid="modal-close-button">
+                </WhiteResumeButton>
+                <OrangeResumeButton
+                  type="submit"
+                  data-testid="modal-close-button"
+                >
                   Save
-                </OrangeButton>
+                </OrangeResumeButton>
               </ButtonsWrapper>
             </form>
           </ResumeContent>
