@@ -59,10 +59,12 @@ export const StyledInput = styled.input`
   color: #242a37;
   line-height: 17.07px;
   outline: none;
-  padding: 13px;
+
+  padding: 13px 13px 14px 13px;
 `;
 
 export const InputsWrapper = styled.div`
   display: flex;
   margin-bottom: 28px;
+  gap: 20px;
 `;

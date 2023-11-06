@@ -1,8 +1,12 @@
 import {
   CheckBoxWrapper,
+  InfoTitle,
+  InfoWrapper,
   ListHeaderText,
   ListHeaderWrapper,
   ListItem,
+  PostWrapper,
+  PreWrapper,
   SelectedBookTitle,
   SelectedBooksList,
 } from "./Table.styled";
@@ -23,7 +27,7 @@ const TableWithCheckBox = ({ current }) => {
       <SelectedBooksList>
         {current.books.map((book) => (
           <ListItem key={book._id}>
-            <CheckBoxWrapper>
+            <CheckBoxWrapper id="table-title-element">
               {book.pagesTotal === book.pagesFinished ? (
                 <svg width="15" height="15">
                   <use href={icons + "#icon-checkbox"}></use>
@@ -33,19 +37,28 @@ const TableWithCheckBox = ({ current }) => {
                   <use href={icons + "#icon-checkbox-checked"}></use>
                 </svg>
               )}
-              <SelectedBookTitle id="table-title-element">
-                {book.title}
-              </SelectedBookTitle>
+              <SelectedBookTitle>{book.title}</SelectedBookTitle>
             </CheckBoxWrapper>
-            <SelectedBookTitle id="table-author-element">
-              {book.author}
-            </SelectedBookTitle>
-            <SelectedBookTitle id="table-year-element">
-              {book.publishYear}
-            </SelectedBookTitle>
-            <SelectedBookTitle id="table-total-element">
-              {book.pagesTotal}
-            </SelectedBookTitle>
+            <InfoWrapper>
+              <MediaQuery maxWidth={767}>
+                <PreWrapper>
+                  <InfoTitle>Author:</InfoTitle>
+                  <InfoTitle>Year:</InfoTitle>
+                  <InfoTitle>Pages:</InfoTitle>
+                </PreWrapper>
+              </MediaQuery>
+              <PostWrapper>
+                <SelectedBookTitle id="table-author-element">
+                  {book.author}
+                </SelectedBookTitle>
+                <SelectedBookTitle id="table-year-element">
+                  {book.publishYear}
+                </SelectedBookTitle>
+                <SelectedBookTitle id="table-total-element">
+                  {book.pagesTotal}
+                </SelectedBookTitle>
+              </PostWrapper>
+            </InfoWrapper>
           </ListItem>
         ))}
       </SelectedBooksList>

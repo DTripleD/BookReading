@@ -1,8 +1,13 @@
 import {
+  Day,
+  Pages,
+  PagesSpan,
   ResultTitle,
   ResultsWrapper,
   StatTimeListItem,
+  StatisticList,
   StatisticsTitle,
+  Time,
 } from "./Results.styled";
 import ProgressForm from "../ProgressForm/ProgressForm";
 import { nanoid } from "nanoid";
@@ -14,15 +19,17 @@ const Result = ({ current }) => {
         <ResultTitle>Results</ResultTitle>
         <ProgressForm />
         <StatisticsTitle>Statistics</StatisticsTitle>
-        <ul>
+        <StatisticList>
           {current.stats.map((stat) => (
             <StatTimeListItem key={nanoid()}>
-              <p>{stat.time.split(" ")[0]}</p>
-              <p>{stat.time.split(" ")[1]}</p>
-              <p>{stat.pagesCount} pages</p>
+              <Day>{stat.time.split(" ")[0]}</Day>
+              <Time>{stat.time.split(" ")[1]}</Time>
+              <Pages>
+                {stat.pagesCount} <PagesSpan>pages</PagesSpan>
+              </Pages>
             </StatTimeListItem>
           ))}
-        </ul>
+        </StatisticList>
       </ResultsWrapper>
     </>
   );

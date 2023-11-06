@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { days, hours, minutes, seconds } from "../../shared/timeEndOfYear";
-import { Time, TimerTitle, TimerWrapper, TimersWrapper } from "./Timers.styled";
+import {
+  Time,
+  TimeCount,
+  TimerTitle,
+  TimerWrapper,
+  TimersWrapper,
+} from "./Timers.styled";
 
 const Timers = ({ date }) => {
   const [, setDateTime] = useState(new Date());
@@ -41,7 +47,7 @@ const Timers = ({ date }) => {
           <Time>
             {time.days}:{time.hours}:{time.minutes}:{time.seconds}
           </Time>
-          <p>DAYS HRS MINS SECS</p>
+          <TimeCount>DAYS HRS MINS SECS</TimeCount>
         </TimerWrapper>
       </div>
       <div>
@@ -51,7 +57,7 @@ const Timers = ({ date }) => {
             {timeOfRaznica.days}:{timeOfRaznica.hours}:{timeOfRaznica.minutes}:
             {timeOfRaznica.seconds}
           </Time>
-          <p>DAYS HRS MINS SECS</p>
+          <TimeCount>DAYS HRS MINS SECS</TimeCount>
         </TimerWrapper>
       </div>
     </TimersWrapper>

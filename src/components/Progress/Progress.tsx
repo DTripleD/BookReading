@@ -10,6 +10,7 @@ import {
   SectionWrapper,
   BigElement,
   ProgressWrapper,
+  NumbersWrapper,
 } from "./Progress.styled";
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
@@ -85,8 +86,30 @@ const Progress = ({ allBooks, handleModalOpen }) => {
     dispatch(currentPlanning());
   }, [dispatch]);
 
-  const ssss = dayjs(current.startDate);
-  const date = dayjs(current.endDate);
+  const pagesPerDayCalc = () => {
+    const date1 = dayjs(startDate);
+    const date2 = dayjs(finishDate);
+    const diffInDays = date2.diff(date1, "day");
+
+    let sumOfPages = 0;
+
+    // const arrayOfPages = selectedBooks.map((book) => {
+    //   const pagesPerDay = book.pagesTotal / diffInDays;
+
+    //   return Math.ceil(pagesPerDay);
+    // });
+
+    selectedBooks.map((book) => (sumOfPages += book.pagesTotal));
+
+    return Math.ceil(sumOfPages / diffInDays);
+  };
+
+  const perDay = pagesPerDayCalc();
+
+  console.log(perDay);
+
+  const startDateForChart = dayjs(current.startDate || startDate);
+  const date = dayjs(current.endDate || finishDate);
 
   let currentDatee: string | null = null;
   let sum = 0;
@@ -111,7 +134,7 @@ const Progress = ({ allBooks, handleModalOpen }) => {
   }
 
   const daysArray: string[] = [];
-  let cccccc = ssss;
+  let cccccc = startDateForChart;
 
   while (cccccc.isBefore(date) || cccccc.isSame(date, "day")) {
     daysArray.push(cccccc.format("YYYY-MM-DD"));
@@ -123,6 +146,10 @@ const Progress = ({ allBooks, handleModalOpen }) => {
   if (current.pagesPerDay !== null) {
     for (let i = 0; i < daysArray.length; i++) {
       numbersArray.push(current.pagesPerDay * (i + 1));
+    }
+  } else {
+    for (let i = 0; i < daysArray.length; i++) {
+      numbersArray.push(perDay * (i + 1));
     }
   }
 
@@ -165,65 +192,55 @@ const Progress = ({ allBooks, handleModalOpen }) => {
   };
 
   return (
-    <ProgressWrapper>
-      <SectionWrapper id="chart">
-        {current.books.length > 0 ? (
-          <BigElement>
-            <Timers date={date} />
-            <TableWithCheckBox current={current} />
-          </BigElement>
-        ) : (
-          <BigElement>
-            {/* <button onClick={() => handleModalOpen("1")}>Aaaa</button>
+    <>
+      {current.books.length > 0 ? (
+        <>
+          <Timers date={date} />
+        </>
+      ) : (
+        <>
+          {/* <button onClick={() => handleModalOpen("1")}>Aaaa</button>
             <button onClick={() => handleModalOpen("2")}>BBBB</button> */}
-            <TitleWrapper id="training">
-              <MainTitle>My training</MainTitle>
-            </TitleWrapper>
-            <TrainingForm
-              filteredBooks={filteredBooks}
-              handleFormSubmit={handleFormSubmit}
-              handleStartDateChange={handleStartDateChange}
-              handleFinishDateChange={handleFinishDateChange}
-              setSelected={setSelected}
-              selected={selected}
-            />
-            <TableWithoutCheckBox
-              selectedBooks={selectedBooks}
-              deleteFromSelected={deleteFromSelected}
-            />
-            <StartButton onClick={() => handleStartTraining()}>
-              Start traning
-            </StartButton>
-          </BigElement>
-        )}
-        <Chart
-          labels={daysArray}
-          startPages={resultArray}
-          progressExpectetion={numbersArray}
-          current={current}
-        />
-      </SectionWrapper>
-      <SectionWrapper>
-        <div>
-          <MediaQuery maxWidth={767}>
-            <TitleWrapper id="goals">
-              <MainTitle>My goals</MainTitle>
-            </TitleWrapper>
-          </MediaQuery>
-          <MediaQuery minWidth={1280}>
-            <TitleWrapper id="goals">
-              <MainTitle>My goals</MainTitle>
-            </TitleWrapper>
-          </MediaQuery>
-          <CountBackground
-            className={current.books.length > 0 ? "isTrain" : ""}
-          >
-            <MediaQuery minWidth={768} maxWidth={1280}>
-              <TitleWrapper id="tablet">
-                <MainTitle>My goals</MainTitle>
-              </TitleWrapper>
-            </MediaQuery>
+          <TitleWrapper id="training">
+            <MainTitle>My training</MainTitle>
+          </TitleWrapper>
+          <TrainingForm
+            filteredBooks={filteredBooks}
+            handleFormSubmit={handleFormSubmit}
+            handleStartDateChange={handleStartDateChange}
+            handleFinishDateChange={handleFinishDateChange}
+            setSelected={setSelected}
+            selected={selected}
+          />
+          <TableWithoutCheckBox
+            selectedBooks={selectedBooks}
+            deleteFromSelected={deleteFromSelected}
+          />
+          <StartButton onClick={() => handleStartTraining()}>
+            Start traning
+          </StartButton>
+        </>
+      )}
 
+      <div>
+        <MediaQuery maxWidth={767}>
+          <TitleWrapper id="goals">
+            <MainTitle>My goals</MainTitle>
+          </TitleWrapper>
+        </MediaQuery>
+        <MediaQuery minWidth={1280}>
+          <TitleWrapper id="goals">
+            <MainTitle>My goals</MainTitle>
+          </TitleWrapper>
+        </MediaQuery>
+        <CountBackground className={current.books.length > 0 ? "isTrain" : ""}>
+          <MediaQuery minWidth={768} maxWidth={1280}>
+            <TitleWrapper id="tablet">
+              <MainTitle>My goals</MainTitle>
+            </TitleWrapper>
+          </MediaQuery>
+
+          <NumbersWrapper>
             <div>
               <CountWrapper
                 className={current.books.length > 0 ? "isTrain" : ""}
@@ -249,9 +266,9 @@ const Progress = ({ allBooks, handleModalOpen }) => {
                     ? isNaN(dayjs(finishDate).diff(dayjs(startDate), "day"))
                       ? 0
                       : dayjs(finishDate).diff(dayjs(startDate), "day")
-                    : isNaN(date.diff(ssss, "day"))
+                    : isNaN(date.diff(startDateForChart, "day"))
                     ? 0
-                    : date.diff(ssss, "day")}
+                    : date.diff(startDateForChart, "day")}
                 </CountNumber>
               </CountWrapper>
 
@@ -277,12 +294,19 @@ const Progress = ({ allBooks, handleModalOpen }) => {
                 </BoxName>
               </div>
             )}
-          </CountBackground>
-        </div>
+          </NumbersWrapper>
+        </CountBackground>
+      </div>
+      {current.books.length > 0 && <TableWithCheckBox current={current} />}
+      <Chart
+        labels={daysArray}
+        startPages={resultArray}
+        progressExpectetion={numbersArray}
+        current={current}
+      />
 
-        {current.books.length > 0 && <Result current={current} />}
-      </SectionWrapper>
-    </ProgressWrapper>
+      <div>{current.books.length > 0 && <Result current={current} />}</div>
+    </>
   );
 };
 

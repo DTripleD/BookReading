@@ -9,8 +9,16 @@ export const CountWrapper = styled.div`
   width: 100px;
   height: 100px;
   &.isTrain {
-    width: 66px;
-    height: 66px;
+    width: 63px;
+    height: 63px;
+    @media screen and (min-width: 768px) {
+      width: 100px;
+      height: 60px;
+    }
+    @media screen and (min-width: 1280px) {
+      width: 66px;
+      height: 66px;
+    }
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -63,9 +71,8 @@ export const TitleWrapper = styled.div`
   }
 
   &#tablet {
-    padding: 18px 92px;
+    padding: 18px 91px;
     height: 60px;
-    margin-right: 68px;
   }
 `;
 
@@ -108,15 +115,27 @@ export const CountBackground = styled.div`
   padding: 48px 34px;
   background-color: #ffffff;
   box-shadow: 0px 2px 3px 0px #091e3f1a;
-  gap: 20px;
+  gap: 12px;
+
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1280px) {
+    gap: 20px;
+  }
 
   &.isTrain {
-    padding: 80px 25px 79px 18px;
+    padding: 32px 34px 32px 29px;
+    @media screen and (min-width: 768px) {
+      padding: 20px 43px 26px 42px;
+    }
+    @media screen and (min-width: 1280px) {
+      padding: 80px 25px 79px 18px;
+    }
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     padding: 22px 52px 22px 28px;
-    gap: 40px;
+    gap: 20px;
   }
 `;
 
@@ -142,13 +161,19 @@ export const TrainingWrapper = styled.div`
   width: 928px;
 `;
 
-export const BigElement = styled.div``;
-
 export const ProgressWrapper = styled.div`
   display: flex;
   gap: 32px;
   justify-content: space-between;
   @media screen and (max-width: 1279px) {
     flex-direction: column-reverse;
+  }
+`;
+
+export const NumbersWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+  @media screen and (min-width: 768px) {
+    gap: 12px;
   }
 `;

@@ -1,8 +1,13 @@
 import {
+  BookContainer,
   DeleteButton,
+  InfoTitle,
+  InfoWrapper,
   ListHeaderText,
   ListHeaderWrapper,
   ListItem,
+  PostWrapper,
+  PreWrapper,
   SelectedBookTitle,
   SelectedBooksList,
   SvgWrapper,
@@ -24,21 +29,34 @@ const TableWithoutCheckBox = ({ selectedBooks, deleteFromSelected }) => {
       <SelectedBooksList>
         {selectedBooks.map((book) => (
           <ListItem key={book._id}>
-            <SvgWrapper id="table-title-element-wc">
-              <svg width="22" height="17">
-                <use href={icons + "#icon-book"}></use>
-              </svg>
-              <SelectedBookTitle>{book.title}</SelectedBookTitle>
-            </SvgWrapper>
-            <SelectedBookTitle id="table-author-element-wc">
-              {book.author}
-            </SelectedBookTitle>
-            <SelectedBookTitle id="table-year-element-wc">
-              {book.publishYear}
-            </SelectedBookTitle>
-            <SelectedBookTitle id="table-total-element-wc">
-              {book.pagesTotal}
-            </SelectedBookTitle>
+            <BookContainer>
+              <SvgWrapper>
+                <svg width="22" height="17">
+                  <use href={icons + "#icon-book"}></use>
+                </svg>
+                <SelectedBookTitle>{book.title}</SelectedBookTitle>
+              </SvgWrapper>
+              <InfoWrapper>
+                <MediaQuery maxWidth={767}>
+                  <PreWrapper>
+                    <InfoTitle>Author:</InfoTitle>
+                    <InfoTitle>Year:</InfoTitle>
+                    <InfoTitle>Pages:</InfoTitle>
+                  </PreWrapper>
+                </MediaQuery>
+                <PostWrapper>
+                  <SelectedBookTitle id="table-author-element-wc">
+                    {book.author}
+                  </SelectedBookTitle>
+                  <SelectedBookTitle id="table-year-element-wc">
+                    {book.publishYear}
+                  </SelectedBookTitle>
+                  <SelectedBookTitle id="table-total-element-wc">
+                    {book.pagesTotal}
+                  </SelectedBookTitle>
+                </PostWrapper>
+              </InfoWrapper>
+            </BookContainer>
             <DeleteButton onClick={() => deleteFromSelected(book._id)}>
               <svg width="14" height="18">
                 <use href={icons + "#icon-delete"}></use>

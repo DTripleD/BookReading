@@ -10,7 +10,7 @@ export interface RefreshUserResponse {
   newSid: string;
 }
 
-export const setAuthHeader = (token: string) => {
+export const setAuthHeader = (token: string | null) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 

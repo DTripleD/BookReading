@@ -3,11 +3,11 @@ import {
   DataPickerWrapper,
   FormWrapper,
   StyledDatePicker,
+  StyledFormControl,
 } from "./TrainingForm.styled";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import dayjs from "dayjs";
 
@@ -47,7 +47,7 @@ const TrainingForm = ({
         />
       </DataPickerWrapper>
       <FormWrapper>
-        <FormControl fullWidth>
+        <StyledFormControl fullWidth>
           <InputLabel id="demo-simple-select-label">
             Choose books from the library
           </InputLabel>
@@ -73,7 +73,7 @@ const TrainingForm = ({
               )
             )}
           </Select>
-        </FormControl>
+        </StyledFormControl>
         <AddButton type="submit" disabled={selected === ""}>
           Add
         </AddButton>
