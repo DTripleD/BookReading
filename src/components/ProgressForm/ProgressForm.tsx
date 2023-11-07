@@ -4,6 +4,7 @@ import {
   StyledDatePicker,
   StyledInput,
   StyledLabel,
+  Form,
 } from "./ProgressForm.styled";
 import { useAppDispatch } from "../../redux/store";
 import { addReadPages } from "../../redux/planning/planningOperations";
@@ -17,7 +18,7 @@ const ProgressForm = () => {
 
   const dispatch = useAppDispatch();
   return (
-    <form
+    <Form
       onSubmit={(event) => {
         event.preventDefault();
         dispatch(
@@ -53,7 +54,7 @@ const ProgressForm = () => {
         </StyledLabel>
       </InputsWrapper>
       <AddResultButton>Add result</AddResultButton>
-    </form>
+    </Form>
   );
 };
 

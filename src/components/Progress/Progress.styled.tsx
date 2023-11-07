@@ -72,7 +72,6 @@ export const TitleWrapper = styled.div`
 
   &#tablet {
     padding: 18px 91px;
-    height: 60px;
   }
 `;
 
@@ -99,23 +98,13 @@ export const BoxName = styled.p`
   }
 `;
 
-export const SectionWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  justify-content: space-between;
-
-  &#chart {
-    width: 100%;
-  }
-`;
-
 export const CountBackground = styled.div`
   display: flex;
   padding: 48px 34px;
   background-color: #ffffff;
   box-shadow: 0px 2px 3px 0px #091e3f1a;
   gap: 12px;
+  align-items: flex-start;
 
   @media screen and (min-width: 768px) {
   }
@@ -124,12 +113,12 @@ export const CountBackground = styled.div`
   }
 
   &.isTrain {
-    padding: 32px 34px 32px 29px;
+    padding: 32px 28px;
     @media screen and (min-width: 768px) {
       padding: 20px 43px 26px 42px;
     }
     @media screen and (min-width: 1280px) {
-      padding: 80px 25px 79px 18px;
+      padding: 80px 22px 79px 22px;
     }
   }
 
@@ -161,19 +150,35 @@ export const TrainingWrapper = styled.div`
   width: 928px;
 `;
 
-export const ProgressWrapper = styled.div`
-  display: flex;
-  gap: 32px;
-  justify-content: space-between;
-  @media screen and (max-width: 1279px) {
-    flex-direction: column-reverse;
-  }
-`;
-
 export const NumbersWrapper = styled.div`
   display: flex;
   gap: 20px;
   @media screen and (min-width: 768px) {
     gap: 12px;
   }
+
+  @media screen and (min-width: 1280px) {
+    gap: 23px;
+  }
+`;
+
+export const ChartResultWrapper = styled.div`
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    gap: 32px;
+  }
+`;
+
+export const DescWrapper = styled.div`
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 39px;
+    align-items: flex-end;
+    gap: 32px;
+  }
+`;
+
+export const WrapperForTimersDesc = styled.div`
+  width: 100%;
 `;

@@ -19,7 +19,30 @@ ChartJS.register(
   Legend
 );
 
-const Chart = ({ labels, startPages, progressExpectetion, current }) => {
+const Chart = ({ labels, progressExpectetion, current }) => {
+  let currentDatee: string | null = null;
+  let sumOfPages = 0;
+  const resultArray: number[] = [];
+
+  for (const item of current.stats) {
+    const date = item.time.split(" ")[0];
+
+    if (date !== currentDatee) {
+      if (currentDatee !== null) {
+        resultArray.push(sumOfPages);
+      }
+      currentDatee = date;
+      sumOfPages = item.pagesCount;
+    } else {
+      sumOfPages += item.pagesCount;
+    }
+  }
+
+  if (currentDatee !== null) {
+    resultArray.map((num) => (sumOfPages += num));
+    resultArray.push(sumOfPages);
+  }
+
   const options = {
     cubicInterpolationMode: "monotone",
     responsive: true,
@@ -35,7 +58,7 @@ const Chart = ({ labels, startPages, progressExpectetion, current }) => {
     datasets: [
       {
         label: "plan",
-        data: startPages,
+        data: resultArray,
         borderColor: "#FF6B08",
         backgroundColor: "#FF6B08",
       },

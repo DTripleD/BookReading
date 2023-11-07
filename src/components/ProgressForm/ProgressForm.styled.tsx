@@ -7,8 +7,10 @@ export const StyledDatePicker = styled(DatePicker)`
   background-color: #f6f7fb;
 
   & input {
-    padding: 13px;
+    padding: 11px;
     color: #242a37;
+    height: 17px;
+    box-sizing: content-box;
   }
 
   & input.Mui-disabled {
@@ -35,6 +37,13 @@ export const AddResultButton = styled.button`
   border: none;
   padding: 10px;
   width: 100%;
+  @media screen and (min-width: 768px) {
+    padding: 11px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 10px;
+  }
 `;
 
 export const StyledLabel = styled.label`
@@ -59,12 +68,33 @@ export const StyledInput = styled.input`
   color: #242a37;
   line-height: 17.07px;
   outline: none;
+  justify-content: space-between;
+  height: 15px;
+  box-sizing: content-box;
 
-  padding: 13px 13px 14px 13px;
+  padding: 11px;
 `;
 
 export const InputsWrapper = styled.div`
   display: flex;
   margin-bottom: 28px;
   gap: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 28px;
+  }
+`;
+
+export const Form = styled.form`
+  margin-bottom: 24px;
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: grid;
+    align-items: end;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 20px;
+  }
 `;

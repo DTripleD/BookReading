@@ -15,6 +15,10 @@ export const LineWrapper = styled.div`
     padding: 24px 48px 50px 48px;
   }
 
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-bottom: 40px;
+  }
+
   @media screen and (min-width: 1280px) {
     padding: 26px 77px 51px 40px;
   }

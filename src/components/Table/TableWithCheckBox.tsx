@@ -15,7 +15,7 @@ import MediaQuery from "react-responsive";
 
 const TableWithCheckBox = ({ current }) => {
   return (
-    <>
+    <div>
       <MediaQuery minWidth={768}>
         <ListHeaderWrapper>
           <ListHeaderText id="table-title">Book title</ListHeaderText>
@@ -62,7 +62,7 @@ const TableWithCheckBox = ({ current }) => {
           </ListItem>
         ))}
       </SelectedBooksList>
-    </>
+    </div>
   );
 };
 

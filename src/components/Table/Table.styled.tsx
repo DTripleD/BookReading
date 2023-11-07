@@ -111,7 +111,8 @@ export const SelectedBooksList = styled.ul`
 
   @media screen and (min-width: 1280px) {
     max-height: 186px;
-    margin-bottom: 30px;
+    height: 186px;
+    margin-bottom: 0;
   }
 
   @media screen and (max-width: 767px) {

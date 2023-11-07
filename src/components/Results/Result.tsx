@@ -6,6 +6,7 @@ import {
   ResultsWrapper,
   StatTimeListItem,
   StatisticList,
+  StatisticWrapper,
   StatisticsTitle,
   Time,
 } from "./Results.styled";
@@ -18,18 +19,20 @@ const Result = ({ current }) => {
       <ResultsWrapper>
         <ResultTitle>Results</ResultTitle>
         <ProgressForm />
-        <StatisticsTitle>Statistics</StatisticsTitle>
-        <StatisticList>
-          {current.stats.map((stat) => (
-            <StatTimeListItem key={nanoid()}>
-              <Day>{stat.time.split(" ")[0]}</Day>
-              <Time>{stat.time.split(" ")[1]}</Time>
-              <Pages>
-                {stat.pagesCount} <PagesSpan>pages</PagesSpan>
-              </Pages>
-            </StatTimeListItem>
-          ))}
-        </StatisticList>
+        <StatisticWrapper>
+          <StatisticsTitle>Statistics</StatisticsTitle>
+          <StatisticList>
+            {current.stats.map((stat) => (
+              <StatTimeListItem key={nanoid()}>
+                <Day>{stat.time.split(" ")[0]}</Day>
+                <Time>{stat.time.split(" ")[1]}</Time>
+                <Pages>
+                  {stat.pagesCount} <PagesSpan>pages</PagesSpan>
+                </Pages>
+              </StatTimeListItem>
+            ))}
+          </StatisticList>
+        </StatisticWrapper>
       </ResultsWrapper>
     </>
   );
