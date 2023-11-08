@@ -34,9 +34,9 @@ export const addBook = createAsyncThunk(
     try {
       const res = await axios.post("/book", credentials);
 
-      return res;
+      return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue((error as Error).message);
+      return thunkAPI.rejectWithValue(error as Error);
     }
   }
 );

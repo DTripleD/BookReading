@@ -26,9 +26,9 @@ import icons from "../../images/icons.svg";
 import { useState } from "react";
 import { addBook } from "../../redux/books/booksOperations.ts";
 import { useNavigate } from "react-router-dom";
-
 import MediaQuery from "react-responsive";
 import Instruction from "../Instruction/Instruction.tsx";
+import toast from "react-hot-toast";
 
 const Main = ({ allBooks, handleModalOpen }) => {
   const [title, setTitle] = useState("");
@@ -47,12 +47,19 @@ const Main = ({ allBooks, handleModalOpen }) => {
         publishYear: Number(publishYear),
         pagesTotal: Number(pagesTotal),
       })
-    ).then(() => {
-      setTitle("");
-      setAuthor("");
-      setPublishYear("");
-      setPagesTotal("");
-    });
+    )
+      .then((res) => {
+        if (res.payload.response.status === 400) {
+          toast.error(res.payload.response.data.message);
+          throw new Error();
+        }
+
+        setTitle("");
+        setAuthor("");
+        setPublishYear("");
+        setPagesTotal("");
+      })
+      .catch((error) => console.log(error));
   };
 
   const navigate = useNavigate();
