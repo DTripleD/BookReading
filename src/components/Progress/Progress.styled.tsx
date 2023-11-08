@@ -100,15 +100,18 @@ export const BoxName = styled.p`
 
 export const CountBackground = styled.div`
   display: flex;
-  padding: 48px 34px;
+  padding: 48px 30px;
   background-color: #ffffff;
   box-shadow: 0px 2px 3px 0px #091e3f1a;
   gap: 12px;
   align-items: flex-start;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    padding: 22px 52px 22px 28px;
+    justify-content: space-between;
   }
   @media screen and (min-width: 1280px) {
+    padding: 48px 34px;
     gap: 20px;
   }
 
@@ -120,11 +123,6 @@ export const CountBackground = styled.div`
     @media screen and (min-width: 1280px) {
       padding: 80px 22px 79px 22px;
     }
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    padding: 22px 52px 22px 28px;
-    gap: 20px;
   }
 `;
 
@@ -153,12 +151,22 @@ export const TrainingWrapper = styled.div`
 export const NumbersWrapper = styled.div`
   display: flex;
   gap: 20px;
-  @media screen and (min-width: 768px) {
+
+  &.isTrain {
     gap: 12px;
+  }
+  @media screen and (min-width: 768px) {
+    gap: 40px;
+    &.isTrain {
+      gap: 12px;
+    }
   }
 
   @media screen and (min-width: 1280px) {
-    gap: 23px;
+    gap: 20px;
+    &.isTrain {
+      gap: 23px;
+    }
   }
 `;
 
@@ -170,15 +178,35 @@ export const ChartResultWrapper = styled.div`
 `;
 
 export const DescWrapper = styled.div`
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+
+  @media screen and (max-width: 1279px) {
+    flex-direction: column-reverse;
+  }
+
+  @media screen and (min-width: 768px) {
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
   @media screen and (min-width: 1280px) {
-    display: flex;
     justify-content: space-between;
     margin-bottom: 39px;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 32px;
+
+    &.isTrain {
+      align-items: flex-end;
+    }
   }
 `;
 
 export const WrapperForTimersDesc = styled.div`
+  width: 100%;
+`;
+
+export const WrapperWithoutTimer = styled.div`
   width: 100%;
 `;

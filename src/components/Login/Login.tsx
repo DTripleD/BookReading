@@ -17,10 +17,13 @@ import {
 } from "./Login.styled";
 import { login } from "../../redux/auth/operations";
 import toast from "react-hot-toast";
+import { StyledPasswordDiv } from "../Register/Register.styled";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordShow, setPasswordShow] = useState(false);
 
   const dispatch = useAppDispatch();
   const handleLoginSubmit = (event: React.FormEvent) => {
@@ -58,12 +61,42 @@ const Login = () => {
           </Label>
           <Label>
             Password <LabelSpan>*</LabelSpan>
-            <Input
-              type="text"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <StyledPasswordDiv>
+              <Input
+                type={passwordShow ? "text" : "password"}
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <span
+                onClick={() => setPasswordShow(!passwordShow)}
+                style={{
+                  position: "absolute",
+                  right: "24px",
+                  top: "18px",
+                  // transform: "translateY(-50%)",
+                }}
+              >
+                {passwordShow ? (
+                  <FiEye
+                    color="#898f9f;"
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                    }}
+                  />
+                ) : (
+                  <FiEyeOff
+                    color="#898f9f;"
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                    }}
+                  />
+                )}
+              </span>
+            </StyledPasswordDiv>
           </Label>
+
           <LoginButton type="submit" onClick={handleLoginSubmit}>
             Login
           </LoginButton>

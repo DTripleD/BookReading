@@ -24,8 +24,7 @@ function App() {
   const allBooks = useSelector(userBooks);
 
   useEffect(() => {
-    dispatch(refreshUser());
-    dispatch(getBooks());
+    dispatch(refreshUser()).then(() => dispatch(getBooks()));
   }, [dispatch]);
 
   const [isModalActive, setModalActive] = useState(false);

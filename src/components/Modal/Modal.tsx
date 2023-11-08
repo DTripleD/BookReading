@@ -21,7 +21,7 @@ import {
 } from "./Modal.styled";
 import icons from "../../images/icons.svg";
 import { useAppDispatch } from "../../redux/store";
-import { addReview } from "../../redux/books/booksOperations";
+import { addReview, deleteBook } from "../../redux/books/booksOperations";
 
 const MODAL_CONTAINER_ID = "modal-container-id";
 
@@ -192,6 +192,15 @@ const Modal = (props: Props) => {
                 >
                   Save
                 </OrangeResumeButton>
+                <WhiteResumeButton
+                  type="button"
+                  onClick={(event) => {
+                    dispatch(deleteBook(id));
+                    handleClose(event);
+                  }}
+                >
+                  Delete book
+                </WhiteResumeButton>
               </ButtonsWrapper>
             </form>
           </ResumeContent>

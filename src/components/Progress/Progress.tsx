@@ -11,6 +11,7 @@ import {
   ChartResultWrapper,
   DescWrapper,
   WrapperForTimersDesc,
+  WrapperWithoutTimer,
 } from "./Progress.styled";
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
@@ -54,7 +55,7 @@ const Progress = ({ allBooks, handleModalOpen }) => {
 
   const isFinish = (trainingBooks) => {
     if (!trainingBooks.length) {
-      false;
+      return false;
     }
 
     const { pagesFinished, pagesTotal } =
@@ -62,6 +63,7 @@ const Progress = ({ allBooks, handleModalOpen }) => {
 
     if (pagesFinished === pagesTotal) {
       handleModalOpen("3");
+      return true;
     }
   };
 
@@ -112,8 +114,8 @@ const Progress = ({ allBooks, handleModalOpen }) => {
 
   for (let i = 0; i < daysArray.length; i++) {
     current.pagesPerDay !== null
-      ? numbersArray.push(current.pagesPerDay * (i + 1))
-      : numbersArray.push(perDay * (i + 1));
+      ? numbersArray.push(current.pagesPerDay * i)
+      : numbersArray.push(perDay * i);
   }
 
   const handleStartDateChange = (date) => {
@@ -156,7 +158,7 @@ const Progress = ({ allBooks, handleModalOpen }) => {
 
   return (
     <>
-      <DescWrapper>
+      <DescWrapper className={current.books.length > 0 ? "isTrain" : ""}>
         {current.books.length > 0 ? (
           <WrapperForTimersDesc>
             <Timers date={date} />
@@ -165,7 +167,7 @@ const Progress = ({ allBooks, handleModalOpen }) => {
             </MediaQuery>
           </WrapperForTimersDesc>
         ) : (
-          <>
+          <WrapperWithoutTimer>
             {/* <button onClick={() => handleModalOpen("1")}>Aaaa</button>
             <button onClick={() => handleModalOpen("2")}>BBBB</button> */}
             <TitleWrapper id="training">
@@ -186,7 +188,7 @@ const Progress = ({ allBooks, handleModalOpen }) => {
             <StartButton onClick={() => handleStartTraining()}>
               Start traning
             </StartButton>
-          </>
+          </WrapperWithoutTimer>
         )}
         <div>
           <MediaQuery maxWidth={767}>
@@ -208,7 +210,9 @@ const Progress = ({ allBooks, handleModalOpen }) => {
               </TitleWrapper>
             </MediaQuery>
 
-            <NumbersWrapper>
+            <NumbersWrapper
+              className={current.books.length > 0 ? "isTrain" : ""}
+            >
               <div>
                 <CountWrapper
                   className={current.books.length > 0 ? "isTrain" : ""}
@@ -274,11 +278,12 @@ const Progress = ({ allBooks, handleModalOpen }) => {
 
       <ChartResultWrapper>
         <Chart
+          perDay={perDay}
           labels={daysArray}
           progressExpectetion={numbersArray}
           current={current}
         />
-        <div>{current.books.length > 0 && <Result current={current} />}</div>
+        {current.books.length > 0 && <Result current={current} />}
       </ChartResultWrapper>
     </>
   );

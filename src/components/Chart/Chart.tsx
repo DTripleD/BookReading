@@ -19,7 +19,7 @@ ChartJS.register(
   Legend
 );
 
-const Chart = ({ labels, progressExpectetion, current }) => {
+const Chart = ({ labels, progressExpectetion, current, perDay }) => {
   let currentDatee: string | null = null;
   let sumOfPages = 0;
   const resultArray: number[] = [];
@@ -74,7 +74,8 @@ const Chart = ({ labels, progressExpectetion, current }) => {
   return (
     <LineWrapper>
       <LineUpperText>
-        Amont of pages / DAY <PagesPerDay>{current.pagesPerDay}</PagesPerDay>
+        Amont of pages / DAY{" "}
+        <PagesPerDay>{current.pagesPerDay || perDay || 0}</PagesPerDay>
       </LineUpperText>
       <Line options={options} data={data} />
     </LineWrapper>

@@ -62,3 +62,18 @@ export const addReview = createAsyncThunk(
     }
   }
 );
+
+export const deleteBook = createAsyncThunk(
+  "books/deleteBook",
+  async (id: string, thunkAPI) => {
+    const state = thunkAPI.getState();
+    setAuthHeader(state.auth.token);
+    try {
+      const res = await axios.delete(`/book/${id}`);
+
+      return res;
+    } catch (error) {
+      return thunkAPI.rejectWithValue((error as Error).message);
+    }
+  }
+);

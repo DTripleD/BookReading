@@ -111,7 +111,6 @@ export const SelectedBooksList = styled.ul`
 
   @media screen and (min-width: 1280px) {
     max-height: 186px;
-    height: 186px;
     margin-bottom: 0;
   }
 
@@ -123,9 +122,9 @@ export const SelectedBooksList = styled.ul`
 export const ListItem = styled.li`
   display: flex;
 
-  @media screen and (max-width: 767px) {
+  /* @media screen and (max-width: 767px) {
     flex-direction: column;
-  }
+  } */
 
   &:not(:last-child) {
   }

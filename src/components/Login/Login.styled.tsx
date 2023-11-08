@@ -219,6 +219,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  outline: none;
   margin-top: 8px;
   width: 100%;
   padding: 12px 12px 12px 8px;

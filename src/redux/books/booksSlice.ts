@@ -1,18 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addBook, addReview, getBooks } from "./booksOperations";
+import { addBook, addReview, deleteBook, getBooks } from "./booksOperations";
 
 interface State {
   name: string;
   email: string;
-  goingToRead: [
-    {
-      title: string;
-      author: string;
-      publishYear: number;
-      pagesTotal: number;
-      _id: string;
-    }
-  ];
+  goingToRead: Array<
+    [
+      {
+        title: string;
+        author: string;
+        publishYear: number;
+        pagesTotal: number;
+        _id: string;
+      }
+    ]
+  >;
   currentlyReading: [];
   finishedReading: Array<{
     author: string;
@@ -31,28 +33,9 @@ interface State {
 const initialState: State = {
   name: "",
   email: "",
-  goingToRead: [
-    {
-      title: "",
-      pagesTotal: 0,
-      publishYear: 0,
-      author: "",
-      _id: "",
-    },
-  ],
+  goingToRead: [],
   currentlyReading: [],
-  finishedReading: [
-    {
-      author: "ClearingForm",
-      feedback: "Da",
-      pagesFinished: 123,
-      pagesTotal: 123,
-      publishYear: 1234,
-      rating: 4,
-      title: "ClearingForm",
-      _id: "653a841820464d1828469659",
-    },
-  ],
+  finishedReading: [],
   isLoading: false,
   error: null,
 };
@@ -98,6 +81,18 @@ const booksSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addReview.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteBook.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteBook.fulfilled, (state, action) => {
+        state.finishedReading = state.finishedReading.filter(
+          (book) => book._id !== action.payload.data._id
+        );
+      })
+      .addCase(deleteBook.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

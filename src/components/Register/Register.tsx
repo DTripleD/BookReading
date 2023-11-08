@@ -18,16 +18,19 @@ import {
   FirstPluses,
   SecondPluses,
   RegisterItem,
+  StyledPasswordDiv,
 } from "./Register.styled";
 import { register } from "../../redux/auth/operations";
 import icons from "../../images/icons.svg";
 import toast from "react-hot-toast";
+import { FiEyeOff, FiEye } from "react-icons/fi";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
+  const [passwordShow, setPasswordShow] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -82,19 +85,52 @@ const Register = () => {
           <Label id="email">
             Password <LabelSpan>*</LabelSpan>
             <Input
-              type="text"
+              type={passwordShow ? "text" : "password"}
               placeholder="..."
               onChange={(e) => setPassword(e.target.value)}
             />
           </Label>
           <Label>
             Confirm password <LabelSpan>*</LabelSpan>
-            <Input
-              type="text"
-              placeholder="..."
-              onChange={(e) => setConfPassword(e.target.value)}
-            />
+            <StyledPasswordDiv>
+              <Input
+                type={passwordShow ? "text" : "password"}
+                placeholder="..."
+                onChange={(e) => setConfPassword(e.target.value)}
+              />
+              <span
+                onClick={(event) => {
+                  event.preventDefault();
+                  setPasswordShow(!passwordShow);
+                }}
+                style={{
+                  position: "absolute",
+                  right: "24px",
+                  top: "18px",
+                  // transform: "translateY(-50%)",
+                }}
+              >
+                {passwordShow ? (
+                  <FiEye
+                    color="#898f9f;"
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                    }}
+                  />
+                ) : (
+                  <FiEyeOff
+                    color="#898f9f;"
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                    }}
+                  />
+                )}
+              </span>
+            </StyledPasswordDiv>
           </Label>
+
           <RegisterButton type="submit" onClick={handleRegisterSubmit}>
             Register
           </RegisterButton>

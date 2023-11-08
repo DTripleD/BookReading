@@ -30,7 +30,7 @@ const TableWithoutCheckBox = ({ selectedBooks, deleteFromSelected }) => {
         {selectedBooks.map((book) => (
           <ListItem key={book._id}>
             <BookContainer>
-              <SvgWrapper>
+              <SvgWrapper id="table-title-element-wc">
                 <svg width="22" height="17">
                   <use href={icons + "#icon-book"}></use>
                 </svg>
