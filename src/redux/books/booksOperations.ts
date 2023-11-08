@@ -6,8 +6,8 @@ import { RootState } from "../store";
 export const getBooks = createAsyncThunk(
   "books/getBooks",
   async (_, thunkAPI) => {
-    const state: RootState = thunkAPI.getState();
-    setAuthHeader(state.auth.token);
+    const state = thunkAPI.getState();
+    setAuthHeader((state as RootState).auth.token);
     try {
       const res = await axios.get("/user/books");
 
@@ -29,8 +29,8 @@ export const addBook = createAsyncThunk(
     },
     thunkAPI
   ) => {
-    const state: RootState = thunkAPI.getState();
-    setAuthHeader(state.auth.token);
+    const state = thunkAPI.getState();
+    setAuthHeader((state as RootState).auth.token);
     try {
       const res = await axios.post("/book", credentials);
 
@@ -47,8 +47,8 @@ export const addReview = createAsyncThunk(
     credentials: { rating: number | null; feedback: string; id: string },
     thunkAPI
   ) => {
-    const state: RootState = thunkAPI.getState();
-    setAuthHeader(state.auth.token);
+    const state = thunkAPI.getState();
+    setAuthHeader((state as RootState).auth.token);
     const { rating, feedback, id } = credentials;
     try {
       const res = await axios.patch(`/book/review/${id}`, {
@@ -67,7 +67,7 @@ export const deleteBook = createAsyncThunk(
   "books/deleteBook",
   async (id: string, thunkAPI) => {
     const state = thunkAPI.getState();
-    setAuthHeader(state.auth.token);
+    setAuthHeader((state as RootState).auth.token);
     try {
       const res = await axios.delete(`/book/${id}`);
 
