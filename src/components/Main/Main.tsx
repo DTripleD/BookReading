@@ -40,6 +40,11 @@ const Main = ({ allBooks, handleModalOpen }) => {
 
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (publishYear.length > 4) {
+      return toast.error("Каріна блін!!!!! Введи чотири числа!!!!!!");
+    }
+
     dispatch(
       addBook({
         title,
@@ -49,11 +54,14 @@ const Main = ({ allBooks, handleModalOpen }) => {
       })
     )
       .then((res) => {
-        if (res.payload.response.status === 400) {
+        console.log(res.payload.response);
+        if (res.payload.response?.status === 400) {
           toast.error(res.payload.response.data.message);
           throw new Error();
         }
-
+      })
+      .then(() => {
+        console.log("aaaa");
         setTitle("");
         setAuthor("");
         setPublishYear("");
