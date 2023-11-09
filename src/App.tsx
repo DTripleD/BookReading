@@ -1,30 +1,26 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import MainPage from "./pages/MainPage";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import RestrictedRoute from "./components/RestrictedRoute";
 import PrivateRoute from "./components/PrivateRoute";
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy } from "react";
 import { refreshUser } from "./redux/auth/operations";
 import { useAppDispatch } from "./redux/store";
-import ProgressPage from "./pages/ProgressPage";
-import { useSelector } from "react-redux";
-import { userBooks } from "./redux/books/booksSelectors";
-import { getBooks } from "./redux/books/booksOperations";
 import Modal from "./components/Modal/Modal";
 import { Toaster } from "react-hot-toast";
 import { toastOptions } from "./shared/toastOptions";
+
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
+const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
+const ProgressPage = lazy(() => import("./pages/ProgressPage/ProgressPage"));
 
 function App() {
   const dispatch = useAppDispatch();
   // const isRefreshing = useSelector(selectIsRefreshing);
 
-  const allBooks = useSelector(userBooks);
-
   useEffect(() => {
-    dispatch(refreshUser()).then(() => dispatch(getBooks()));
+    dispatch(refreshUser());
   }, [dispatch]);
 
   const [isModalActive, setModalActive] = useState(false);
@@ -61,12 +57,7 @@ function App() {
             path="/main"
             element={
               <PrivateRoute
-                component={
-                  <MainPage
-                    allBooks={allBooks}
-                    handleModalOpen={handleModalOpen}
-                  />
-                }
+                component={<MainPage handleModalOpen={handleModalOpen} />}
               />
             }
           />
@@ -74,12 +65,7 @@ function App() {
             path="/progress"
             element={
               <PrivateRoute
-                component={
-                  <ProgressPage
-                    allBooks={allBooks}
-                    handleModalOpen={handleModalOpen}
-                  />
-                }
+                component={<ProgressPage handleModalOpen={handleModalOpen} />}
               />
             }
           />

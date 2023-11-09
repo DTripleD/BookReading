@@ -14,7 +14,6 @@ export const StyledDatePicker = styled(DatePicker)`
   }
 
   & input.Mui-disabled {
-    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     -webkit-text-fill-color: #242a37;
@@ -28,7 +27,6 @@ export const StyledDatePicker = styled(DatePicker)`
 `;
 
 export const AddResultButton = styled.button`
-  font-family: "Montserrat";
   font-weight: 600;
   font-size: 16px;
   line-height: 19.5px;
@@ -48,7 +46,6 @@ export const AddResultButton = styled.button`
 
 export const StyledLabel = styled.label`
   color: #898f9f;
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 11px;
   line-height: 13.41px;
@@ -62,7 +59,6 @@ export const StyledLabel = styled.label`
 export const StyledInput = styled.input`
   border: 1px solid #a6abb9;
   background-color: #f6f7fb;
-  font-family: "Montserrat";
   font-weight: 400;
   font-size: 14px;
   color: #242a37;

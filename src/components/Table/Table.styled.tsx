@@ -13,7 +13,6 @@ export const ListHeaderWrapper = styled.div`
 `;
 
 export const ListHeaderText = styled.p`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -226,7 +225,6 @@ export const ListItem = styled.li`
 `;
 
 export const SelectedBookTitle = styled.p`
-  font-family: "Montserrat";
   font-size: 12px;
   font-weight: 500;
   line-height: 14.63px;
@@ -304,7 +302,6 @@ export const InfoWrapper = styled.div`
 `;
 
 export const InfoTitle = styled.p`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 12px;
   line-height: 14.63px;

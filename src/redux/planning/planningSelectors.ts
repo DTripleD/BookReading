@@ -1,4 +1,4 @@
-import { RootState } from "../store";
+import { RootState } from "../../types/types";
 
 export const planningBooks = (state: RootState) => state.planning;
 

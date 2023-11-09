@@ -19,7 +19,6 @@ export const InstructionWrapper = styled.div`
 `;
 
 export const StepsNum = styled.h2`
-  font-family: "Montserrat";
   font-weight: 600;
   font-size: 18px;
   line-height: 21.94px;
@@ -39,8 +38,6 @@ export const NumWrapper = styled.div`
 `;
 
 export const StepsDo = styled.h3`
-  font-family: "Montserrat";
-
   margin-bottom: 8px;
 
   font-weight: 600;
@@ -57,7 +54,6 @@ export const StepWrapper = styled.div`
 `;
 
 export const StepsResult = styled.p`
-  font-family: "Montserrat";
   font-weight: 400;
   font-size: 14px;
   line-height: 17.07px;

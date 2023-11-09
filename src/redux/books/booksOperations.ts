@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setAuthHeader } from "../auth/operations";
-import { RootState } from "../store";
+import { RootState } from "../../types/types";
 
 export const getBooks = createAsyncThunk(
   "books/getBooks",

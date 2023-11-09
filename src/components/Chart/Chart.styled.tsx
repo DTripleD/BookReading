@@ -26,7 +26,6 @@ export const LineWrapper = styled.div`
 `;
 
 export const LineUpperText = styled.p`
-  font-family: "Montserrat";
   font-size: 12px;
   font-weight: 500;
   line-height: 14.63px;
@@ -34,8 +33,6 @@ export const LineUpperText = styled.p`
 `;
 
 export const PagesPerDay = styled.span`
-  font-family: "Montserrat";
-
   font-weight: 600;
   font-size: 12px;
   line-height: 38px;

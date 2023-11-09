@@ -8,18 +8,20 @@ import bg_image_m1 from "../../images/background/background_m@1x.jpg";
 import bg_image_l2 from "../../images/background/background_l@2x.jpg";
 import bg_image_l1 from "../../images/background/background_l@1x.jpg";
 
-export const RegisterPageWrapper = styled.div`
+export const LoginPageWrapper = styled.div`
+  @media screen and (min-width: 768px) {
+  }
+
   @media screen and (min-width: 1280px) {
     display: flex;
     height: calc(100vh - 60px);
   }
 `;
 
-export const RegisterButton = styled.button`
+export const LoginButton = styled.button`
   margin-top: 20px;
   margin-bottom: 16px;
   background-color: #ff6b08;
-  font-family: "Montserrat";
   color: #ffffff;
   padding: 20px;
   border: none;
@@ -30,6 +32,19 @@ export const RegisterButton = styled.button`
   @media screen and (min-width: 768px) {
     margin-top: 32px;
     margin-bottom: 20px;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  max-width: 400px;
+
+  @media screen and (min-width: 768px) {
+    background-color: #ffffff;
+    padding: 40px;
+    width: 400px;
   }
 `;
 
@@ -112,67 +127,78 @@ export const FormWrapper = styled.div`
   }
 `;
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  background-color: transparent;
-  max-width: 400px;
+export const LoginQuote = styled.h2`
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15.85px;
+  text-align: center;
+  color: #242a37;
+  margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
-    background-color: #ffffff;
-    padding: 40px;
-    width: 400px;
+    font-size: 24px;
+    line-height: 38px;
+    margin-bottom: 20px;
   }
 `;
 
-export const RegisterTitle = styled.h2`
-  margin-bottom: 32px;
+export const QuoteBefore = styled.p`
   font-family: "Abril Fatface";
   font-weight: 400;
-  font-size: 34px;
-  line-height: 38px;
-  color: #242a37;
+  font-size: 59px;
+  line-height: 79.59px;
+  color: #ff6b08;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 48px;
+    font-size: 69px;
+    line-height: 93.08px;
   }
 `;
 
-export const RegisterPluses = styled.p`
-  font-family: "Montserrat";
+export const QuoteAuthor = styled.p`
   font-weight: 500;
+
   font-size: 14px;
   line-height: 17.07px;
+  text-align: center;
   color: #898f9f;
+  max-width: 150px;
+  display: flex;
+  padding-top: 12px;
+  border-top: 1px solid #242a3780;
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+    line-height: 24.38px;
+  }
 `;
 
-export const ListTitle = styled.p`
-  margin-bottom: 14px;
-  font-family: "Montserrat";
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 38px;
-  color: #242a37;
-`;
-
-export const PlusesWrapper = styled.div`
+export const QuoteWrapper = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 767px) {
+    margin-top: 4px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    margin-top: 64px;
+  }
+`;
+
+export const TextWrapper = styled.div`
+  width: 229px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  @media screen and (max-width: 767px) {
-    padding: 32px 25px;
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    padding-top: 64px;
+  @media screen and (min-width: 768px) {
+    width: 397px;
   }
 `;
 
 export const Label = styled.label`
-  font-family: "Montserrat";
   font-weight: 600;
   font-size: 14px;
   line-height: 17.07px;
@@ -202,7 +228,6 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    font-family: "Montserrat";
     font-weight: 400;
     font-size: 14px;
     line-height: 17.07px;
@@ -215,42 +240,10 @@ export const LabelSpan = styled.span`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 13px;
   line-height: 15.85px;
   color: #ff6b08;
   text-align: center;
   text-decoration: underline;
-`;
-
-export const RedirectText = styled.span`
-  font-family: "Montserrat";
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 15.85px;
-  text-align: center;
-  color: #898f9f;
-`;
-
-export const RegisterList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-`;
-
-export const FirstPluses = styled.div`
-  margin-bottom: 32px;
-`;
-
-export const SecondPluses = styled.div``;
-
-export const RegisterItem = styled.li`
-  display: flex;
-  gap: 12px;
-  align-items: center;
-`;
-
-export const StyledPasswordDiv = styled.div`
-  position: relative;
 `;

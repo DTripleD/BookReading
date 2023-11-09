@@ -4,30 +4,10 @@ import {
   currentPlanning,
   startPlanning,
 } from "./planningOperations";
+import { handlePending, handleRejected } from "../books/booksSlice";
+import { PlaningState } from "../../types/types";
 
-interface State {
-  books: Array<{
-    author: string;
-    pagesFinished: number | null;
-    pagesTotal: number | null;
-    publishYear: number | null;
-    title: string;
-    _id: string;
-  }>;
-  duration: number | null;
-  endDate: string;
-  startDate: string;
-  pagesPerDay: number | null;
-  _id: string;
-  stats: Array<{
-    pagesCount: number;
-    time: string;
-  }>;
-  isLoading: boolean;
-  error: unknown;
-}
-
-const initialState: State = {
+const initialState: PlaningState = {
   books: [],
   duration: null,
   endDate: "",
@@ -45,58 +25,40 @@ const planningSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(currentPlanning.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(currentPlanning.fulfilled, (state, action) => {
-        state.books = action.payload.data.planning.books;
-        state.duration = action.payload.data.planning.duration;
-        state.endDate = action.payload.data.planning.endDate;
-        state.startDate = action.payload.data.planning.startDate;
-        state.pagesPerDay = action.payload.data.planning.pagesPerDay;
-        state.stats = action.payload.data.planning.stats;
-        state._id = action.payload.data.planning._id;
+      .addCase(currentPlanning.fulfilled, (state, { payload }) => {
+        state.books = payload.data.planning.books;
+        state.duration = payload.data.planning.duration;
+        state.endDate = payload.data.planning.endDate;
+        state.startDate = payload.data.planning.startDate;
+        state.pagesPerDay = payload.data.planning.pagesPerDay;
+        state.stats = payload.data.planning.stats;
+        state._id = payload.data.planning._id;
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(currentPlanning.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(startPlanning.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(startPlanning.fulfilled, (state, action) => {
-        state.books = action.payload.data.books;
-        state.duration = action.payload.data.duration;
-        state.endDate = action.payload.data.endDate;
-        state.startDate = action.payload.data.startDate;
-        state.pagesPerDay = action.payload.data.pagesPerDay;
-        state.stats = action.payload.data.stats;
+      .addCase(startPlanning.fulfilled, (state, { payload }) => {
+        state.books = payload.data.books;
+        state.duration = payload.data.duration;
+        state.endDate = payload.data.endDate;
+        state.startDate = payload.data.startDate;
+        state.pagesPerDay = payload.data.pagesPerDay;
+        state.stats = payload.data.stats;
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(startPlanning.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(addReadPages.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(addReadPages.fulfilled, (state, action) => {
+      .addCase(addReadPages.fulfilled, (state, { payload }) => {
         state.books = state.books.map((book) =>
-          book._id === action.payload.data.book._id
-            ? action.payload.data.book
-            : book
+          book._id === payload.data.book._id ? payload.data.book : book
         );
-        state.stats = action.payload.data.planning.stats;
+        state.stats = payload.data.planning.stats;
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(addReadPages.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
+      .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
+      .addMatcher(
+        (action) => action.type.endsWith("/rejected"),
+        handleRejected
+      );
   },
 });
 

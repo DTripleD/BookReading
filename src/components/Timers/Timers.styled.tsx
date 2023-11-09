@@ -29,7 +29,6 @@ export const TimersWrapper = styled.div`
 `;
 
 export const TimerTitle = styled.p`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -49,11 +48,8 @@ export const Time = styled.p`
 `;
 
 export const TimeCount = styled.p`
-  font-family: "Montserrat";
-
   font-weight: 500;
   font-size: 10px;
   line-height: 12.19px;
-
   color: #898f9f;
 `;

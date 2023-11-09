@@ -18,7 +18,6 @@ export const StyledDatePicker = styled(DatePicker)`
 
 export const AddButton = styled.button`
   border: 1px solid #242a37;
-  font-family: "Montserrat";
   font-size: 14px;
   font-weight: 500;
   line-height: 17.07px;

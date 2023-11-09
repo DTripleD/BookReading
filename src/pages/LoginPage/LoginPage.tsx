@@ -14,13 +14,13 @@ import {
   LabelSpan,
   StyledNavLink,
   QuoteBefore,
-} from "./Login.styled";
+} from "./LoginPage.styled";
 import { login } from "../../redux/auth/operations";
 import toast from "react-hot-toast";
-import { StyledPasswordDiv } from "../Register/Register.styled";
+import { StyledPasswordDiv } from "../RegisterPage/RegisterPage.styled";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
-const Login = () => {
+const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordShow, setPasswordShow] = useState(false);
@@ -78,7 +78,7 @@ const Login = () => {
               >
                 {passwordShow ? (
                   <FiEye
-                    color="#898f9f;"
+                    color="#898f9f"
                     style={{
                       width: "20px",
                       height: "20px",
@@ -86,7 +86,7 @@ const Login = () => {
                   />
                 ) : (
                   <FiEyeOff
-                    color="#898f9f;"
+                    color="#898f9f"
                     style={{
                       width: "20px",
                       height: "20px",
@@ -117,4 +117,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

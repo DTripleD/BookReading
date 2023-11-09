@@ -19,8 +19,6 @@ export const ResultsWrapper = styled.div`
 `;
 
 export const ResultTitle = styled.h4`
-  font-family: "Montserrat";
-
   font-weight: 600;
   font-size: 12px;
   line-height: 14.63px;
@@ -35,7 +33,6 @@ export const ResultTitle = styled.h4`
 `;
 
 export const StatisticsTitle = styled.h4`
-  font-family: "Montserrat";
   font-weight: 700;
   font-size: 12px;
   line-height: 14.63px;
@@ -98,8 +95,6 @@ export const StatisticList = styled.ul`
 `;
 
 export const Day = styled.p`
-  font-family: "Montserrat";
-
   font-weight: 400;
   font-size: 14px;
   line-height: 17.07px;
@@ -107,7 +102,6 @@ export const Day = styled.p`
 `;
 
 export const Time = styled.p`
-  font-family: "Montserrat";
   font-weight: 400;
   font-size: 14px;
   line-height: 17.07px;
@@ -119,7 +113,6 @@ export const PagesSpan = styled.span`
 `;
 
 export const Pages = styled.p`
-  font-family: "Montserrat";
   color: #242a37;
   font-weight: 400;
   font-size: 14px;

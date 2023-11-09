@@ -5,6 +5,7 @@ import { authReducer } from "./auth/authSlice";
 import { useDispatch } from "react-redux";
 import { booksReducer } from "./books/booksSlice";
 import { planningReducer } from "./planning/planningSlice";
+import { AppDispatch } from "../types/types";
 
 const authPersistConfig = {
   key: "auth",
@@ -30,7 +31,4 @@ export const store = configureStore({
 
 export const persistor = persistStore(store);
 
-export type RootState = ReturnType<typeof store.getState>;
-
-export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;

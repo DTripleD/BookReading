@@ -23,7 +23,6 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.p`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
@@ -33,7 +32,6 @@ export const Title = styled.p`
 `;
 
 export const OrangeButton = styled.button`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -46,7 +44,6 @@ export const OrangeButton = styled.button`
 `;
 
 export const WhiteButton = styled.button`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -58,7 +55,6 @@ export const WhiteButton = styled.button`
 `;
 
 export const OrangeResumeButton = styled.button`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -75,7 +71,6 @@ export const OrangeResumeButton = styled.button`
 `;
 
 export const WhiteResumeButton = styled.button`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -105,7 +100,6 @@ export const TextArea = styled.textarea`
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 16px;
   line-height: 19.5px;
@@ -123,7 +117,6 @@ export const ResumeContent = styled.div`
 `;
 
 export const ResumeTitle = styled.p`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 16px;
   line-height: 19.5px;

@@ -44,9 +44,7 @@ export const CountNumber = styled.p`
 `;
 
 export const MainTitle = styled.h3`
-  font-family: "Montserrat";
   font-weight: 600;
-
   font-size: 20px;
   line-height: 24.38px;
   color: #ffffff;
@@ -76,8 +74,6 @@ export const TitleWrapper = styled.div`
 `;
 
 export const BoxName = styled.p`
-  font-family: "Montserrat";
-
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -132,7 +128,6 @@ export const StartButton = styled.button`
   padding: 10px 0;
   background-color: #ff6b08;
   color: #ffffff;
-  font-family: "Montserrat";
   font-size: 16px;
   font-weight: 600;
   line-height: 19.5px;

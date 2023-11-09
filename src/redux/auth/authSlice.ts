@@ -1,20 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { register, login, logOut, refreshUser } from "./operations";
-
-interface User {
-  name: string | null;
-  email: string | null;
-  id: string | null;
-}
-
-export interface AuthState {
-  user: User;
-  token: string | null;
-  refreshToken: string | null;
-  sid: string | null;
-  isLoggedIn: boolean;
-  isRefreshing: boolean;
-}
+import { handlePending, handleRejected } from "../books/booksSlice";
+import { AuthState } from "../../types/types";
 
 const initialState: AuthState = {
   user: { name: null, email: null, id: null },
@@ -31,18 +18,18 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(register.fulfilled, (state, action) => {
-        state.refreshToken = action.payload.refreshToken;
-        state.user = action.payload.userData;
-        state.token = action.payload.accessToken;
-        state.sid = action.payload.sid;
+      .addCase(register.fulfilled, (state, { payload }) => {
+        state.refreshToken = payload.refreshToken;
+        state.user = payload.userData;
+        state.token = payload.accessToken;
+        state.sid = payload.sid;
         state.isLoggedIn = true;
       })
-      .addCase(login.fulfilled, (state, action) => {
-        state.refreshToken = action.payload.refreshToken;
-        state.user = action.payload.userData;
-        state.token = action.payload.accessToken;
-        state.sid = action.payload.sid;
+      .addCase(login.fulfilled, (state, { payload }) => {
+        state.refreshToken = payload.refreshToken;
+        state.user = payload.userData;
+        state.token = payload.accessToken;
+        state.sid = payload.sid;
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, (state) => {
@@ -52,19 +39,18 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(refreshUser.pending, (state) => {
-        state.isRefreshing = true;
-      })
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.token = action.payload.newAccessToken;
-        state.refreshToken = action.payload.newRefreshToken;
-        state.sid = action.payload.newSid;
+      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.token = payload.newAccessToken;
+        state.refreshToken = payload.newRefreshToken;
+        state.sid = payload.newSid;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, (state) => {
-        state.isRefreshing = false;
-      });
+      .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
+      .addMatcher(
+        (action) => action.type.endsWith("/rejected"),
+        handleRejected
+      );
   },
 });
 

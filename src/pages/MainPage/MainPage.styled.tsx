@@ -4,10 +4,7 @@ import { Rating } from "@mui/material";
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  font-family: "Montserrat";
-
   font-weight: 500;
-
   font-size: 14px;
   line-height: 17.07px;
   color: #898f9f;
@@ -99,7 +96,6 @@ export const Form = styled.form`
 `;
 
 export const FormButton = styled.button`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -112,7 +108,6 @@ export const FormButton = styled.button`
 `;
 
 export const Title = styled.h3`
-  font-family: "Montserrat";
   font-weight: 600;
   font-size: 19px;
   line-height: 23.16px;
@@ -125,7 +120,6 @@ export const Title = styled.h3`
 `;
 
 export const ListTitle = styled.p`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -183,11 +177,8 @@ export const ListTitle = styled.p`
 `;
 
 export const ListText = styled.p`
-  font-family: "Montserrat";
   font-weight: 500;
-
   color: #242a37;
-
   font-size: 12px;
   line-height: 14.63px;
 
@@ -326,7 +317,6 @@ export const FormWrapper = styled.div`
 
 export const TrainingBtn = styled.button`
   color: #ffffff;
-  font-family: "Montserrat";
   font-weight: 600;
 
   display: flex;
@@ -349,7 +339,6 @@ export const TrainingBtn = styled.button`
 `;
 
 export const ResumeButton = styled.button`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -433,7 +422,6 @@ export const StyledRating = styled(Rating)`
 `;
 
 export const MobileDescr = styled.p`
-  font-family: "Montserrat";
   font-weight: 500;
   font-size: 12px;
   line-height: 14.63px;

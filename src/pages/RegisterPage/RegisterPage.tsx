@@ -19,7 +19,7 @@ import {
   SecondPluses,
   RegisterItem,
   StyledPasswordDiv,
-} from "./Register.styled";
+} from "./RegisterPage.styled";
 import { register } from "../../redux/auth/operations";
 import icons from "../../images/icons.svg";
 import toast from "react-hot-toast";
@@ -112,7 +112,7 @@ const Register = () => {
               >
                 {passwordShow ? (
                   <FiEye
-                    color="#898f9f;"
+                    color="#898f9f"
                     style={{
                       width: "20px",
                       height: "20px",
@@ -120,7 +120,7 @@ const Register = () => {
                   />
                 ) : (
                   <FiEyeOff
-                    color="#898f9f;"
+                    color="#898f9f"
                     style={{
                       width: "20px",
                       height: "20px",

@@ -17,7 +17,6 @@ export const Logo = styled.h2`
 `;
 
 export const UserName = styled.p`
-  font-family: "Montserrat";
   font-weight: 300;
   font-size: 14px;
   line-height: 17.07px;
@@ -25,7 +24,6 @@ export const UserName = styled.p`
 `;
 
 export const UserLogo = styled.h2`
-  font-family: "Montserrat";
   font-weight: 600;
   font-size: 14px;
   line-height: 17.07px;
@@ -43,7 +41,6 @@ export const UserLogoWrapper = styled.div`
 `;
 
 export const LogoutBtn = styled.button`
-  font-family: "Montserrat";
   font-weight: 300;
   font-size: 14px;
   line-height: 17.07px;
