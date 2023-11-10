@@ -1,5 +1,10 @@
 @import "../node_modules/modern-normalize/modern-normalize.css";
 
+#root {
+  background-color: #f6f7fb;
+  min-height: 100vh;
+}
+
 h1,
 h2,
 h3,

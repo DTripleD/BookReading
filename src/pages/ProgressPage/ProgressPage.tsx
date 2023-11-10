@@ -169,8 +169,8 @@ const Progress = ({ handleModalOpen }) => {
             </WrapperForTimersDesc>
           ) : (
             <WrapperWithoutTimer>
-              {/* <button onClick={() => handleModalOpen("1")}>Aaaa</button>
-            <button onClick={() => handleModalOpen("2")}>BBBB</button> */}
+              <button onClick={() => handleModalOpen("1")}>Aaaa</button>
+              <button onClick={() => handleModalOpen("2")}>BBBB</button>
               <TitleWrapper id="training">
                 <MainTitle>My training</MainTitle>
               </TitleWrapper>

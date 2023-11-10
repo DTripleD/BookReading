@@ -71,6 +71,11 @@ export interface Book {
   _id: string;
 }
 
+export type Props = {
+  id: string;
+  onClose?: () => void;
+};
+
 export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
