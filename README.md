@@ -30,7 +30,6 @@
 - [Emotion Styled](https://emotion.sh/docs/styled)
 - [Mui](https://mui.com)
 - [Axios](https://axios-http.com/ru/docs/intro)
-- [Axios](https://axios-http.com/ru/docs/intro)
 - [Chart.js](https://www.chartjs.org/)
 - [React Responsive](https://github.com/yocontra/react-responsive)
 - HTML
