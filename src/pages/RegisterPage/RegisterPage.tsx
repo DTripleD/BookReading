@@ -65,20 +65,22 @@ const Register = () => {
   return (
     <RegisterPageWrapper>
       <FormWrapper>
-        <Form>
+        <Form onSubmit={handleRegisterSubmit}>
           <Label id="email">
             Name <LabelSpan>*</LabelSpan>
             <Input
               type="text"
               placeholder="..."
+              value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </Label>
           <Label id="email">
             Email <LabelSpan>*</LabelSpan>
             <Input
-              type="text"
+              type="email"
               placeholder="your@email.com"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </Label>
@@ -87,6 +89,7 @@ const Register = () => {
             <Input
               type={passwordShow ? "text" : "password"}
               placeholder="..."
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </Label>
@@ -94,8 +97,9 @@ const Register = () => {
             Confirm password <LabelSpan>*</LabelSpan>
             <StyledPasswordDiv>
               <Input
-                type={passwordShow ? "text" : "password"}
+                type={"password"}
                 placeholder="..."
+                value={confPassword}
                 onChange={(e) => setConfPassword(e.target.value)}
               />
               <span
@@ -131,9 +135,7 @@ const Register = () => {
             </StyledPasswordDiv>
           </Label>
 
-          <RegisterButton type="submit" onClick={handleRegisterSubmit}>
-            Register
-          </RegisterButton>
+          <RegisterButton type="submit">Register</RegisterButton>
           <RedirectText>
             Already have an account?
             <StyledNavLink to="/">Log in</StyledNavLink>

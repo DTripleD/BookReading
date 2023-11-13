@@ -50,11 +50,11 @@ const LoginPage = () => {
   return (
     <LoginPageWrapper>
       <FormWrapper>
-        <Form>
+        <Form onSubmit={handleLoginSubmit}>
           <Label id="email">
             Email <LabelSpan>*</LabelSpan>
             <Input
-              type="text"
+              type="email"
               placeholder="your@email.com"
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -97,9 +97,7 @@ const LoginPage = () => {
             </StyledPasswordDiv>
           </Label>
 
-          <LoginButton type="submit" onClick={handleLoginSubmit}>
-            Login
-          </LoginButton>
+          <LoginButton type="submit">Login</LoginButton>
           <StyledNavLink to="/signup">Register</StyledNavLink>
         </Form>
       </FormWrapper>
