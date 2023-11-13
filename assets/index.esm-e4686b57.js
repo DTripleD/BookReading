@@ -1,4 +1,4 @@
-import{n,N as u,R as s}from"./index-a142bfeb.js";const b="/BookReading/assets/background_s@2x-ddb404d9.jpg",h="/BookReading/assets/background_s@1x-c589b0ee.jpg",k="/BookReading/assets/background_m@2x-fafc948d.jpg",w="/BookReading/assets/background_m@1x-9452e710.jpg",v="/BookReading/assets/background_l@2x-b30ca6b8.jpg",y="/BookReading/assets/background_l@1x-a7eb5c50.jpg",R=n.div`
+import{n,N as u,R as s}from"./index-12811187.js";const b="/BookReading/assets/background_s@2x-ddb404d9.jpg",h="/BookReading/assets/background_s@1x-c589b0ee.jpg",k="/BookReading/assets/background_m@2x-fafc948d.jpg",w="/BookReading/assets/background_m@1x-9452e710.jpg",v="/BookReading/assets/background_l@2x-b30ca6b8.jpg",y="/BookReading/assets/background_l@1x-a7eb5c50.jpg",R=n.div`
   @media screen and (min-width: 1280px) {
     display: flex;
     height: calc(100vh - 60px);

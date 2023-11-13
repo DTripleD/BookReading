@@ -1,4 +1,4 @@
-import{n as i,N as u,r as o,u as b,j as e,l as w,_ as r}from"./index-a142bfeb.js";import{b as j,a as y,c as k,d as v,e as _,f as z,S,F as L,g as E}from"./index.esm-905c3a1e.js";const F=i.div`
+import{n as i,N as u,r as o,u as b,j as e,l as w,_ as r}from"./index-12811187.js";import{b as j,a as y,c as k,d as v,e as _,f as S,S as z,F as L,g as E}from"./index.esm-e4686b57.js";const F=i.div`
   @media screen and (min-width: 768px) {
   }
 
@@ -106,10 +106,10 @@ import{n as i,N as u,r as o,u as b,j as e,l as w,_ as r}from"./index-a142bfeb.js
           rgba(9, 30, 63, 0.8),
           rgba(9, 30, 63, 0.8)
         ),
-        url(${z});
+        url(${S});
     }
   }
-`,C=i.h2`
+`,Q=i.h2`
   font-weight: 500;
   font-size: 13px;
   line-height: 15.85px;
@@ -122,7 +122,7 @@ import{n as i,N as u,r as o,u as b,j as e,l as w,_ as r}from"./index-a142bfeb.js
     line-height: 38px;
     margin-bottom: 20px;
   }
-`,Q=i.p`
+`,W=i.p`
   font-family: "Abril Fatface";
   font-weight: 400;
   font-size: 59px;
@@ -133,7 +133,7 @@ import{n as i,N as u,r as o,u as b,j as e,l as w,_ as r}from"./index-a142bfeb.js
     font-size: 69px;
     line-height: 93.08px;
   }
-`,W=i.p`
+`,A=i.p`
   font-weight: 500;
 
   font-size: 14px;
@@ -149,7 +149,7 @@ import{n as i,N as u,r as o,u as b,j as e,l as w,_ as r}from"./index-a142bfeb.js
     font-size: 20px;
     line-height: 24.38px;
   }
-`,A=i.div`
+`,C=i.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -212,4 +212,4 @@ import{n as i,N as u,r as o,u as b,j as e,l as w,_ as r}from"./index-a142bfeb.js
   color: #ff6b08;
   text-align: center;
   text-decoration: underline;
-`,O=()=>{const[l,c]=o.useState(""),[x,g]=o.useState(""),[a,h]=o.useState(!1),m=b(),f=n=>{n.preventDefault(),m(w({email:l,password:x})).then(t=>{if(t.payload.response.status===400||t.payload.response.status===403)throw r.error(t.payload.response.data.message),new Error;r.success("Success!")}).catch(t=>console.log(t))};return e.jsxs(F,{children:[e.jsx(B,{children:e.jsxs($,{children:[e.jsxs(s,{id:"email",children:["Email ",e.jsx(p,{children:"*"}),e.jsx(d,{type:"text",placeholder:"your@email.com",onChange:n=>c(n.target.value)})]}),e.jsxs(s,{children:["Password ",e.jsx(p,{children:"*"}),e.jsxs(S,{children:[e.jsx(d,{type:a?"text":"password",placeholder:"Password",onChange:n=>g(n.target.value)}),e.jsx("span",{onClick:()=>h(!a),style:{position:"absolute",right:"24px",top:"18px"},children:a?e.jsx(L,{color:"#898f9f",style:{width:"20px",height:"20px"}}):e.jsx(E,{color:"#898f9f",style:{width:"20px",height:"20px"}})})]})]}),e.jsx(P,{type:"submit",onClick:f,children:"Login"}),e.jsx(N,{to:"/signup",children:"Register"})]})}),e.jsx(A,{children:e.jsxs(D,{children:[e.jsx(Q,{children:"“"}),e.jsx(C,{children:"Books are the ships of thoughts, wandering through the waves of time."}),e.jsx(W,{children:"Francis Bacon"})]})})]})};export{O as default};
+`,O=()=>{const[l,c]=o.useState(""),[x,g]=o.useState(""),[a,h]=o.useState(!1),m=b(),f=n=>{n.preventDefault(),m(w({email:l,password:x})).then(t=>{if(t.payload.response.status===400||t.payload.response.status===403)throw r.error(t.payload.response.data.message),new Error;r.success("Success!")}).catch(t=>console.log(t))};return e.jsxs(F,{children:[e.jsx(B,{children:e.jsxs($,{onSubmit:f,children:[e.jsxs(s,{id:"email",children:["Email ",e.jsx(p,{children:"*"}),e.jsx(d,{type:"email",placeholder:"your@email.com",onChange:n=>c(n.target.value)})]}),e.jsxs(s,{children:["Password ",e.jsx(p,{children:"*"}),e.jsxs(z,{children:[e.jsx(d,{type:a?"text":"password",placeholder:"Password",onChange:n=>g(n.target.value)}),e.jsx("span",{onClick:()=>h(!a),style:{position:"absolute",right:"24px",top:"18px"},children:a?e.jsx(L,{color:"#898f9f",style:{width:"20px",height:"20px"}}):e.jsx(E,{color:"#898f9f",style:{width:"20px",height:"20px"}})})]})]}),e.jsx(P,{type:"submit",children:"Login"}),e.jsx(N,{to:"/signup",children:"Register"})]})}),e.jsx(C,{children:e.jsxs(D,{children:[e.jsx(W,{children:"“"}),e.jsx(Q,{children:"Books are the ships of thoughts, wandering through the waves of time."}),e.jsx(A,{children:"Francis Bacon"})]})})]})};export{O as default};
