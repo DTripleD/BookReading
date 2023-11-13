@@ -1,4 +1,4 @@
-import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e as s,_ as P,f as K}from"./index-2afb4d81.js";import{u as O}from"./booksSelectors-3957704f.js";const p=t.label`
+import{n as t,b as Q,j as i,i as x,r as h,u as q,g as H,c as P,d as J,e as K,s as O,M as U,f as s,L as V,_ as M,h as X}from"./index-a142bfeb.js";const p=t.label`
   display: flex;
   flex-direction: column;
   font-weight: 500;
@@ -74,7 +74,7 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
     /* border: none; */
     border-color: #1d1d1b26;
   }
-`,U=t.form`
+`,Z=t.form`
   margin-bottom: 40px;
   @media screen and (max-width: 1279px) {
     display: flex;
@@ -86,7 +86,7 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
     display: flex;
     align-items: flex-end;
   }
-`,V=t.button`
+`,$=t.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -269,7 +269,7 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
   @media screen and (min-width: 767px) {
     gap: 8px;
   }
-`,X=t.div`
+`,ii=t.div`
   display: grid;
 
   column-gap: 32px;
@@ -290,7 +290,7 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
   /* display: flex;
   gap: 12px;
   margin-right: 48px; */
-`,Z=t.button`
+`,ei=t.button`
   color: #ffffff;
   font-weight: 600;
 
@@ -311,7 +311,7 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
   @media screen and (min-width: 768px) {
     margin-top: 40px;
   }
-`,$=t.button`
+`,ti=t.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 17.07px;
@@ -333,7 +333,7 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
   @media screen and (min-width: 1280px) {
     padding: 12px 36px;
   }
-`,ii=t.button`
+`,ni=t.button`
   bottom: 12px;
   position: fixed;
   width: 52px;
@@ -368,7 +368,7 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
       margin-right: 144px;
     }
   }
-`,ei=t(I)`
+`,ri=t(Q)`
   color: #ff6b08;
   font-size: 19.5px;
 
@@ -390,12 +390,12 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
   font-weight: 500;
   font-size: 12px;
   line-height: 14.63px;
-`,y=t.div`
+`,b=t.div`
   gap: 14px;
   display: flex;
   flex-direction: column;
   margin-right: 35px;
-`,b=t.div`
+`,y=t.div`
   @media screen and (max-width: 767px) {
     display: flex;
     margin-top: 27px;
@@ -411,7 +411,7 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
     flex-direction: column;
     gap: 14px;
   }
-`,M=t.div`
+`,k=t.div`
   margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
@@ -421,7 +421,7 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
   @media screen and (min-width: 1280px) {
     margin-bottom: 32px;
   }
-`,ti=t.div`
+`,di=t.div`
   background-color: #ffffff;
   padding: 43px 18px 98px 20px;
   width: 100%;
@@ -437,7 +437,7 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
     padding: 40px;
     width: 608px;
   }
-`,k=t.h2`
+`,C=t.h2`
   font-weight: 600;
   font-size: 18px;
   line-height: 21.94px;
@@ -449,10 +449,10 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
     font-size: 19px;
     line-height: 23.16px;
   }
-`,C=t.div`
+`,D=t.div`
   display: flex;
   gap: 12px;
-`,D=t.h3`
+`,_=t.h3`
   margin-bottom: 8px;
 
   font-weight: 600;
@@ -460,13 +460,13 @@ import{n as t,b as I,j as i,i as x,r as l,u as G,g as Q,c as q,d as H,M as J,e a
   line-height: 19.5px;
 
   color: #242a37;
-`,L=t.div`
+`,I=t.div`
   margin-left: 30px;
   display: flex;
   gap: 8px;
-`,_=t.p`
+`,N=t.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 17.07px;
   color: #898f9f;
-`,ni=()=>i.jsxs(ti,{children:[i.jsxs("div",{children:[i.jsx(k,{children:"Step 1."}),i.jsxs(C,{children:[i.jsx("svg",{width:"22",height:"17",children:i.jsx("use",{href:x+"#icon-book"})}),i.jsx(D,{children:"Create your own library"})]}),i.jsxs(L,{children:[i.jsx("svg",{width:"10",height:"12",children:i.jsx("use",{href:x+"#icon-line"})}),i.jsx(_,{children:"Add there books which you are going to read."})]})]}),i.jsxs("div",{children:[i.jsx(k,{children:"Step 2."}),i.jsxs(C,{children:[i.jsx("svg",{width:"15",height:"17",children:i.jsx("use",{href:x+"#icon-flag"})}),i.jsx(D,{children:"Create your first training"})]}),i.jsxs(L,{children:[i.jsx("svg",{width:"10",height:"12",children:i.jsx("use",{href:x+"#icon-line"})}),i.jsx(_,{children:"Set a goal, choose period, start training."})]})]})]}),ai=({handleModalOpen:N})=>{const[R,W]=l.useState(""),[T,z]=l.useState(""),[g,S]=l.useState(""),[B,A]=l.useState(""),c=G();l.useEffect(()=>{c(Q())},[c]);const d=q(O),E=e=>{if(e.preventDefault(),g.length>4)return P.error("Каріна блін!!!!! Введи чотири числа!!!!!!");c(K({title:R,author:T,publishYear:Number(g),pagesTotal:Number(B)})).then(h=>{var Y;if(console.log(h.payload.response),((Y=h.payload.response)==null?void 0:Y.status)===400)throw P.error(h.payload.response.data.message),new Error}).then(()=>{console.log("aaaa"),W(""),z(""),S(""),A("")}).catch(h=>console.log(h))},F=H();return i.jsx(J,{children:i.jsxs("div",{children:[i.jsx(s,{minWidth:768,children:i.jsxs(U,{onSubmit:e=>E(e),children:[i.jsxs(X,{children:[i.jsxs(p,{id:"title",children:["Book title",i.jsx(o,{type:"text",value:R,placeholder:"...",onChange:e=>W(e.target.value)})]}),i.jsxs(p,{id:"author",children:["Author",i.jsx(o,{value:T,type:"text",placeholder:"...",onChange:e=>z(e.target.value)})]}),i.jsxs(p,{id:"date",children:["Publication date",i.jsx(o,{value:g,type:"text",placeholder:"...",onChange:e=>S(e.target.value)})]}),i.jsxs(p,{id:"pages",children:["Amount of pages",i.jsx(o,{value:B,type:"text",placeholder:"...",onChange:e=>A(e.target.value)})]})]}),i.jsx(V,{type:"submit",children:"Add"})]})}),d.goingToRead.length>0||d.finishedReading.length>0||d.currentlyReading.length>0?i.jsxs("div",{children:[d.finishedReading.length>0&&i.jsxs(M,{children:[i.jsx(m,{children:"Already read"}),i.jsx(s,{minWidth:768,children:i.jsxs(f,{children:[i.jsx(n,{id:"title-title-rating",children:"Book title"}),i.jsx(n,{id:"author-title-rating",children:"Author"}),i.jsx(n,{id:"year-title-rating",children:"Year"}),i.jsx(n,{id:"pages-title-rating",children:"Pages"}),i.jsx(n,{id:"rating-title-rating",children:"Rating"})]})}),i.jsx(j,{children:d.finishedReading.map(e=>i.jsxs(u,{id:"resume",children:[i.jsxs(w,{id:"title-wrapper-resume",children:[i.jsx("svg",{width:"22",height:"17",children:i.jsx("use",{href:x+"#icon-book"})}),i.jsx(r,{id:"title-resume",children:e.title})]}),i.jsxs(b,{id:"rating",children:[i.jsx(s,{maxWidth:767,children:i.jsxs(y,{children:[i.jsx(a,{children:"Author:"}),i.jsx(a,{children:"Year:"}),i.jsx(a,{children:"Pages:"}),i.jsx(a,{children:"Rating:"})]})}),i.jsxs(v,{children:[i.jsx(r,{id:"author-resume",children:e.author}),i.jsx(r,{id:"year-resume",children:e.publishYear}),i.jsx(r,{id:"pages-resume",children:e.pagesTotal}),i.jsx(ei,{name:"simple-controlled",disabled:!0,value:e.rating?e.rating:0})]})]}),i.jsx($,{type:"button",onClick:()=>{N(e._id)},children:"Resume"})]},e._id))})]}),d.currentlyReading.length>0&&i.jsxs(M,{children:[i.jsx(m,{children:"Reading now"}),i.jsx(s,{minWidth:768,children:i.jsxs(f,{children:[i.jsx(n,{id:"title-title",children:"Book title"}),i.jsx(n,{id:"author-title",children:"Author"}),i.jsx(n,{id:"year-title",children:"Year"}),i.jsx(n,{id:"pages-title",children:"Pages"})]})}),i.jsx(j,{children:d.currentlyReading.map(e=>i.jsxs(u,{children:[i.jsxs(w,{children:[i.jsx("svg",{width:"22",height:"17",children:i.jsx("use",{href:x+"#icon-book"})}),i.jsx(r,{id:"title-list",children:e.title})]}),i.jsxs(b,{children:[i.jsx(s,{maxWidth:767,children:i.jsxs(y,{children:[i.jsx(a,{children:"Author:"}),i.jsx(a,{children:"Year:"}),i.jsx(a,{children:"Pages:"})]})}),i.jsxs(v,{children:[i.jsx(r,{id:"author-list",children:e.author}),i.jsx(r,{id:"year-list",children:e.publishYear}),i.jsx(r,{id:"pages-list",children:e.pagesTotal})]})]})]},e._id))})]}),d.goingToRead.length>0&&i.jsxs("div",{children:[i.jsx(m,{children:"Going to read"}),i.jsx(s,{minWidth:768,children:i.jsxs(f,{children:[i.jsx(n,{id:"title-title",children:"Book title"}),i.jsx(n,{id:"author-title",children:"Author"}),i.jsx(n,{id:"year-title",children:"Year"}),i.jsx(n,{id:"pages-title",children:"Pages"})]})}),i.jsx(j,{children:d.goingToRead.map(e=>i.jsxs(u,{children:[i.jsxs(w,{children:[i.jsx("svg",{width:"22",height:"17",children:i.jsx("use",{href:x+"#icon-book"})}),i.jsx(r,{id:"title-list",children:e.title})]}),i.jsxs(b,{children:[i.jsx(s,{maxWidth:767,children:i.jsxs(y,{children:[i.jsx(a,{children:"Author:"}),i.jsx(a,{children:"Year:"}),i.jsx(a,{children:"Pages:"})]})}),i.jsxs(v,{children:[i.jsx(r,{id:"author-list",children:e.author}),i.jsx(r,{id:"year-list",children:e.publishYear}),i.jsx(r,{id:"pages-list",children:e.pagesTotal})]})]})]},e._id))})]}),!d.currentlyReading.length&&i.jsx(Z,{onClick:()=>F("/progress"),children:"My training"})]}):i.jsx(ni,{}),i.jsx(s,{maxWidth:767,children:i.jsx(ii,{children:i.jsx("svg",{width:"16",height:"16",children:i.jsx("use",{href:x+"#icon-plus"})})})})]})})};export{ai as default};
+`,ai=()=>i.jsxs(di,{children:[i.jsxs("div",{children:[i.jsx(C,{children:"Step 1."}),i.jsxs(D,{children:[i.jsx("svg",{width:"22",height:"17",children:i.jsx("use",{href:x+"#icon-book"})}),i.jsx(_,{children:"Create your own library"})]}),i.jsxs(I,{children:[i.jsx("svg",{width:"10",height:"12",children:i.jsx("use",{href:x+"#icon-line"})}),i.jsx(N,{children:"Add there books which you are going to read."})]})]}),i.jsxs("div",{children:[i.jsx(C,{children:"Step 2."}),i.jsxs(D,{children:[i.jsx("svg",{width:"15",height:"17",children:i.jsx("use",{href:x+"#icon-flag"})}),i.jsx(_,{children:"Create your first training"})]}),i.jsxs(I,{children:[i.jsx("svg",{width:"10",height:"12",children:i.jsx("use",{href:x+"#icon-line"})}),i.jsx(N,{children:"Set a goal, choose period, start training."})]})]})]}),xi=({handleModalOpen:E})=>{const[R,W]=h.useState(""),[T,z]=h.useState(""),[g,S]=h.useState(""),[B,A]=h.useState(""),c=q();h.useEffect(()=>{c(H())},[c]);const d=P(J),F=e=>{if(e.preventDefault(),g.length>4)return M.error("Каріна блін!!!!! Введи чотири числа!!!!!!");c(X({title:R,author:T,publishYear:Number(g),pagesTotal:Number(B)})).then(l=>{var L;if(((L=l.payload.response)==null?void 0:L.status)===400)throw M.error(l.payload.response.data.message),new Error}).then(()=>{W(""),z(""),S(""),A("")}).catch(l=>console.log(l))},G=K(),Y=P(O);return i.jsx(U,{children:i.jsxs("div",{children:[i.jsx(s,{minWidth:768,children:i.jsxs(Z,{onSubmit:e=>F(e),children:[i.jsxs(ii,{children:[i.jsxs(p,{id:"title",children:["Book title",i.jsx(o,{type:"text",value:R,placeholder:"...",onChange:e=>W(e.target.value)})]}),i.jsxs(p,{id:"author",children:["Author",i.jsx(o,{value:T,type:"text",placeholder:"...",onChange:e=>z(e.target.value)})]}),i.jsxs(p,{id:"date",children:["Publication date",i.jsx(o,{value:g,type:"text",placeholder:"...",onChange:e=>S(e.target.value)})]}),i.jsxs(p,{id:"pages",children:["Amount of pages",i.jsx(o,{value:B,type:"text",placeholder:"...",onChange:e=>A(e.target.value)})]})]}),i.jsx($,{type:"submit",children:Y?"Loading":"Add"})]})}),Y?i.jsx(V,{}):d.goingToRead.length>0||d.finishedReading.length>0||d.currentlyReading.length>0?i.jsxs("div",{children:[d.finishedReading.length>0&&i.jsxs(k,{children:[i.jsx(m,{children:"Already read"}),i.jsx(s,{minWidth:768,children:i.jsxs(f,{children:[i.jsx(n,{id:"title-title-rating",children:"Book title"}),i.jsx(n,{id:"author-title-rating",children:"Author"}),i.jsx(n,{id:"year-title-rating",children:"Year"}),i.jsx(n,{id:"pages-title-rating",children:"Pages"}),i.jsx(n,{id:"rating-title-rating",children:"Rating"})]})}),i.jsx(j,{children:d.finishedReading.map(e=>i.jsxs(u,{id:"resume",children:[i.jsxs(w,{id:"title-wrapper-resume",children:[i.jsx("svg",{width:"22",height:"17",children:i.jsx("use",{href:x+"#icon-book"})}),i.jsx(r,{id:"title-resume",children:e.title})]}),i.jsxs(y,{id:"rating",children:[i.jsx(s,{maxWidth:767,children:i.jsxs(b,{children:[i.jsx(a,{children:"Author:"}),i.jsx(a,{children:"Year:"}),i.jsx(a,{children:"Pages:"}),i.jsx(a,{children:"Rating:"})]})}),i.jsxs(v,{children:[i.jsx(r,{id:"author-resume",children:e.author}),i.jsx(r,{id:"year-resume",children:e.publishYear}),i.jsx(r,{id:"pages-resume",children:e.pagesTotal}),i.jsx(ri,{name:"simple-controlled",disabled:!0,value:e.rating?e.rating:0})]})]}),i.jsx(ti,{type:"button",onClick:()=>{E(e._id)},children:"Resume"})]},e._id))})]}),d.currentlyReading.length>0&&i.jsxs(k,{children:[i.jsx(m,{children:"Reading now"}),i.jsx(s,{minWidth:768,children:i.jsxs(f,{children:[i.jsx(n,{id:"title-title",children:"Book title"}),i.jsx(n,{id:"author-title",children:"Author"}),i.jsx(n,{id:"year-title",children:"Year"}),i.jsx(n,{id:"pages-title",children:"Pages"})]})}),i.jsx(j,{children:d.currentlyReading.map(e=>i.jsxs(u,{children:[i.jsxs(w,{children:[i.jsx("svg",{width:"22",height:"17",children:i.jsx("use",{href:x+"#icon-book"})}),i.jsx(r,{id:"title-list",children:e.title})]}),i.jsxs(y,{children:[i.jsx(s,{maxWidth:767,children:i.jsxs(b,{children:[i.jsx(a,{children:"Author:"}),i.jsx(a,{children:"Year:"}),i.jsx(a,{children:"Pages:"})]})}),i.jsxs(v,{children:[i.jsx(r,{id:"author-list",children:e.author}),i.jsx(r,{id:"year-list",children:e.publishYear}),i.jsx(r,{id:"pages-list",children:e.pagesTotal})]})]})]},e._id))})]}),d.goingToRead.length>0&&i.jsxs("div",{children:[i.jsx(m,{children:"Going to read"}),i.jsx(s,{minWidth:768,children:i.jsxs(f,{children:[i.jsx(n,{id:"title-title",children:"Book title"}),i.jsx(n,{id:"author-title",children:"Author"}),i.jsx(n,{id:"year-title",children:"Year"}),i.jsx(n,{id:"pages-title",children:"Pages"})]})}),i.jsx(j,{children:d.goingToRead.map(e=>i.jsxs(u,{children:[i.jsxs(w,{children:[i.jsx("svg",{width:"22",height:"17",children:i.jsx("use",{href:x+"#icon-book"})}),i.jsx(r,{id:"title-list",children:e.title})]}),i.jsxs(y,{children:[i.jsx(s,{maxWidth:767,children:i.jsxs(b,{children:[i.jsx(a,{children:"Author:"}),i.jsx(a,{children:"Year:"}),i.jsx(a,{children:"Pages:"})]})}),i.jsxs(v,{children:[i.jsx(r,{id:"author-list",children:e.author}),i.jsx(r,{id:"year-list",children:e.publishYear}),i.jsx(r,{id:"pages-list",children:e.pagesTotal})]})]})]},e._id))})]}),!d.currentlyReading.length&&i.jsx(ei,{onClick:()=>G("/progress"),children:"My training"})]}):i.jsx(ai,{}),i.jsx(s,{maxWidth:767,children:i.jsx(ni,{children:i.jsx("svg",{width:"16",height:"16",children:i.jsx("use",{href:x+"#icon-plus"})})})})]})})};export{xi as default};
