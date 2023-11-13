@@ -10,35 +10,23 @@ import {
 
 const IfNavigateModal = ({ handleClose, rootRef }) => {
   return (
-    <Wrap ref={rootRef} data-testid="wrap">
+    <Wrap ref={rootRef} id="navigate-wrapper">
       <IfNavigateContent>
         <Title id="navigate">
           The changes you made will be lost if you navigate away from this
           application
         </Title>
         <ButtonsWrapper>
-          <WhiteButtonNavigate
-            type="button"
-            onClick={handleClose}
-            data-testid="modal-close-button"
-          >
+          <WhiteButtonNavigate type="button" onClick={handleClose}>
             Cancel
           </WhiteButtonNavigate>
           <MediaQuery maxWidth={767}>
-            <OrangeButtonNavigate
-              type="button"
-              onClick={handleClose}
-              data-testid="modal-close-button"
-            >
+            <OrangeButtonNavigate type="button" onClick={handleClose}>
               Leave
             </OrangeButtonNavigate>
           </MediaQuery>
           <MediaQuery minWidth={768}>
-            <OrangeButtonNavigate
-              type="button"
-              onClick={handleClose}
-              data-testid="modal-close-button"
-            >
+            <OrangeButtonNavigate type="button" onClick={handleClose}>
               Leave this app
             </OrangeButtonNavigate>
           </MediaQuery>

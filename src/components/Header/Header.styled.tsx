@@ -100,6 +100,7 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   padding: 14px 20px 13px 22px;
   margin: 0 auto;
+  width: 320px;
 
   @media screen and (min-width: 768px) {
     max-width: none;

@@ -35,7 +35,6 @@ const ProgressForm = () => {
           <StyledDatePicker
             disabled
             defaultValue={today}
-            // onChange={(date) => handleStartDateChange(date)}
             minDate={today}
             slots={{
               openPickerIcon: ArrowDropDownIcon,

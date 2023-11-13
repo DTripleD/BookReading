@@ -31,7 +31,11 @@ import Instruction from "../../components/Instruction/Instruction.tsx";
 import toast from "react-hot-toast";
 import MainContainer from "../../components/Container/Container.tsx";
 import { useSelector } from "react-redux";
-import { userBooks } from "../../redux/books/booksSelectors.ts";
+import {
+  selectIsLoading,
+  userBooks,
+} from "../../redux/books/booksSelectors.ts";
+import Loading from "../../components/Loading/Loading.tsx";
 
 const MainPage = ({ handleModalOpen }) => {
   const [title, setTitle] = useState("");
@@ -63,14 +67,12 @@ const MainPage = ({ handleModalOpen }) => {
       })
     )
       .then((res) => {
-        console.log(res.payload.response);
         if (res.payload.response?.status === 400) {
           toast.error(res.payload.response.data.message);
           throw new Error();
         }
       })
       .then(() => {
-        console.log("aaaa");
         setTitle("");
         setAuthor("");
         setPublishYear("");
@@ -80,6 +82,8 @@ const MainPage = ({ handleModalOpen }) => {
   };
 
   const navigate = useNavigate();
+
+  const isLoading = useSelector(selectIsLoading);
 
   return (
     <MainContainer>
@@ -124,13 +128,17 @@ const MainPage = ({ handleModalOpen }) => {
                 />
               </Label>
             </FormWrapper>
-            <FormButton type="submit">Add</FormButton>
+            <FormButton type="submit">
+              {isLoading ? "Loading" : "Add"}
+            </FormButton>
           </Form>
         </MediaQuery>
 
-        {allBooks.goingToRead.length > 0 ||
-        allBooks.finishedReading.length > 0 ||
-        allBooks.currentlyReading.length > 0 ? (
+        {isLoading ? (
+          <Loading />
+        ) : allBooks.goingToRead.length > 0 ||
+          allBooks.finishedReading.length > 0 ||
+          allBooks.currentlyReading.length > 0 ? (
           <div>
             {allBooks.finishedReading.length > 0 && (
               <MarginBottomWrapper>

@@ -25,10 +25,12 @@ export const ResultTitle = styled.h4`
   text-align: center;
   text-transform: uppercase;
   color: #242a37;
+  margin-bottom: 12px;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     font-size: 14px;
     line-height: 17.07px;
+    margin-bottom: 28px;
   }
 `;
 

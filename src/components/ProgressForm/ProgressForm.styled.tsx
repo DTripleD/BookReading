@@ -51,6 +51,7 @@ export const StyledLabel = styled.label`
   line-height: 13.41px;
 
   width: 110px;
+  gap: 4px;
 
   display: flex;
   flex-direction: column;
@@ -67,14 +68,16 @@ export const StyledInput = styled.input`
   justify-content: space-between;
   height: 15px;
   box-sizing: content-box;
-
-  padding: 11px;
 `;
 
 export const InputsWrapper = styled.div`
   display: flex;
   margin-bottom: 28px;
   gap: 20px;
+
+  & input {
+    padding: 13px;
+  }
 
   @media screen and (min-width: 768px) {
     margin: 0;

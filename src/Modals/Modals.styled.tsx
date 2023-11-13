@@ -35,11 +35,22 @@ export const Title = styled.p`
     margin-bottom: 20px;
   }
 
+  &#end-time {
+    margin-top: 14px;
+    width: 237px;
+    margin-bottom: 14px;
+  }
+
   @media screen and (min-width: 768px) {
     margin-bottom: 30px;
 
     &#navigate {
       margin-bottom: 24px;
+    }
+
+    &#end-time {
+      margin-bottom: 24px;
+      width: 289px;
     }
   }
 `;
@@ -166,9 +177,10 @@ export const IfNavigateContent = styled.div`
   box-shadow: 10px 10px 20px 0px #091e3f33;
   background-color: #ffffff;
   padding: 48px 32px;
+  max-width: 280px;
 
-  @media screen and (max-width: 767px) {
-    max-width: 280px;
+  @media screen and (min-width: 768px) {
+    max-width: 394px;
     padding: 48px 22px;
   }
 `;
@@ -212,4 +224,59 @@ export const ButtonsWrapperNavigate = styled.div`
   @media screen and (min-width: 768px) {
     gap: 30px;
   }
+`;
+
+export const EndTimeContent = styled.div`
+  position: relative;
+  box-shadow: 10px 10px 20px 0px #091e3f33;
+  background-color: #ffffff;
+
+  padding: 44px 22px;
+
+  max-width: 280px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    padding: 40px 29px 48px 29px;
+
+    max-width: 394px;
+  }
+`;
+
+export const EndTimeButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 32px;
+  }
+`;
+
+export const EndTimeOrangeButton = styled.button`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17.07px;
+  color: #ffffff;
+  background-color: #ff6b08;
+  padding: 11px 0;
+  border: none;
+  box-shadow: 10px 10px 20px 0px #091e3f33;
+  width: 152px;
+`;
+
+export const EndTimeWhiteButton = styled.button`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17.07px;
+  color: #242a37;
+  background-color: transparent;
+  border: 1px solid #242a37;
+  width: 152px;
+  padding: 11px 0;
 `;

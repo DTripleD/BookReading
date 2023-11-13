@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { addReview, deleteBook } from "../redux/books/booksOperations";
 import { useAppDispatch } from "../redux/store";
 import {
@@ -13,6 +14,7 @@ import {
   Wrap,
 } from "./Modals.styled";
 import { useState } from "react";
+import { selectIsLoading } from "../redux/books/booksSelectors";
 
 const RatingModal = ({ id, handleClose, rootRef }) => {
   const [rating, setRating] = useState<number | null>(0);
@@ -27,8 +29,10 @@ const RatingModal = ({ id, handleClose, rootRef }) => {
     );
   };
 
+  const isLoading = useSelector(selectIsLoading);
+
   return (
-    <Wrap ref={rootRef} data-testid="wrap">
+    <Wrap ref={rootRef}>
       <ResumeContent>
         <form onSubmit={(e) => handleFormSubmit(e)}>
           <StarsWrapper>
@@ -55,8 +59,8 @@ const RatingModal = ({ id, handleClose, rootRef }) => {
             <WhiteResumeButton type="button" onClick={handleClose}>
               Back
             </WhiteResumeButton>
-            <OrangeResumeButton type="submit" data-testid="modal-close-button">
-              Save
+            <OrangeResumeButton type="submit">
+              {isLoading ? "Loading" : "Save"}
             </OrangeResumeButton>
             <WhiteResumeButton
               type="button"
@@ -65,7 +69,7 @@ const RatingModal = ({ id, handleClose, rootRef }) => {
                 handleClose(event);
               }}
             >
-              Delete book
+              {isLoading ? "Loading" : "Delete book"}
             </WhiteResumeButton>
           </ButtonsWrapper>
         </form>

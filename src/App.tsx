@@ -9,6 +9,9 @@ import { useAppDispatch } from "./redux/store";
 import Modal from "./components/Modal/Modal";
 import { Toaster } from "react-hot-toast";
 import { toastOptions } from "./shared/toastOptions";
+import { useSelector } from "react-redux";
+import { selectIsLoading } from "./redux/auth/selectors";
+import Loading from "./components/Loading/Loading";
 
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
@@ -17,7 +20,7 @@ const ProgressPage = lazy(() => import("./pages/ProgressPage/ProgressPage"));
 
 function App() {
   const dispatch = useAppDispatch();
-  // const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -34,7 +37,9 @@ function App() {
     setModalActive(false);
   };
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>

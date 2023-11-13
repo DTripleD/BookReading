@@ -1,37 +1,33 @@
 import {
-  Content,
-  OrangeButton,
+  EndTimeButtonWrapper,
+  EndTimeContent,
+  EndTimeOrangeButton,
+  EndTimeWhiteButton,
   Title,
-  WhiteButton,
   Wrap,
 } from "./Modals.styled";
 import icons from "../images/icons.svg";
 
 const EndTimeModal = ({ handleClose, rootRef }) => {
   return (
-    <Wrap ref={rootRef} data-testid="wrap">
-      <Content>
+    <Wrap ref={rootRef}>
+      <EndTimeContent>
         <svg width="54" height="54">
           <use href={icons + "#icon-thumb_up-no_color"}></use>
         </svg>
-        <Title>
-          Well done! but you need to be a little bit faster. You can do it)
+        <Title id="end-time">
+          Well done! <br />
+          but you need to be a little bit faster. You can do it)
         </Title>
-        <OrangeButton
-          type="button"
-          onClick={handleClose}
-          data-testid="modal-close-button"
-        >
-          New training
-        </OrangeButton>
-        <WhiteButton
-          type="button"
-          onClick={handleClose}
-          data-testid="modal-close-button"
-        >
-          Back
-        </WhiteButton>
-      </Content>
+        <EndTimeButtonWrapper>
+          <EndTimeOrangeButton type="button" onClick={handleClose}>
+            New training
+          </EndTimeOrangeButton>
+          <EndTimeWhiteButton type="button" onClick={handleClose}>
+            Back
+          </EndTimeWhiteButton>
+        </EndTimeButtonWrapper>
+      </EndTimeContent>
     </Wrap>
   );
 };

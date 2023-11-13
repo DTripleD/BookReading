@@ -4,7 +4,6 @@ import {
   currentPlanning,
   startPlanning,
 } from "./planningOperations";
-import { handlePending, handleRejected } from "../books/booksSlice";
 import { PlaningState } from "../../types/types";
 
 const initialState: PlaningState = {
@@ -54,10 +53,19 @@ const planningSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
+      .addMatcher(
+        (action) => action.type.endsWith("/pending"),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
-        handleRejected
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        }
       );
   },
 });

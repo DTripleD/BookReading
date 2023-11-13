@@ -2,16 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { addBook, addReview, deleteBook, getBooks } from "./booksOperations";
 import { BookState } from "../../types/types";
 
-export const handlePending = (state) => {
-  state.isLoading = true;
-  state.error = "";
-};
-
-export const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
-
 const initialState: BookState = {
   name: "",
   email: "",
@@ -50,11 +40,21 @@ const booksSlice = createSlice({
         state.finishedReading = state.finishedReading.filter(
           (book) => book._id !== action.payload.data._id
         );
+        state.isLoading = false;
       })
-      .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
+      .addMatcher(
+        (action) => action.type.endsWith("/pending"),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
-        handleRejected
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        }
       );
   },
 });

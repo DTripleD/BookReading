@@ -30,8 +30,9 @@ import MediaQuery from "react-responsive";
 import Result from "../../components/Results/Result";
 import MainContainer from "../../components/Container/Container";
 import { getBooks } from "../../redux/books/booksOperations";
-import { userBooks } from "../../redux/books/booksSelectors";
+import { selectIsLoading, userBooks } from "../../redux/books/booksSelectors";
 import { Book } from "../../types/types";
+import Loading from "../../components/Loading/Loading";
 
 const Progress = ({ handleModalOpen }) => {
   const [selectedBooks, setSelectedBooks] = useState<Book[]>([]);
@@ -46,12 +47,12 @@ const Progress = ({ handleModalOpen }) => {
   }, [dispatch]);
 
   const allBooks = useSelector(userBooks);
+  const isLoading = useSelector(selectIsLoading);
+  const current = useSelector(planningBooks);
 
   const filteredBooks = allBooks.goingToRead.filter(
     (book) => !selectedBooks.some((a) => a._id === book._id)
   );
-
-  const current = useSelector(planningBooks);
 
   const isFinish = (trainingBooks) => {
     if (!trainingBooks.length) {
@@ -160,7 +161,9 @@ const Progress = ({ handleModalOpen }) => {
     <MainContainer>
       <div>
         <DescWrapper className={current.books.length > 0 ? "isTrain" : ""}>
-          {current.books.length > 0 ? (
+          {isLoading ? (
+            <Loading />
+          ) : current.books.length > 0 ? (
             <WrapperForTimersDesc>
               <Timers date={date} />
               <MediaQuery minWidth={1280}>
@@ -169,8 +172,6 @@ const Progress = ({ handleModalOpen }) => {
             </WrapperForTimersDesc>
           ) : (
             <WrapperWithoutTimer>
-              <button onClick={() => handleModalOpen("1")}>Aaaa</button>
-              <button onClick={() => handleModalOpen("2")}>BBBB</button>
               <TitleWrapper id="training">
                 <MainTitle>My training</MainTitle>
               </TitleWrapper>

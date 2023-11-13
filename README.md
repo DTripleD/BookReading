@@ -1,27 +1,41 @@
-# React + TypeScript + Vite
+<h1 align="center">Book Reading</h1>
+<h2 align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img src="src/images/banner.jpg">
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. User-friendly Interface
+   Intuitive design for easy navigation.
+   Minimalistic layout to enhance focus on the content.
+2. Reading Tracker
+   Keep track of your reading progress for each book.
+   Set reading goals and challenge yourself to read more.
+3. Book Reviews and Ratings
+   Share your thoughts on books by leaving reviews and ratings.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Sign Up or Log In
+2. Create the Library
+3. Start Reading!
 
-- Configure the top-level `parserOptions` property like this:
+## Technologies and libraries used to create the project:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- This project was created with the help of [Vite + React](https://github.com/vitejs/vite)
+- [React Redux](https://react-redux.js.org)
+- [Redux Toolkit](https://redux-toolkit.js.org)
+- [Redux Persist](https://github.com/rt2zz/redux-persist)
+- [React Router Dom](https://reactrouter.com/en/main)
+- [Emotion Styled](https://emotion.sh/docs/styled)
+- [Mui](https://mui.com)
+- [Axios](https://axios-http.com/ru/docs/intro)
+- [Axios](https://axios-http.com/ru/docs/intro)
+- [Chart.js](https://www.chartjs.org/)
+- [React Responsive](https://github.com/yocontra/react-responsive)
+- HTML
+- CSS
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Live page
+
+Live page can be accessed via https://dtripled.github.io/BookReading/

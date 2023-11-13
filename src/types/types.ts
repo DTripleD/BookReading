@@ -12,7 +12,8 @@ export interface AuthState {
   refreshToken: string | null;
   sid: string | null;
   isLoggedIn: boolean;
-  isRefreshing: boolean;
+  isLoading: boolean;
+  error: never | null;
 }
 
 export interface BookState {
